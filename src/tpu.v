@@ -25,11 +25,14 @@ localparam IDLE2 = 3'd5;
 reg [2:0] state,next_state;
 reg [4:0] cnt;
 
-wire stop_read = (cnt > {1'd0,k}+5'd1||cnt==5'd0);
+wire stop_read = (cnt > {1'd0,k} ||cnt==5'd0);
 
 reg systolic_array_rst;
 
 wire sys_rst = systolic_array_rst;
+
+wire start_fifo = (cnt==2);
+wire stop_fifo = (cnt==k+3);
 
 // for fifo a
 reg rd_a_1;
@@ -58,9 +61,9 @@ always @(posedge clk or posedge rst) begin
 		case(state)
 			//IDLE2: rd_a_1 <= 1;
 			CAL:begin
-				if(cnt==1) rd_a_1 <= 1;
+				if(start_fifo) rd_a_1 <= 1;
 				//else 
-				else if(cnt==k+1) rd_a_1 <= 0;	//not sure
+				else if(stop_fifo) rd_a_1 <= 0;	//not sure
 				rd_a_2 <= rd_a_1;
 				rd_a_3 <= rd_a_2;
 				rd_a_4 <= rd_a_3;
@@ -86,38 +89,38 @@ wire [`DATA_SIZE-1:0] dataout_a_3;
 wire [`DATA_SIZE-1:0] dataout_a_4;
 
 sync_fifo fifo_a_1( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_a_1),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_a_1),
- 					.dataout (dataout_a_1),
+  					.rst (!sys_rst),
+  					.data_in (datain_a_1),
+  					.w_en (!stop_read),
+  					.r_en (rd_a_1),
+ 					.data_out (dataout_a_1),
   					.empty (empty_a_1),
   					.full(full_a_1));
 
 sync_fifo fifo_a_2( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_a_2),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_a_2),
- 					.dataout (dataout_a_2),
+  					.rst (!sys_rst),
+  					.data_in (datain_a_2),
+  					.w_en (!stop_read),
+  					.r_en (rd_a_2),
+ 					.data_out (dataout_a_2),
   					.empty (empty_a_2),
   					.full(full_a_2));
 
 sync_fifo fifo_a_3( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_a_3),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_a_3),
- 					.dataout (dataout_a_3),
+  					.rst (!sys_rst),
+  					.data_in (datain_a_3),
+  					.w_en (!stop_read),
+  					.r_en (rd_a_3),
+ 					.data_out (dataout_a_3),
   					.empty (empty_a_3),
   					.full(full_a_3));
 
 sync_fifo fifo_a_4( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_a_4),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_a_4),
- 					.dataout (dataout_a_4),
+  					.rst (!sys_rst),
+  					.data_in (datain_a_4),
+  					.w_en (!stop_read),
+  					.r_en (rd_a_4),
+ 					.data_out (dataout_a_4),
   					.empty (empty_a_4),
   					.full(full_a_4));
 
@@ -148,9 +151,9 @@ always @(posedge clk or posedge rst) begin
 		case(state)
 			//IDLE2: rd_b_1 <= 1;
 			CAL:begin
-				if(cnt==1) rd_b_1 <= 1;
+				if(start_fifo) rd_b_1 <= 1;
 				//else 
-				else if(cnt==k+1) rd_b_1 <= 0;
+				else if(stop_fifo) rd_b_1 <= 0;
 				rd_b_2 <= rd_b_1;
 				rd_b_3 <= rd_b_2;
 				rd_b_4 <= rd_b_3;
@@ -176,38 +179,38 @@ wire [`DATA_SIZE-1:0] dataout_b_3;
 wire [`DATA_SIZE-1:0] dataout_b_4;
 
 sync_fifo fifo_b_1( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_b_1),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_b_1),
- 					.dataout (dataout_b_1),
+  					.rst (!sys_rst),
+  					.data_in (datain_b_1),
+  					.w_en (!stop_read),
+  					.r_en (rd_b_1),
+ 					.data_out (dataout_b_1),
   					.empty (empty_b_1),
   					.full(full_b_1));
 
 sync_fifo fifo_b_2( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_b_2),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_b_2),
- 					.dataout (dataout_b_2),
+  					.rst (!sys_rst),
+  					.data_in (datain_b_2),
+  					.w_en (!stop_read),
+  					.r_en (rd_b_2),
+ 					.data_out (dataout_b_2),
   					.empty (empty_b_2),
   					.full(full_b_2));
 
 sync_fifo fifo_b_3( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_b_3),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_b_3),
- 					.dataout (dataout_b_3),
+  					.rst (!sys_rst),
+  					.data_in (datain_b_3),
+  					.w_en (!stop_read),
+  					.r_en (rd_b_3),
+ 					.data_out (dataout_b_3),
   					.empty (empty_b_3),
   					.full(full_b_3));
 
 sync_fifo fifo_b_4( .clk (clk),
-  					.rst (sys_rst),
-  					.datain (datain_b_4),
-  					.wr_en (!stop_read),
-  					.rd_en (rd_b_4),
- 					.dataout (dataout_b_4),
+  					.rst (!sys_rst),
+  					.data_in (datain_b_4),
+  					.w_en (!stop_read),
+  					.r_en (rd_b_4),
+ 					.data_out (dataout_b_4),
   					.empty (empty_b_4),
   					.full(full_b_4));
  
