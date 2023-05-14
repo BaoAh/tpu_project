@@ -243,8 +243,6 @@ always @(*) begin
       IDLE:  next_state = IDLE2;  //CAL;
       IDLE2: next_state = CAL;
 	  CAL:   if(cnt == {1'd0,k} + 5'd7) next_state = WRITE;
-	 // CAL:    if((k>4'd4&&cnt== {1'd0,k} + 5'd3)||k<=4'd4&&cnt=={k,1'd0}+4'd3) next_state = WRITE; //MAC_HOLD;
-	  //MAC_HOLD: next_state = WRITE;
 	  WRITE:begin
 	  	if(cnt==5'd4&&cnt_m==rnd_m-1&&cnt_n==rnd_n-1) next_state = FINISH;
       	else if(cnt==5'd4)next_state = IDLE2;  //CAL;

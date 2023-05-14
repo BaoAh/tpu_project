@@ -1,5 +1,5 @@
 module sync_fifo(
-		rst_n			,
+		rst_n		,
 		clk			,
 		fifo_wr_en	,
 		fifo_full	,
@@ -17,11 +17,11 @@ module sync_fifo(
 		input rst_n			;
 		input clk			;
 		input fifo_wr_en	;
-		input	[15:0]fifo_wr_data;
+		input	[`WORD_SIZE-1:0]fifo_wr_data;
 		input fifo_rd_en	;
 		
 		output fifo_full	;
-		output [15:0]fifo_rd_data;
+		output [`WORD_SIZE-1:0]fifo_rd_data;
 		output fifo_empty	;
 		
 		
