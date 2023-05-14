@@ -1,80 +1,46 @@
-module sync_fifo(
-		rst_n		,
-		clk			,
-		fifo_wr_en	,
-		fifo_full	,
-		fifo_wr_data,
-		
-		fifo_rd_en	,
-		fifo_rd_data,
-		fifo_empty	,
-		
-		fifo_wr_err,
-		fifo_rd_err
-		
-	);
+module sync_fifo (
+  input clk,
+  input rst,
+  input [7:0] datain,
+  input wr_en,
+  input rd_en,
+  output reg [7:0] dataout,
+  output reg empty,
+  output reg full
+);
 
-		input rst_n			;
-		input clk			;
-		input fifo_wr_en	;
-		input	[`WORD_SIZE-1:0]fifo_wr_data;
-		input fifo_rd_en	;
-		
-		output fifo_full	;
-		output [`WORD_SIZE-1:0]fifo_rd_data;
-		output fifo_empty	;
-		
-		
-		output fifo_wr_err;
-		output fifo_rd_err;
-		
-		reg	[8:0]  rdaddress;
-		reg	[8:0]  wraddress;
-	
-		reg	[9:0]data_cnt;
-		
-		assign fifo_full = (data_cnt == 10'h200);
-		assign fifo_empty = (data_cnt == 10'd0);
-		
-		assign fifo_wr_err = (data_cnt == 10'h200 && fifo_wr_en);
-		assign fifo_rd_err = (data_cnt == 10'd00 && fifo_rd_en);
-	
-		ram  ram(
-			.clock		(clk),
-			.data			(fifo_wr_data),
-			.rdaddress	(rdaddress),
-			.wraddress	(wraddress),
-			.wren			(fifo_wr_en),
-			.q				(fifo_rd_data)
-			);
-			
-		
-			
-		/*读数据地址生成*/
-		always@(posedge clk or negedge rst_n)
-		if(!rst_n)
-			rdaddress <= 9'b0;
-		else if(fifo_rd_en && ~fifo_empty)begin
-			rdaddress <= rdaddress + 1'b1;
-		end
-		
-		/*写数据地址生成*/
-		always@(posedge clk or negedge rst_n)
-		if(!rst_n)
-			wraddress <= 9'b0;
-		else if(fifo_wr_en && ~fifo_full)begin
-			wraddress <= wraddress + 1'b1;
-		end
-		
-		/*fifo 中存储的数据长度计数*/
-		always@(posedge clk or negedge rst_n)
-		if(!rst_n)
-			data_cnt <= 10'b0;
-		else if(fifo_wr_en && ~fifo_rd_en && ~fifo_full)
-			data_cnt <= data_cnt + 1'b1;
-		else if(fifo_rd_en && ~fifo_wr_en && ~fifo_empty)
-			data_cnt <= data_cnt - 1'b1;
-		else 
-			data_cnt <= data_cnt;
+reg [7:0] buffer [0:3];
+reg wr_ptr = 0;
+reg rd_ptr = 0;
+reg [1:0] count = 0;
+
+integer k;
+always @(posedge clk) begin
+  if (rst) begin
+    wr_ptr <= 0;
+    rd_ptr <= 0;
+    count <= 0;
+    empty <= 1;
+    full <= 0;
+	for(k=0;k<4;k=k+1) buffer[k] <= 8'd0;
+  end
+  else begin
+    if (wr_en && !full) begin
+      buffer[wr_ptr] <= datain;
+      wr_ptr <= (wr_ptr == 3) ? 0 : wr_ptr + 1;
+      count <= count + 1;
+      empty <= 0;
+      if (count == 3) full <= 1;
+    end
+    if (rd_en && !empty) begin
+      dataout <= buffer[rd_ptr];
+      rd_ptr <= (rd_ptr == 3) ? 0 : rd_ptr + 1;
+      count <= count - 1;
+      full <= 0;
+      if (count == 1) empty <= 1;
+    end
+  end
+end
 
 endmodule
+

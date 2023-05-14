@@ -24,6 +24,7 @@ localparam WRITE = 3'd2;
 localparam FINISH = 3'd3;
 localparam MAC_HOLD = 3'd4;
 localparam IDLE2 = 3'd5;
+/*
 // mat_A
 // reg [0:0] buf_a_0; // offset is 0
 reg [`DATA_SIZE*off_1-1:0] buf_a_1;
@@ -34,52 +35,186 @@ reg [`DATA_SIZE*off_3-1:0] buf_a_3;
 reg [`DATA_SIZE*off_1-1:0] buf_b_1;
 reg [`DATA_SIZE*off_2-1:0] buf_b_2;
 reg [`DATA_SIZE*off_3-1:0] buf_b_3;
+*/
+
+// mat_A
+// reg [0:0] buf_a_0; // offset is 0
+reg [`DATA_SIZE-1:0] buf_a_4;
+reg [`DATA_SIZE-1:0] buf_a_1;
+reg [`DATA_SIZE-1:0] buf_a_2;
+reg [`DATA_SIZE-1:0] buf_a_3;
+//mat_B
+//reg [0:0] buf_b_0; //offset is 0
+reg [`DATA_SIZE-1:0] buf_b_4;
+reg [`DATA_SIZE-1:0] buf_b_1;
+reg [`DATA_SIZE-1:0] buf_b_2;
+reg [`DATA_SIZE-1:0] buf_b_3;
+
 reg [2:0] state,next_state;
 reg [4:0] cnt;
 
+wire stop_read = (cnt > {1'd0,k}+5'd1||cnt==5'd0);
+
+reg systolic_array_rst;
+
+wire sys_rst = systolic_array_rst;
+
+// for fifo a
+reg rd_a_1;
+reg rd_a_2;
+reg rd_a_3;
+reg rd_a_4;
+
+wire empty_a_1;
+wire empty_a_2;
+wire empty_a_3;
+wire empty_a_4;
+
+wire full_a_1;
+wire full_a_2;
+wire full_a_3;
+wire full_a_4;
+
 always @(posedge clk or posedge rst) begin
-    if(rst)begin
-        buf_a_1 <= 8'd0;
-        buf_a_2 <= 16'd0;
-        buf_a_3 <= 24'd0;
-        buf_b_1 <= 8'd0;
-        buf_b_2 <= 16'd0;
-        buf_b_3 <= 24'd0;
-    end
-    else begin
-        case (state)
-
-            CAL:begin
-                buf_a_1         <=  (cnt > {1'd0,k}+5'd1||cnt==5'd0) ? 8'd0 : out_a[23:16];
-
-                buf_a_2[15:8]   <=  (cnt > {1'd0,k}+5'd1||cnt==5'd0) ? 8'd0 : out_a[15:8];
-                buf_a_2[7:0]    <=  buf_a_2[15:8];
-
-                buf_a_3[23:16]  <=  (cnt > {1'd0,k}+5'd1||cnt==5'd0) ? 8'd0 : out_a[7:0];
-                buf_a_3[15:8]   <=  buf_a_3[23:16];
-                buf_a_3[7:0]    <=  buf_a_3[15:8];
-
-                buf_b_1         <=  (cnt > {1'd0,k}+5'd1||cnt==5'd0) ? 8'd0 : out_b[23:16];
-
-                buf_b_2[15:8]   <=  (cnt > {1'd0,k}+5'd1||cnt==5'd0) ? 8'd0 : out_b[15:8];
-                buf_b_2[7:0]    <=  buf_b_2[15:8];
-                
-                buf_b_3[23:16]  <=  (cnt > {1'd0,k}+5'd1||cnt==5'd0) ? 8'd0 : out_b[7:0];
-                buf_b_3[15:8]   <=  buf_b_3[23:16];
-                buf_b_3[7:0]    <=  buf_b_3[15:8];
-			end
-			default:begin
-				buf_a_1 <= 8'd0;
-				buf_a_2 <= 16'd0;
-				buf_a_3 <= 24'd0;
-				buf_b_1 <= 8'd0;
-				buf_b_2 <= 16'd0;
-				buf_b_3 <= 24'd0;
-			end
-        endcase
-    end
+	if(rst)begin
+		rd_a_1 <= 0;
+		rd_a_2 <= 0;
+		rd_a_3 <= 0;
+		rd_a_4 <= 0;
+	end
+	else begin	
+		//need a ctrl unit for the first
+		if(state==IDLE2) rd_a_1 <= 1;
+		rd_a_2 <= rd_a_1;
+		rd_a_3 <= rd_a_2;
+		rd_a_4 <= rd_a_3;
+	end
 end
 
+wire [`DATA_SIZE-1:0] datain_a_1 = out_a[31:24];
+wire [`DATA_SIZE-1:0] datain_a_2 = out_a[23:16];
+wire [`DATA_SIZE-1:0] datain_a_3 = out_a[15:8];
+wire [`DATA_SIZE-1:0] datain_a_4 = out_a[7:0];
+
+wire [`DATA_SIZE-1:0] dataout_a_1;
+wire [`DATA_SIZE-1:0] dataout_a_2;
+wire [`DATA_SIZE-1:0] dataout_a_3;
+wire [`DATA_SIZE-1:0] dataout_a_4;
+
+sync_fifo fifo_a_1( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_a_1),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_a_1),
+ 					.dataout (dataout_a_1),
+  					.empty (empty_a_1),
+  					.full(full_a_1));
+
+sync_fifo fifo_a_2( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_a_2),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_a_2),
+ 					.dataout (dataout_a_2),
+  					.empty (empty_a_2),
+  					.full(full_a_2));
+
+sync_fifo fifo_a_3( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_a_3),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_a_3),
+ 					.dataout (dataout_a_3),
+  					.empty (empty_a_3),
+  					.full(full_a_3));
+
+sync_fifo fifo_a_4( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_a_4),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_a_4),
+ 					.dataout (dataout_a_4),
+  					.empty (empty_a_4),
+  					.full(full_a_4));
+
+// for fifo b
+reg rd_b_1;
+reg rd_b_2;
+reg rd_b_3;
+reg rd_b_4;
+
+wire empty_b_1;
+wire empty_b_2;
+wire empty_b_3;
+wire empty_b_4;
+
+wire full_b_1;
+wire full_b_2;
+wire full_b_3;
+wire full_b_4;
+
+always @(posedge clk or posedge rst) begin
+	if(rst)begin
+		rd_b_1 <= 0;
+		rd_b_2 <= 0;
+		rd_b_3 <= 0;
+		rd_b_4 <= 0;
+	end
+	else begin	
+		//need a ctrl unit for the first
+		if(state==IDLE2) rd_b_1 <= 1;
+		rd_b_2 <= rd_b_1;
+		rd_b_3 <= rd_b_2;
+		rd_b_4 <= rd_b_3;
+	end
+end
+
+wire [`DATA_SIZE-1:0] datain_b_1 = out_b[31:24];
+wire [`DATA_SIZE-1:0] datain_b_2 = out_b[23:16];
+wire [`DATA_SIZE-1:0] datain_b_3 = out_b[15:8];
+wire [`DATA_SIZE-1:0] datain_b_4 = out_b[7:0];
+
+wire [`DATA_SIZE-1:0] dataout_b_1;
+wire [`DATA_SIZE-1:0] dataout_b_2;
+wire [`DATA_SIZE-1:0] dataout_b_3;
+wire [`DATA_SIZE-1:0] dataout_b_4;
+
+sync_fifo fifo_b_1( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_b_1),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_b_1),
+ 					.dataout (dataout_b_1),
+  					.empty (empty_b_1),
+  					.full(full_b_1));
+
+sync_fifo fifo_b_2( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_b_2),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_b_2),
+ 					.dataout (dataout_b_2),
+  					.empty (empty_b_2),
+  					.full(full_b_2));
+
+sync_fifo fifo_b_3( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_b_3),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_b_3),
+ 					.dataout (dataout_b_3),
+  					.empty (empty_b_3),
+  					.full(full_b_3));
+
+sync_fifo fifo_b_4( .clk (clk),
+  					.rst (sys_rst),
+  					.datain (datain_b_4),
+  					.wr_en (!stop_read),
+  					.rd_en (rd_b_4),
+ 					.dataout (dataout_b_4),
+  					.empty (empty_b_4),
+  					.full(full_b_4));
+ 
 wire out_m = (m > 4'd4);
 wire out_n = (n > 4'd4);
 wire fit_m = (m[1:0]==2'd0);
@@ -88,34 +223,37 @@ wire [1:0] rnd_m = m[3:2] + (m[1:0] > 2'd0);
 wire [1:0] rnd_n = n[3:2] + (n[1:0] > 2'd0); 
 wire out_limit = (out_n || out_m);
 
+
+//mac and wires
 wire                           [0:31] from_top__net [0:4];
 wire                           [0:31] from_left_net [0:4];
 wire                           [31:0] multi_out_net [0:3];
-//wire systolic_array_rst = ((state==CAL&&cnt==5'd0)||rst||state==IDLE);
-reg systolic_array_rst;
 
 always @(posedge clk or posedge rst) begin
   	if(rst) systolic_array_rst <= 1;
 	else begin
-	//	if(state==IDLE) systolic_array_rst <= 1;
 		if(state==IDLE2) systolic_array_rst <= 0;
-		//if(state==WRITE&&cnt==5'd4) systolic_array_rst <= 1;
 		if(next_state==IDLE2) systolic_array_rst <= 1;
 	end
 end
 
 /*
-assign from_top__net[0][0:7] = (((cnt >= {1'd0,k}+5'd1)&&state==CAL)||state!=CAL||(cnt==5'd0&&state==CAL)||state==IDLE) ? 8'd0 : out_b[31:24];
-assign from_top__net[0][8:31] = (state!=CAL||state==IDLE) ? 24'd0 : {buf_b_1,buf_b_2[7:0],buf_b_3[7:0]};
-
-assign from_left_net[0][0:7] = (((cnt >= {1'd0,k}+5'd1)&&state==CAL)||state!=CAL||(cnt==5'd0&&state==CAL)||state==IDLE) ? 8'd0 : out_a[31:24];
-assign from_left_net[0][8:31] = (state!=CAL||state==IDLE) ? 24'd0 : {buf_a_1,buf_a_2[7:0],buf_a_3[7:0]};
-*/
 assign from_top__net[0][0:7] = (((cnt >= {1'd0,k}+5'd1)&&state==CAL)||state!=CAL||(cnt==5'd0&&state==CAL)) ? 8'd0 : out_b[31:24];
 assign from_top__net[0][8:31] = (state!=CAL) ? 24'd0 : {buf_b_1,buf_b_2[7:0],buf_b_3[7:0]};
 
 assign from_left_net[0][0:7] = (((cnt >= {1'd0,k}+5'd1)&&state==CAL)||state!=CAL||(cnt==5'd0&&state==CAL)) ? 8'd0 : out_a[31:24];
 assign from_left_net[0][8:31] = (state!=CAL) ? 24'd0 : {buf_a_1,buf_a_2[7:0],buf_a_3[7:0]};
+*/
+
+assign from_top__net[0][0:7]   = ((rd_b_1) ? dataout_b_1 : 0);
+assign from_top__net[0][8:15]  = ((rd_b_2) ? dataout_b_2 : 0);
+assign from_top__net[0][16:23] = ((rd_b_3) ? dataout_b_3 : 0);
+assign from_top__net[0][24:31] = ((rd_b_4) ? dataout_b_4 : 0);
+
+assign from_left_net[0][0:7]   = ((rd_a_1) ? dataout_a_1 : 0);
+assign from_left_net[0][8:15]  = ((rd_a_2) ? dataout_a_2 : 0);
+assign from_left_net[0][16:23] = ((rd_a_3) ? dataout_a_3 : 0);
+assign from_left_net[0][24:31] = ((rd_a_4) ? dataout_a_4 : 0);
 
 genvar i, j;
 generate 
@@ -234,22 +372,17 @@ always @(posedge clk or posedge rst) begin
 end
 
 always @(*) begin
-  if(rst)begin
-    next_state = IDLE;
-  end
-  else begin
-    next_state = state;
-    case (state)
-      IDLE:  next_state = IDLE2;  //CAL;
-      IDLE2: next_state = CAL;
+	next_state = state;
+	case (state)
+	  IDLE:  next_state = IDLE2;  //CAL;
+	  IDLE2: next_state = CAL;
 	  CAL:   if(cnt == {1'd0,k} + 5'd7) next_state = WRITE;
 	  WRITE:begin
-	  	if(cnt==5'd4&&cnt_m==rnd_m-1&&cnt_n==rnd_n-1) next_state = FINISH;
-      	else if(cnt==5'd4)next_state = IDLE2;  //CAL;
-      end	
+		if(cnt==5'd4&&cnt_m==rnd_m-1&&cnt_n==rnd_n-1) next_state = FINISH;
+		else if(cnt==5'd4)next_state = IDLE2;  //CAL;
+	  end	
 	  FINISH: next_state = FINISH;
-    endcase
-  end
+	endcase 
 end
 
 endmodule
