@@ -1,0 +1,19 @@
+//
+// File created by:  ncverilog
+// Do not modify this file
+//
+/home/MingPaoHo/forgit/tpu/sim/top_tb.v
+/home/MingPaoHo/forgit/tpu/src/ctrl.v
+/home/MingPaoHo/forgit/tpu/src/define.v
+/home/MingPaoHo/forgit/tpu/src/def.v
+/home/MingPaoHo/forgit/tpu/src/dp.v
+/home/MingPaoHo/forgit/tpu/src/global_buffer.v
+/home/MingPaoHo/forgit/tpu/src/mac.v
+/home/MingPaoHo/forgit/tpu/src/matrix_define.v
+/home/MingPaoHo/forgit/tpu/src/top.v
+/home/MingPaoHo/forgit/tpu/src/tpu.v
++incdir+/home/MingPaoHo/forgit/tpu/src
++nc64bit
++access+r
++define+SHM_FILE=\"tpu.shm\"
++define+FSDB_FILE=\"tpu.fsdb\"

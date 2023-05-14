@@ -1,0 +1,160 @@
+Magic 271485
+Revision Verdi_O-2018.09
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 71 26 1848 887 220 106
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/home/MingPaoHo/forgit/systolic_array_hw/build/tpu.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 143691.560974 162767.854414
+cursor 150000.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 20
+; marker line index
+markerPos 44
+
+; Run Time Signal and Member
+; userBusMem member ...
+; saveRunSig name
+activeDirFile "" "/home/MingPaoHo/forgit/systolic_array_hw/build/tpu.fsdb"
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[0]
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[1]
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[2]
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[3]
+saveRunSig "multi_out_net[0:3]"
+
+; Run Time Signal and Member
+; userBusMem member ...
+; saveRunSig name
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[0]
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[1]
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[2]
+userBusMem /top_tb/TOP/ul_tpu/multi_out_net[3]
+saveRunSig "multi_out_net[0:3]"
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "" "/home/MingPaoHo/forgit/systolic_array_hw/build/tpu.fsdb"
+addSignal -h 15 /top_tb/TOP/clk
+addSignal -h 15 -holdScope data_in_a[31:0]
+addSignal -h 15 -holdScope data_in_b[31:0]
+addSignal -h 15 -holdScope data_in_o[31:0]
+addSignal -h 15 -holdScope data_out_a[31:0]
+addSignal -h 15 -holdScope data_out_b[31:0]
+addSignal -h 15 -holdScope data_out_o[31:0]
+addSignal -h 15 -holdScope done
+addSignal -h 15 -holdScope rst
+addSignal -h 15 -holdScope start
+addSignal -h 15 -holdScope clk
+addSignal -h 15 -holdScope data_in_a[31:0]
+addSignal -h 15 -holdScope data_in_b[31:0]
+addSignal -h 15 -holdScope data_in_o[31:0]
+addSignal -h 15 -holdScope data_out_a[31:0]
+addSignal -h 15 -holdScope data_out_b[31:0]
+addSignal -h 15 -holdScope data_out_o[31:0]
+addSignal -h 15 -holdScope done
+addSignal -h 15 -holdScope rst
+addSignal -h 15 -holdScope start
+addGroup "G2"
+addSignal -h 15 /top_tb/TOP/ul_tpu/addr_a[7:0]
+addSignal -h 15 -holdScope addr_b[7:0]
+addSignal -h 15 -holdScope addr_c[7:0]
+addSignal -h 15 -holdScope last_addr_c[7:0]
+addSignal -h 15 -holdScope in_c[31:0]
+addSignal -h 15 -holdScope state[1:0]
+addSignal -h 15 -holdScope addr_a[7:0]
+addSignal -h 15 -holdScope addr_b[7:0]
+addSignal -h 15 -holdScope addr_c[7:0]
+addSignal -h 15 -holdScope last_addr_c[7:0]
+addSignal -h 15 -holdScope cnt_m[1:0]
+addSignal -h 15 -holdScope in_c[31:0]
+addSignal -h 15 -holdScope state[1:0]
+addSignal -h 15 -holdScope systolic_array_rst
+addSignal -h 15 -holdScope n1887
+addSignal -h 15 -holdScope n599
+addSignal -h 15 -holdScope n503
+addSignal -h 15 -holdScope n562
+addSignal -h 15 -holdScope n563
+addSignal -h 15 -holdScope multi_out_net[106:0]
+addSignal -h 15 -holdScope n568
+addSignal -h 15 -holdScope n569
+addSignal -h 15 -holdScope clk
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N10
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N11
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N12
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N13
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N14
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N15
+addSignal -h 15 -holdScope sys_row_0__sys_col_0__ul_mac_N16
+addSignal -h 15 -holdScope from_top__net[95:0]
+addSignal -h 15 -holdScope from_left_net[95:0]
+addSignal -h 15 -holdScope cnt_n[1:0]
+addGroup "G3"
+addGroup "G4"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+activeDirFile "" "/home/MingPaoHo/forgit/systolic_array_hw/build/tpu.fsdb"
+
+GETSIGNALFORM_SCOPE_HIERARCHY_BEGIN
+getSignalForm close
+
+"/top_tb"
+"/top_tb/TOP"
+"/top_tb/TOP/ul_tpu"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_0__ul_mac_left_out_reg_1_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_1_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_2_"
+
+SCOPE_LIST_BEGIN
+"/ctrl"
+"/top_tb"
+"/top_tb/TOP"
+"/top_tb/TOP/ul_tpu"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_0__ul_mac_left_out_reg_0_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_0__ul_mac_left_out_reg_1_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_0__ul_mac_mat_out_reg_7_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_1_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_0_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_2_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_3_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_4_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_5_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_6_"
+"/top_tb/TOP/ul_tpu/sys_row_0__sys_col_3__ul_mac_mat_out_reg_7_"
+SCOPE_LIST_END
+
+GETSIGNALFORM_SCOPE_HIERARCHY_END
+
+

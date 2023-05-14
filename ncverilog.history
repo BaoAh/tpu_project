@@ -1,0 +1,1 @@
+s1(24Jan2023:15:25:57):  ncverilog ./sim/top_tb.v +incdir+src +nc64bit +access+r +define+SHM_FILE=testfixture.shm +define+FSDB_FILE=testfixture.fsdb 

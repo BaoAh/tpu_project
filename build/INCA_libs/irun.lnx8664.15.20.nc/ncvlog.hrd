@@ -1,0 +1,10 @@
+//
+// File created by:  ncverilog
+// Do not modify this file
+//
+-INCDIR
+/home/MingPaoHo/forgit/tpu/src
+-DEFINE
+SHM_FILE=\"tpu.shm\"
+-DEFINE
+FSDB_FILE=\"tpu.fsdb\"

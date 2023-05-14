@@ -1,0 +1,1468 @@
+cd /home/MingPaoHo/forgit/systolic_array_hw/build; \
+cp /home/MingPaoHo/forgit/systolic_array_hw/sim/matrix_define.v .; \
+cp /home/MingPaoHo/forgit/systolic_array_hw/sim/golden.bin /home/MingPaoHo/forgit/systolic_array_hw/sim/matrix_a.bin /home/MingPaoHo/forgit/systolic_array_hw/sim/matrix_b.bin .;
+mkdir -p /home/MingPaoHo/forgit/systolic_array_hw/syn
+cd /home/MingPaoHo/forgit/systolic_array_hw/build; \
+cp /home/MingPaoHo/forgit/systolic_array_hw/syn/tpu_syn.sdf /home/MingPaoHo/forgit/systolic_array_hw/build; \
+cp /home/MingPaoHo/forgit/systolic_array_hw/sim/define.v /home/MingPaoHo/forgit/systolic_array_hw/build; \
+cp /home/MingPaoHo/forgit/systolic_array_hw/sim/matrix_define.v /home/MingPaoHo/forgit/systolic_array_hw/build; \
+ncverilog /home/MingPaoHo/forgit/systolic_array_hw/sim/top_tb.v /home/MingPaoHo/forgit/systolic_array_hw/syn/tpu_syn.v -v /home/MingPaoHo/forgit/systolic_array_hw/sim/tsmc13_neg.v \
++nc64bit \
++access+r \
++define+SHM_FILE=\"tpu.shm\" \
++define+FSDB_FILE=\"tpu.fsdb\" \
++define+SDF \
++define+SDFFILE=\"/home/MingPaoHo/forgit/systolic_array_hw/syn/tpu_syn.sdf\"; \
+rm /home/MingPaoHo/forgit/systolic_array_hw/build/define.v; \
+rm /home/MingPaoHo/forgit/systolic_array_hw/build/matrix_define.v;
+ncverilog(64): 15.20-s084: (c) Copyright 1995-2020 Cadence Design Systems, Inc.
+Recompiling... reason: file './define.v' is newer than expected.
+	expected: Fri Feb 10 19:38:53 2023
+	actual:   Fri Feb 10 19:40:51 2023
+file: /home/MingPaoHo/forgit/systolic_array_hw/syn/tpu_syn.v
+	module worklib.tpu:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+		Caching library 'tsmc13_neg' ....... Done
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+		Caching library 'tsmc13_neg' ....... Done
+  DFFRX1 cnt_m_reg_1_ ( .D(n263), .CK(clk), .RN(n1841), .Q(cnt_m[1]) );
+                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,632|20): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 cnt_n_reg_0_ ( .D(n266), .CK(clk), .RN(n18401), .Q(cnt_n_0_) );
+                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,633|20): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 cnt_n_reg_1_ ( .D(n265), .CK(clk), .RN(n1843), .QN(n1788) );
+                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,634|20): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 buf_b_3_reg_16_ ( .D(N200), .CK(clk), .RN(n1843), .Q(buf_b_3[16]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,637|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_8_ ( .D(N192), .CK(clk), .RN(n1843), .Q(buf_b_3[8]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,638|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_0_ ( .D(N184), .CK(clk), .RN(n1842), .Q(buf_b_3[0]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,639|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_17_ ( .D(N201), .CK(clk), .RN(n1842), .Q(buf_b_3[17]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,640|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_9_ ( .D(N193), .CK(clk), .RN(n1842), .Q(buf_b_3[9]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,641|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_1_ ( .D(N185), .CK(clk), .RN(n1842), .Q(buf_b_3[1]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,642|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_18_ ( .D(N202), .CK(clk), .RN(n1842), .Q(buf_b_3[18]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,643|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_10_ ( .D(N194), .CK(clk), .RN(n1842), .Q(buf_b_3[10]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,644|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_2_ ( .D(N186), .CK(clk), .RN(n1842), .Q(buf_b_3[2]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,645|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_19_ ( .D(N203), .CK(clk), .RN(n1842), .Q(buf_b_3[19]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,646|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_11_ ( .D(N195), .CK(clk), .RN(n1842), .Q(buf_b_3[11]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,647|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_3_ ( .D(N187), .CK(clk), .RN(n1842), .Q(buf_b_3[3]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,648|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_20_ ( .D(N204), .CK(clk), .RN(n1842), .Q(buf_b_3[20]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,649|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_12_ ( .D(N196), .CK(clk), .RN(n1841), .Q(buf_b_3[12]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,650|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_4_ ( .D(N188), .CK(clk), .RN(n1841), .Q(buf_b_3[4]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,651|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_21_ ( .D(N205), .CK(clk), .RN(n1841), .Q(buf_b_3[21]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,652|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_13_ ( .D(N197), .CK(clk), .RN(n1841), .Q(buf_b_3[13]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,653|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_5_ ( .D(N189), .CK(clk), .RN(n1841), .Q(buf_b_3[5]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,654|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_22_ ( .D(N206), .CK(clk), .RN(n1841), .Q(buf_b_3[22]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,655|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_14_ ( .D(N198), .CK(clk), .RN(n1841), .Q(buf_b_3[14]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,656|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_6_ ( .D(N190), .CK(clk), .RN(n1841), .Q(buf_b_3[6]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,657|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_23_ ( .D(N207), .CK(clk), .RN(n1841), .Q(buf_b_3[23]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,658|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_15_ ( .D(N199), .CK(clk), .RN(n1841), .Q(buf_b_3[15]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,659|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_3_reg_7_ ( .D(N191), .CK(clk), .RN(n1841), .Q(buf_b_3[7]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,660|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_8_ ( .D(N176), .CK(clk), .RN(n1841), .Q(buf_b_2[8]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,661|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_0_ ( .D(N168), .CK(clk), .RN(n18401), .Q(buf_b_2[0]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,662|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_9_ ( .D(N177), .CK(clk), .RN(n18401), .Q(buf_b_2[9]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,663|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_1_ ( .D(N169), .CK(clk), .RN(n18401), .Q(buf_b_2[1]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,664|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_10_ ( .D(N178), .CK(clk), .RN(n18401), .Q(buf_b_2[10]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,665|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_2_ ( .D(N170), .CK(clk), .RN(n18401), .Q(buf_b_2[2]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,666|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_11_ ( .D(N179), .CK(clk), .RN(n18401), .Q(buf_b_2[11]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,667|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_3_ ( .D(N171), .CK(clk), .RN(n18401), .Q(buf_b_2[3]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,668|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_12_ ( .D(N180), .CK(clk), .RN(n18401), .Q(buf_b_2[12]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,669|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_4_ ( .D(N172), .CK(clk), .RN(n18401), .Q(buf_b_2[4]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,670|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_13_ ( .D(N181), .CK(clk), .RN(n18401), .Q(buf_b_2[13]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,671|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_5_ ( .D(N173), .CK(clk), .RN(n18401), .Q(buf_b_2[5]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,672|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_14_ ( .D(N182), .CK(clk), .RN(n18401), .Q(buf_b_2[14]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,673|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_6_ ( .D(N174), .CK(clk), .RN(n1839), .Q(buf_b_2[6]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,674|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_15_ ( .D(N183), .CK(clk), .RN(n1839), .Q(buf_b_2[15]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,675|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_2_reg_7_ ( .D(N175), .CK(clk), .RN(n1839), .Q(buf_b_2[7]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,676|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_0_ ( .D(N160), .CK(clk), .RN(n1839), .Q(buf_b_1[0]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,677|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_1_ ( .D(N161), .CK(clk), .RN(n1839), .Q(buf_b_1[1]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,678|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_2_ ( .D(N162), .CK(clk), .RN(n1839), .Q(buf_b_1[2]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,679|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_3_ ( .D(N163), .CK(clk), .RN(n1839), .Q(buf_b_1[3]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,680|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_4_ ( .D(N164), .CK(clk), .RN(n1839), .Q(buf_b_1[4]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,681|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_5_ ( .D(N165), .CK(clk), .RN(n1839), .Q(buf_b_1[5]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,682|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_6_ ( .D(N166), .CK(clk), .RN(n1839), .Q(buf_b_1[6]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,683|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_b_1_reg_7_ ( .D(N167), .CK(clk), .RN(n1839), .Q(buf_b_1[7]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,684|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_16_ ( .D(N152), .CK(clk), .RN(n1839), .Q(buf_a_3[16]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,685|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_8_ ( .D(N144), .CK(clk), .RN(n1838), .Q(buf_a_3[8]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,686|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_0_ ( .D(N136), .CK(clk), .RN(n1838), .Q(buf_a_3[0]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,687|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_17_ ( .D(N153), .CK(clk), .RN(n1838), .Q(buf_a_3[17]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,688|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_9_ ( .D(N145), .CK(clk), .RN(n1838), .Q(buf_a_3[9]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,689|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_1_ ( .D(N137), .CK(clk), .RN(n1838), .Q(buf_a_3[1]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,690|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_18_ ( .D(N154), .CK(clk), .RN(n1838), .Q(buf_a_3[18]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,691|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_10_ ( .D(N146), .CK(clk), .RN(n1838), .Q(buf_a_3[10]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,692|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_2_ ( .D(N138), .CK(clk), .RN(n1838), .Q(buf_a_3[2]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,693|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_19_ ( .D(N155), .CK(clk), .RN(n1838), .Q(buf_a_3[19]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,694|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_11_ ( .D(N147), .CK(clk), .RN(n1838), .Q(buf_a_3[11]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,695|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_3_ ( .D(N139), .CK(clk), .RN(n1838), .Q(buf_a_3[3]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,696|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_20_ ( .D(N156), .CK(clk), .RN(n1838), .Q(buf_a_3[20]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,697|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_12_ ( .D(N148), .CK(clk), .RN(n1837), .Q(buf_a_3[12]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,698|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_4_ ( .D(N140), .CK(clk), .RN(n1837), .Q(buf_a_3[4]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,699|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_21_ ( .D(N157), .CK(clk), .RN(n1837), .Q(buf_a_3[21]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,700|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_13_ ( .D(N149), .CK(clk), .RN(n1837), .Q(buf_a_3[13]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,701|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_5_ ( .D(N141), .CK(clk), .RN(n1837), .Q(buf_a_3[5]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,702|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_22_ ( .D(N158), .CK(clk), .RN(n1837), .Q(buf_a_3[22]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,703|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_14_ ( .D(N150), .CK(clk), .RN(n1837), .Q(buf_a_3[14]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,704|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_6_ ( .D(N142), .CK(clk), .RN(n1837), .Q(buf_a_3[6]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,705|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_23_ ( .D(N159), .CK(clk), .RN(n1837), .Q(buf_a_3[23]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,706|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_15_ ( .D(N151), .CK(clk), .RN(n1837), .Q(buf_a_3[15]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,707|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_3_reg_7_ ( .D(N143), .CK(clk), .RN(n1837), .Q(buf_a_3[7]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,708|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_8_ ( .D(N128), .CK(clk), .RN(n1837), .Q(buf_a_2[8]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,709|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_0_ ( .D(N120), .CK(clk), .RN(n18401), .Q(buf_a_2[0]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,710|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_9_ ( .D(N129), .CK(clk), .RN(n810), .Q(buf_a_2[9]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,711|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_1_ ( .D(N121), .CK(clk), .RN(n1841), .Q(buf_a_2[1]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,712|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_10_ ( .D(N130), .CK(clk), .RN(n1835), .Q(buf_a_2[10]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,713|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_2_ ( .D(N122), .CK(clk), .RN(n1842), .Q(buf_a_2[2]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,714|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_11_ ( .D(N131), .CK(clk), .RN(n1835), .Q(buf_a_2[11]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,715|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_3_ ( .D(N123), .CK(clk), .RN(n1835), .Q(buf_a_2[3]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,716|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_12_ ( .D(N132), .CK(clk), .RN(n1834), .Q(buf_a_2[12]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,717|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_4_ ( .D(N124), .CK(clk), .RN(n1834), .Q(buf_a_2[4]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,718|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_13_ ( .D(N133), .CK(clk), .RN(n1843), .Q(buf_a_2[13]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,719|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_5_ ( .D(N125), .CK(clk), .RN(n1843), .Q(buf_a_2[5]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,720|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_14_ ( .D(N134), .CK(clk), .RN(n1836), .Q(buf_a_2[14]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,721|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_6_ ( .D(N126), .CK(clk), .RN(n1836), .Q(buf_a_2[6]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,722|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_15_ ( .D(N135), .CK(clk), .RN(n1836), .Q(buf_a_2[15]) );
+                       |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,723|23): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_2_reg_7_ ( .D(N127), .CK(clk), .RN(n1836), .Q(buf_a_2[7]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,724|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_0_ ( .D(N112), .CK(clk), .RN(n1836), .Q(buf_a_1[0]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,725|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_1_ ( .D(N113), .CK(clk), .RN(n1836), .Q(buf_a_1[1]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,726|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_2_ ( .D(N114), .CK(clk), .RN(n1836), .Q(buf_a_1[2]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,727|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_3_ ( .D(N115), .CK(clk), .RN(n1836), .Q(buf_a_1[3]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,728|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_4_ ( .D(N116), .CK(clk), .RN(n1836), .Q(buf_a_1[4]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,729|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_5_ ( .D(N117), .CK(clk), .RN(n1836), .Q(buf_a_1[5]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,730|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_6_ ( .D(N118), .CK(clk), .RN(n1836), .Q(buf_a_1[6]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,731|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 buf_a_1_reg_7_ ( .D(N119), .CK(clk), .RN(n1836), .Q(buf_a_1[7]) );
+                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,732|22): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_0_ ( .D(n230), .CK(clk), .RN(n1835), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,733|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_1_ ( .D(n228), .CK(clk), .RN(n1835), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,735|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_2_ ( .D(n226), .CK(clk), .RN(n1834), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,737|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_3_ ( .D(n224), .CK(clk), .RN(n1834), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,739|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_4_ ( .D(n222), .CK(clk), .RN(n1834), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,741|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_5_ ( .D(n220), .CK(clk), .RN(n1834), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,743|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_6_ ( .D(n218), .CK(clk), .RN(n1834), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,745|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 last_addr_b_reg_7_ ( .D(n216), .CK(clk), .RN(n1834), .Q(
+                          |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,747|26): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_3_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1346|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_3_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1349|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_3_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1352|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_4_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1355|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_4_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1358|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_4_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1361|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_4_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1364|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_4_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1367|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_5_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1370|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_5_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1373|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_5_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1376|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_5_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1379|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_5_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1382|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_6_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1385|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_6_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1388|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_6_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1391|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_6_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1394|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_6_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1397|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_7_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1400|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_7_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1403|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_7_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1406|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_7_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1409|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_7_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1412|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_left_out_reg_7_ ( .D(n1689), .RN(n1767), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1415|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_left_out_reg_6_ ( .D(n1685), .RN(n1767), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1417|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_up_out_reg_7_ ( .D(n1697), .RN(n2187), 
+                                                   |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1419|51): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_up_out_reg_6_ ( .D(n1692), .RN(n1761), 
+                                                   |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1421|51): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_0_ ( .D(n512), .RN(n1760), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1423|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_1_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1425|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_2_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1428|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_3_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1431|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_4_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1434|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_5_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1437|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_7_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1440|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFTRX1 sys_row_0__sys_col_0__ul_mac_mat_out_reg_6_ ( .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1443|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19518): QN
+
+  DFFRX1 addr_b_reg_2_ ( .D(n227), .CK(clk), .RN(n1834), .Q(n2015) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1452|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 addr_a_reg_4_ ( .D(n235), .CK(clk), .RN(n1835), .Q(n2006) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1461|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 addr_a_reg_2_ ( .D(n237), .CK(clk), .RN(n1835), .Q(n2008) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1464|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): QN
+
+  DFFRX1 addr_c_reg_6_ ( .D(n251), .CK(clk), .RN(n1842), .QN(n1776) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1536|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 addr_c_reg_4_ ( .D(n253), .CK(clk), .RN(n1839), .QN(n1775) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1537|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 addr_c_reg_3_ ( .D(n254), .CK(clk), .RN(n1837), .QN(n1774) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1538|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 addr_c_reg_2_ ( .D(n255), .CK(clk), .RN(n1838), .QN(n1773) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1539|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 addr_c_reg_0_ ( .D(n257), .CK(clk), .RN(n1843), .QN(n1772) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1540|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 done_reg ( .D(n241), .CK(clk), .RN(n1843), .QN(n1777) );
+                |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1541|16): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  DFFRX1 addr_a_reg_1_ ( .D(n238), .CK(clk), .RN(n1835), .QN(n401) );
+                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,1544|21): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,18307): Q
+
+  EDFFTRXL sys_row_2__sys_col_2__ul_mac_mat_out_reg_2_ ( .RN(n411), .D(n1749), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3847|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_1__ul_mac_mat_out_reg_2_ ( .RN(n411), .D(n1750), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3849|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_3__ul_mac_mat_out_reg_2_ ( .RN(n1681), .D(n1757), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3851|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_2__ul_mac_mat_out_reg_3_ ( .RN(intadd_5_SUM_1_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3853|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_1__ul_mac_mat_out_reg_3_ ( .RN(intadd_4_SUM_1_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3855|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_3__ul_mac_mat_out_reg_3_ ( .RN(intadd_6_SUM_1_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3857|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_2__ul_mac_mat_out_reg_4_ ( .RN(intadd_5_SUM_2_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3859|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_1__ul_mac_mat_out_reg_4_ ( .RN(intadd_4_SUM_2_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3861|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_3__ul_mac_mat_out_reg_4_ ( .RN(intadd_6_SUM_2_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3863|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_2__ul_mac_mat_out_reg_5_ ( .RN(intadd_5_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3865|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_1__ul_mac_mat_out_reg_5_ ( .RN(intadd_4_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3867|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  EDFFTRXL sys_row_2__sys_col_3__ul_mac_mat_out_reg_5_ ( .RN(intadd_6_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3869|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): Q
+
+  DFFX1 sys_row_2__sys_col_3__ul_mac_mat_out_reg_0_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3871|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_3__sys_col_3__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3879|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_1__sys_col_3__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3881|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_1__sys_col_1__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3883|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_3__sys_col_2__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3885|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_3__sys_col_1__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3890|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_2__sys_col_2__ul_mac_mat_out_reg_0_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3892|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_2__sys_col_1__ul_mac_mat_out_reg_0_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3894|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_1__sys_col_2__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3899|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_2__sys_col_2__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3907|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_2__sys_col_1__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3909|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_2__sys_col_3__ul_mac_mat_out_reg_1_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3911|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_3__sys_col_3__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3913|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_1__sys_col_1__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3915|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_1__sys_col_2__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3917|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_1__sys_col_3__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3919|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_2__sys_col_2__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3921|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_2__sys_col_1__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3923|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  DFFX1 sys_row_3__sys_col_2__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3925|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_3__sys_col_1__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3927|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): QN
+
+  DFFX1 sys_row_2__sys_col_3__ul_mac_mat_out_reg_7_ ( .D(
+                                                  |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,3929|50): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,17873): Q
+
+  EDFFTRX1 sys_row_1__sys_col_1__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4136|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_1__ul_mac_up_out_reg_6_ ( .RN(n1761), .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4139|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_2__ul_mac_left_out_reg_6_ ( .RN(n1761), .D(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4141|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_3__ul_mac_up_out_reg_6_ ( .RN(n1758), .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4143|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_2__ul_mac_up_out_reg_6_ ( .RN(n1758), .D(
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4145|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_2__ul_mac_left_out_reg_6_ ( .RN(n1758), .D(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4147|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_2__ul_mac_left_out_reg_6_ ( .RN(n1758), .D(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4149|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_1__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4151|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_0__ul_mac_up_out_reg_7_ ( .RN(from_top__net[63]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4154|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_0__ul_mac_up_out_reg_6_ ( .RN(from_top__net[62]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4156|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_1__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4158|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_3__ul_mac_up_out_reg_7_ ( .RN(from_top__net[71]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4161|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_1__ul_mac_left_out_reg_6_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4163|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_0__ul_mac_up_out_reg_6_ ( .RN(from_top__net[94]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4166|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_3__ul_mac_up_out_reg_7_ ( .RN(from_top__net[39]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4168|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_2__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4170|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_2__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4173|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_2__ul_mac_left_out_reg_6_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4175|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_2__ul_mac_up_out_reg_7_ ( .RN(from_top__net[47]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4178|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_2__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4180|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_1__ul_mac_up_out_reg_7_ ( .RN(from_top__net[55]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4183|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_2__ul_mac_up_out_reg_7_ ( .RN(from_top__net[79]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4185|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_0__ul_mac_up_out_reg_7_ ( .RN(from_top__net[95]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4187|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_2__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4189|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_2__ul_mac_up_out_reg_7_ ( .RN(n1735), .D(n2187), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4192|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_1__ul_mac_up_out_reg_7_ ( .RN(n1743), .D(n1767), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4194|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_0__ul_mac_left_out_reg_7_ ( .RN(n1706), .D(n1765), .E(1'b1), .CK(clk), .Q(from_left_net[71]) );
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4196|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_0__ul_mac_left_out_reg_7_ ( .RN(n1722), .D(n1764), .E(1'b1), .CK(clk), .Q(from_left_net[87]) );
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4197|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_3__ul_mac_up_out_reg_7_ ( .RN(n1727), .D(n1765), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4198|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_1__ul_mac_left_out_reg_7_ ( .RN(
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4200|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_2__sys_col_0__ul_mac_left_out_reg_7_ ( .RN(n1714), .D(n1680), .E(1'b1), .CK(clk), .Q(from_left_net[79]) );
+                                                      |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4202|54): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_0_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4203|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_0_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4206|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_0_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4209|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_0_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4212|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_0_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4215|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_3__ul_mac_mat_out_reg_4_ ( .RN(intadd_0_SUM_2_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4218|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_2__ul_mac_mat_out_reg_4_ ( .RN(intadd_8_SUM_2_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4220|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_1__ul_mac_mat_out_reg_4_ ( .RN(intadd_7_SUM_2_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4222|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_1_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4224|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_1_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4227|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_3__ul_mac_mat_out_reg_5_ ( .RN(intadd_0_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4230|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_3__ul_mac_mat_out_reg_5_ ( .RN(intadd_3_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4232|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_1_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4234|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_1_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4237|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_2__ul_mac_mat_out_reg_5_ ( .RN(intadd_8_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4240|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_1__ul_mac_mat_out_reg_5_ ( .RN(intadd_7_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4242|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_2__ul_mac_mat_out_reg_5_ ( .RN(intadd_2_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4244|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_1__ul_mac_mat_out_reg_5_ ( .RN(intadd_1_SUM_3_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4246|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_2_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4248|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_3__ul_mac_mat_out_reg_6_ ( .RN(intadd_0_SUM_4_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4251|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_2_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4253|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_2__ul_mac_mat_out_reg_2_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4256|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_3__ul_mac_mat_out_reg_6_ ( .RN(intadd_3_SUM_4_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4259|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_0__ul_mac_mat_out_reg_2_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4261|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_0__ul_mac_mat_out_reg_2_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4264|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_2__ul_mac_mat_out_reg_6_ ( .RN(intadd_8_SUM_4_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4267|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_3__sys_col_1__ul_mac_mat_out_reg_6_ ( .RN(intadd_7_SUM_4_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4269|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_2__ul_mac_mat_out_reg_6_ ( .RN(intadd_2_SUM_4_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4271|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_1__sys_col_1__ul_mac_mat_out_reg_6_ ( .RN(intadd_1_SUM_4_), 
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4273|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_1__ul_mac_mat_out_reg_3_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4275|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRX1 sys_row_0__sys_col_3__ul_mac_mat_out_reg_3_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4278|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,20033): QN
+
+  EDFFTRXL sys_row_1__sys_col_1__ul_mac_up_out_reg_7_ ( .RN(from_top__net[87]), 
+                                                    |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4497|52): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): QN
+
+  EDFFTRXL sys_row_0__sys_col_1__ul_mac_mat_out_reg_1_ ( .RN(
+                                                     |
+ncelab: *W,CUVWSP (../syn/tpu_syn.v,4499|53): 1 output port was not connected:
+ncelab: (../sim/tsmc13_neg.v,19966): QN
+
+    $readmemb("matrix_a.bin", TOP.GBUFF_A.gbuff);
+                                              |
+ncelab: *W,MEMODR (../sim/top_tb.v,47|46): $readmem default memory order incompatible with IEEE1364.
+    $readmemb("matrix_b.bin", TOP.GBUFF_B.gbuff);
+                                              |
+ncelab: *W,MEMODR (../sim/top_tb.v,48|46): $readmem default memory order incompatible with IEEE1364.
+    $readmemb("golden.bin", GOLDEN); 
+                                 |
+ncelab: *W,MEMODR (../sim/top_tb.v,49|33): $readmem default memory order incompatible with IEEE1364.
+	Building instance overlay tables: .......... Done
+	Generating native compiled code:
+		worklib.tpu:v <0x27f34c95>
+			streams:   0, words:     0
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                     Instances  Unique
+		Modules:                  5174      89
+		UDPs:                     1016       3
+		Primitives:              14764       8
+		Timing outputs:           3469      77
+		Registers:                 523      24
+		Scalar wires:             4294       -
+		Expanded wires:             76       5
+		Vectored wires:              1       -
+		Always blocks:               4       2
+		Initial blocks:              2       2
+		Timing checks:            5715     703
+		Delayed tcheck signals:   1726     531
+		Simulation timescale:      1ps
+	Writing initial simulation snapshot: worklib.top_tb:v
+Loading snapshot worklib.top_tb:v .................... Done
+*Verdi* Loading libsscore_ius152.so
+ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
+ncsim> run
+FSDB Dumper for IUS, Release Verdi_O-2018.09, Linux x86_64/64bit, 08/30/2018
+(C) 1996 - 2018 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'tpu.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+*Verdi* : Begin traversing the MDAs, layer (0).
+*Verdi* : Enable +mda and +packedmda dumping.
+*Verdi* : End of traversing the MDAs.
+
+Warning!  Timing violation
+           $setuphold<hold>( posedge CK &&& (flag == 1):7 NS, negedge D:7 NS,  1.000 : 1 NS,  0.500 : 500 PS );
+            File: ../sim/tsmc13_neg.v, line = 17959
+           Scope: top_tb.TOP.ul_tpu.sys_row_2__sys_col_1__ul_mac_left_out_reg_0_
+            Time: 7 NS
+
+
+Warning!  Timing violation
+           $setuphold<hold>( posedge CK &&& (rn_and_sn == 1):777 NS, negedge D:777 NS,  1.000 : 1 NS,  0.500 : 500 PS );
+            File: ../sim/tsmc13_neg.v, line = 19559
+           Scope: top_tb.TOP.ul_tpu.sys_row_0__sys_col_0__ul_mac_mat_out_reg_1_
+            Time: 777 NS
+
+
+Warning!  Timing violation
+           $setuphold<hold>( posedge CK &&& (rn_and_sn == 1):777 NS, posedge D:777 NS,  1.000 : 1 NS,  0.500 : 500 PS );
+            File: ../sim/tsmc13_neg.v, line = 19558
+           Scope: top_tb.TOP.ul_tpu.sys_row_0__sys_col_0__ul_mac_mat_out_reg_2_
+            Time: 777 NS
+
+
+Warning!  Timing violation
+           $setuphold<hold>( posedge CK &&& (rn_and_sn == 1):777 NS, posedge D:777 NS,  1.000 : 1 NS,  0.500 : 500 PS );
+            File: ../sim/tsmc13_neg.v, line = 19558
+           Scope: top_tb.TOP.ul_tpu.sys_row_0__sys_col_0__ul_mac_mat_out_reg_3_
+            Time: 777 NS
+
+
+Warning!  Timing violation
+           $setuphold<hold>( posedge CK &&& (rn_and_sn == 1):1085 NS, posedge D:1085 NS,  1.000 : 1 NS,  0.500 : 500 PS );
+            File: ../sim/tsmc13_neg.v, line = 19558
+           Scope: top_tb.TOP.ul_tpu.sys_row_0__sys_col_0__ul_mac_mat_out_reg_1_
+            Time: 1085 NS
+
+
+Simulation Done.
+
+GBUFF_OUT[ 0][ 7: 0] = 0b, pass!
+GBUFF_OUT[ 0][15: 8] = 0e, pass!
+GBUFF_OUT[ 0][23:16] = 0b, pass!
+GBUFF_OUT[ 0]31:24] = 09, pass!
+GBUFF_OUT[ 1][ 7: 0] = 13, pass!
+GBUFF_OUT[ 1][15: 8] = 15, pass!
+GBUFF_OUT[ 1][23:16] = 15, pass!
+GBUFF_OUT[ 1]31:24] = 0f, pass!
+GBUFF_OUT[ 2][ 7: 0] = 0b, pass!
+GBUFF_OUT[ 2][15: 8] = 11, pass!
+GBUFF_OUT[ 2][23:16] = 0d, pass!
+GBUFF_OUT[ 2]31:24] = 0d, pass!
+GBUFF_OUT[ 3][ 7: 0] = 08, pass!
+GBUFF_OUT[ 3][15: 8] = 05, pass!
+GBUFF_OUT[ 3][23:16] = 0a, pass!
+GBUFF_OUT[ 3]31:24] = 05, pass!
+GBUFF_OUT[ 4][ 7: 0] = 05, pass!
+GBUFF_OUT[ 4][15: 8] = 05, pass!
+GBUFF_OUT[ 4][23:16] = 11, pass!
+GBUFF_OUT[ 4]31:24] = 01, pass!
+GBUFF_OUT[ 5][ 7: 0] = 1X, expect = 11
+GBUFF_OUT[ 5][15: 8] = 00, pass!
+GBUFF_OUT[ 5][23:16] = 00, pass!
+GBUFF_OUT[ 5]31:24] = 00, pass!
+GBUFF_OUT[ 6][ 7: 0] = 16, pass!
+GBUFF_OUT[ 6][15: 8] = 00, pass!
+GBUFF_OUT[ 6][23:16] = 00, pass!
+GBUFF_OUT[ 6]31:24] = 00, pass!
+GBUFF_OUT[ 7][ 7: 0] = 15, pass!
+GBUFF_OUT[ 7][15: 8] = 00, pass!
+GBUFF_OUT[ 7][23:16] = 00, pass!
+GBUFF_OUT[ 7]31:24] = 00, pass!
+GBUFF_OUT[ 8][ 7: 0] = 07, pass!
+GBUFF_OUT[ 8][15: 8] = 00, pass!
+GBUFF_OUT[ 8][23:16] = 00, pass!
+GBUFF_OUT[ 8]31:24] = 00, pass!
+GBUFF_OUT[ 9][ 7: 0] = 0X, expect = 06
+GBUFF_OUT[ 9][15: 8] = 00, pass!
+GBUFF_OUT[ 9][23:16] = 00, pass!
+GBUFF_OUT[ 9]31:24] = 00, pass!
+
+
+ **************************    __ __   
+ **                      **   /--\/ \ 
+ **  Awwwww              **  |   /   | 
+ **  Simulation Failed!  **  |-    --| 
+ **                      **   \__-*_/ 
+ **************************            
+ Total    2 errors
+
+GBUFF_OUT[ 0][ 7: 0] = 0b, pass!
+GBUFF_OUT[ 0][15: 8] = 0e, pass!
+GBUFF_OUT[ 0][23:16] = 0b, pass!
+GBUFF_OUT[ 0][31:24] = 09, pass!
+GBUFF_OUT[ 1][ 7: 0] = 13, pass!
+GBUFF_OUT[ 1][15: 8] = 15, pass!
+GBUFF_OUT[ 1][23:16] = 15, pass!
+GBUFF_OUT[ 1][31:24] = 0f, pass!
+GBUFF_OUT[ 2][ 7: 0] = 0b, pass!
+GBUFF_OUT[ 2][15: 8] = 11, pass!
+GBUFF_OUT[ 2][23:16] = 0d, pass!
+GBUFF_OUT[ 2][31:24] = 0d, pass!
+GBUFF_OUT[ 3][ 7: 0] = 08, pass!
+GBUFF_OUT[ 3][15: 8] = 05, pass!
+GBUFF_OUT[ 3][23:16] = 0a, pass!
+GBUFF_OUT[ 3][31:24] = 05, pass!
+GBUFF_OUT[ 4][ 7: 0] = 05, pass!
+GBUFF_OUT[ 4][15: 8] = 05, pass!
+GBUFF_OUT[ 4][23:16] = 11, pass!
+GBUFF_OUT[ 4][31:24] = 01, pass!
+GBUFF_OUT[ 5][ 7: 0] = 1X, pass!
+GBUFF_OUT[ 5][15: 8] = 00, pass!
+GBUFF_OUT[ 5][23:16] = 00, pass!
+GBUFF_OUT[ 5][31:24] = 00, pass!
+GBUFF_OUT[ 6][ 7: 0] = 16, pass!
+GBUFF_OUT[ 6][15: 8] = 00, pass!
+GBUFF_OUT[ 6][23:16] = 00, pass!
+GBUFF_OUT[ 6][31:24] = 00, pass!
+GBUFF_OUT[ 7][ 7: 0] = 15, pass!
+GBUFF_OUT[ 7][15: 8] = 00, pass!
+GBUFF_OUT[ 7][23:16] = 00, pass!
+GBUFF_OUT[ 7][31:24] = 00, pass!
+GBUFF_OUT[ 8][ 7: 0] = 07, pass!
+GBUFF_OUT[ 8][15: 8] = 00, pass!
+GBUFF_OUT[ 8][23:16] = 00, pass!
+GBUFF_OUT[ 8][31:24] = 00, pass!
+GBUFF_OUT[ 9][ 7: 0] = 0X, pass!
+GBUFF_OUT[ 9][15: 8] = 00, pass!
+GBUFF_OUT[ 9][23:16] = 00, pass!
+GBUFF_OUT[ 9][31:24] = 00, pass!
+
+
+                                             / \  //\                      
+                              |\___/|      /   \//  \\                   
+                             /0  0  \__  /    //  | \ \                   
+                            /     /  \/_/    //   |  \  \                 
+                            @_^_@'/   \/_   //    |   \   \               
+                            //_^_/     \/_ //     |    \    \             
+                         ( //) |        \///      |     \     \           
+                        ( / /) _|_ /   )  //       |      \     _\         
+                      ( // /) '/,_ _ _/  ( ; -.    |    _ _\.-~        .-~~~^-.                      
+ ********************(( / / )) ,-{        _      `-.|.-~-.            .~         `.                   
+ **                   (( // / ))  '/\      /                 ~-. _ .-~      .-~^-.                  
+ **  Congratulations!  (( /// ))      `.   {            }                    /                      
+ **  Simulation Passed!  (( / ))     .----~-.\        \-'                .~           `. ^-.      
+ **                      **           ///.----..>        \             _ -~             `.  ^-`  ^-_ 
+ **************************             ///-._ _ _ _ _ _ _}^ - - - -- ~                     ~-- ,.-~  
+
+
+Simulation complete via $finish(1) at time 7500 US + 0
+../sim/top_tb.v:164     $finish;
+ncsim> exit

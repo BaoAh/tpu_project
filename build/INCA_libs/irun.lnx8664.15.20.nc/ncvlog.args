@@ -1,0 +1,32 @@
+//
+// File created by:  ncverilog
+// Do not modify this file
+//
+-XLMODE
+./INCA_libs/irun.lnx8664.15.20.nc
+-RUNMODE
+/home/MingPaoHo/forgit/tpu/sim/top_tb.v
+/home/MingPaoHo/forgit/tpu/src/ctrl.v
+/home/MingPaoHo/forgit/tpu/src/define.v
+/home/MingPaoHo/forgit/tpu/src/def.v
+/home/MingPaoHo/forgit/tpu/src/dp.v
+/home/MingPaoHo/forgit/tpu/src/global_buffer.v
+/home/MingPaoHo/forgit/tpu/src/mac.v
+/home/MingPaoHo/forgit/tpu/src/matrix_define.v
+/home/MingPaoHo/forgit/tpu/src/top.v
+/home/MingPaoHo/forgit/tpu/src/tpu.v
+-INCDIR
+/home/MingPaoHo/forgit/tpu/src
+-DEFINE
+SHM_FILE=\"tpu.shm\"
+-DEFINE
+FSDB_FILE=\"tpu.fsdb\"
+-CDSLIB
+./INCA_libs/irun.lnx8664.15.20.nc/cdsrun.lib
+-HDLVAR
+./INCA_libs/irun.lnx8664.15.20.nc/hdlrun.var
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+./INCA_libs/irun.lnx8664.15.20.nc/xllibs
+-ALLOWUNBOUND

@@ -1,0 +1,153 @@
+wvResizeWindow -win $_nWave1 71 26 1848 887
+wvSetPosition -win $_nWave1 {("G1" 0)}
+wvOpenFile -win $_nWave1 \
+           {/home/MingPaoHo/forgit/systolic_array_hw/build/tpu.fsdb}
+wvRestoreSignal -win $_nWave1 \
+           "/home/MingPaoHo/forgit/systolic_array_hw/signal.rc" \
+           -overWriteAutoAlias on
+wvResizeWindow -win $_nWave1 71 26 1848 887
+wvGetSignalOpen -win $_nWave1
+wvSetPosition -win $_nWave1 {("G2" 9)}
+wvSetPosition -win $_nWave1 {("G2" 9)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/top_tb/TOP/clk} \
+{/top_tb/TOP/data_in_a\[31:0\]} \
+{/top_tb/TOP/data_in_b\[31:0\]} \
+{/top_tb/TOP/data_in_o\[31:0\]} \
+{/top_tb/TOP/data_out_a\[31:0\]} \
+{/top_tb/TOP/data_out_b\[31:0\]} \
+{/top_tb/TOP/data_out_o\[31:0\]} \
+{/top_tb/TOP/done} \
+{/top_tb/TOP/rst} \
+{/top_tb/TOP/start} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+{/top_tb/clk} \
+{/top_tb/TOP/ul_tpu/addr_a\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_m\[1:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_n\[1:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/state\[2:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G3" \
+}
+wvSelectSignal -win $_nWave1 {( "G2" 2 3 4 5 6 7 8 9 )} 
+wvSetPosition -win $_nWave1 {("G2" 9)}
+wvSetPosition -win $_nWave1 {("G2" 9)}
+wvSetPosition -win $_nWave1 {("G2" 9)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/top_tb/TOP/clk} \
+{/top_tb/TOP/data_in_a\[31:0\]} \
+{/top_tb/TOP/data_in_b\[31:0\]} \
+{/top_tb/TOP/data_in_o\[31:0\]} \
+{/top_tb/TOP/data_out_a\[31:0\]} \
+{/top_tb/TOP/data_out_b\[31:0\]} \
+{/top_tb/TOP/data_out_o\[31:0\]} \
+{/top_tb/TOP/done} \
+{/top_tb/TOP/rst} \
+{/top_tb/TOP/start} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+{/top_tb/clk} \
+{/top_tb/TOP/ul_tpu/addr_a\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_m\[1:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_n\[1:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/state\[2:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G3" \
+}
+wvSelectSignal -win $_nWave1 {( "G2" 2 3 4 5 6 7 8 9 )} 
+wvSetPosition -win $_nWave1 {("G2" 9)}
+wvGetSignalClose -win $_nWave1
+wvSelectSignal -win $_nWave1 {( "G2" 1 )} 
+wvCut -win $_nWave1
+wvSetPosition -win $_nWave1 {("G3" 0)}
+wvSetPosition -win $_nWave1 {("G2" 8)}
+wvSelectSignal -win $_nWave1 {( "G2" 1 )} 
+wvSelectGroup -win $_nWave1 {G3}
+wvZoomIn -win $_nWave1
+wvZoomIn -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvGetSignalOpen -win $_nWave1
+wvSetPosition -win $_nWave1 {("G2" 10)}
+wvSetPosition -win $_nWave1 {("G2" 10)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/top_tb/TOP/clk} \
+{/top_tb/TOP/data_in_a\[31:0\]} \
+{/top_tb/TOP/data_in_b\[31:0\]} \
+{/top_tb/TOP/data_in_o\[31:0\]} \
+{/top_tb/TOP/data_out_a\[31:0\]} \
+{/top_tb/TOP/data_out_b\[31:0\]} \
+{/top_tb/TOP/data_out_o\[31:0\]} \
+{/top_tb/TOP/done} \
+{/top_tb/TOP/rst} \
+{/top_tb/TOP/start} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+{/top_tb/TOP/ul_tpu/addr_a\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_m\[1:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_n\[1:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/state\[2:0\]} \
+{/top_tb/TOP/ul_tpu/rnd_m\[1:0\]} \
+{/top_tb/TOP/ul_tpu/rnd_n\[1:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G3" \
+}
+wvSelectSignal -win $_nWave1 {( "G2" 9 10 )} 
+wvSetPosition -win $_nWave1 {("G2" 10)}
+wvSetPosition -win $_nWave1 {("G2" 10)}
+wvSetPosition -win $_nWave1 {("G2" 10)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/top_tb/TOP/clk} \
+{/top_tb/TOP/data_in_a\[31:0\]} \
+{/top_tb/TOP/data_in_b\[31:0\]} \
+{/top_tb/TOP/data_in_o\[31:0\]} \
+{/top_tb/TOP/data_out_a\[31:0\]} \
+{/top_tb/TOP/data_out_b\[31:0\]} \
+{/top_tb/TOP/data_out_o\[31:0\]} \
+{/top_tb/TOP/done} \
+{/top_tb/TOP/rst} \
+{/top_tb/TOP/start} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+{/top_tb/TOP/ul_tpu/addr_a\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_m\[1:0\]} \
+{/top_tb/TOP/ul_tpu/cnt_n\[1:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_b\[7:0\]} \
+{/top_tb/TOP/ul_tpu/last_addr_c\[7:0\]} \
+{/top_tb/TOP/ul_tpu/state\[2:0\]} \
+{/top_tb/TOP/ul_tpu/rnd_m\[1:0\]} \
+{/top_tb/TOP/ul_tpu/rnd_n\[1:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G3" \
+}
+wvSelectSignal -win $_nWave1 {( "G2" 9 10 )} 
+wvSetPosition -win $_nWave1 {("G2" 10)}
+wvGetSignalClose -win $_nWave1
+wvGetSignalOpen -win $_nWave1
+wvGetSignalSetScope -win $_nWave1 "/ctrl"
+wvGetSignalSetScope -win $_nWave1 "/top_tb"
+wvGetSignalSetScope -win $_nWave1 "/top_tb/TOP"
+wvGetSignalSetScope -win $_nWave1 "/top_tb/TOP/ul_tpu"

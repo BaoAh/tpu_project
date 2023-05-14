@@ -1,0 +1,904 @@
+mkdir -p /home/MingPaoHo/forgit/systolic_array_hw/syn
+rm -rf /home/MingPaoHo/forgit/systolic_array_hw/syn/*; \
+cd /home/MingPaoHo/forgit/systolic_array_hw/build; \
+cp /home/MingPaoHo/forgit/systolic_array_hw/script/synopsys_dc.setup /home/MingPaoHo/forgit/systolic_array_hw/build/.synopsys_dc.setup; \
+dcnxt_shell -f /home/MingPaoHo/forgit/systolic_array_hw/script/synthesize.tcl;
+
+                            Design Compiler (R) NXT 
+
+                 Version T-2022.03 for linux64 - Feb 22, 2022 
+
+                    Copyright (c) 1988 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+# Force multicore
+set_host_options -max_cores 16
+1
+# Read all Files
+set top tpu
+tpu
+#read_verilog ../src/${top}.v
+read_file -autoread -top ${top} -recursive {../src} -library ${top}
+== READ_FILE autoread for top design 'tpu' ==
+
+Starting READ_FILE autoread mode...
+Warning: Defining design library 'tpu' at directory '/home/MingPaoHo/forgit/systolic_array_hw/build/tpu_autoread'. (AUTOREAD-107)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src'.  (AUTOREAD-100)
+Warning: Adding missing directory to search_path - '/home/MingPaoHo/forgit/systolic_array_hw/src'. (AUTOREAD-105)
+Information: HDL language of file .tpu.v.swp is not defined. (AUTOREAD-103)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/ctrl.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/top.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/def.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/global_buffer.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/dp.v'.  (AUTOREAD-100)
+Information: HDL language of file gen_def.sh is not defined. (AUTOREAD-103)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/mac.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/matrix_define.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'.  (AUTOREAD-100)
+Information: Adding '/home/MingPaoHo/forgit/systolic_array_hw/src/define.v'.  (AUTOREAD-100)
+Information: HDL language of file tpu.v.origin is not defined. (AUTOREAD-103)
+Information: Scanning file { ctrl.v }. (AUTOREAD-303)
+Information: Scanning file { top.v }. (AUTOREAD-303)
+Information: Scanning file { dp.v }. (AUTOREAD-303)
+Information: Scanning file { mac.v }. (AUTOREAD-303)
+Information: Scanning file { tpu.v }. (AUTOREAD-303)
+Compiling source file /home/MingPaoHo/forgit/systolic_array_hw/src/mac.v
+Presto compilation completed successfully.
+Compiling source file /home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v
+Opening include file /home/MingPaoHo/forgit/systolic_array_hw/src/define.v
+Opening include file /home/MingPaoHo/forgit/systolic_array_hw/src/matrix_define.v
+Presto compilation completed successfully.
+Elaborating top design tpu
+Loading db file '/home/nfs_cad/lib/CBDK_IC_Contest_v2.1/SynopsysDC/db/slow.db'
+Loading db file '/home/nfs_cad/lib/CBDK_IC_Contest_v2.1/SynopsysDC/db/fast.db'
+Loading db file '/home/nfs_cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb'
+Loading db file '/home/nfs_cad/synopsys/synthesis/cur/libraries/syn/gtech.db'
+Loading db file '/home/nfs_cad/synopsys/synthesis/cur/libraries/syn/standard.sldb'
+  Loading link library 'slow'
+  Loading link library 'fast'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Statistics for case statements in always block at line 40 in file
+	'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            50            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 139 in file
+	'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           165            |     no/auto      |
+===============================================
+
+Statistics for case statements in always block at line 236 in file
+	'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           242            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine tpu line 40 in file
+		'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     buf_b_1_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     buf_a_1_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     buf_b_2_reg     | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     buf_a_3_reg     | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     buf_b_3_reg     | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     buf_a_2_reg     | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine tpu line 97 in file
+		'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+| systolic_array_rst_reg | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+==================================================================================
+
+Inferred memory devices in process
+	in routine tpu line 139 in file
+		'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      in_c_reg       | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   last_addr_b_reg   | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     addr_a_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      cnt_m_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     wr_en_c_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       cnt_reg       | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      cnt_n_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     wr_en_b_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     wr_en_a_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     addr_c_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     addr_b_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   last_addr_c_reg   | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      done_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      in_a_reg       | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      in_b_reg       | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine tpu line 231 in file
+		'/home/MingPaoHo/forgit/systolic_array_hw/src/tpu.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|     tpu/217      |   4    |   32    |      2       |
+======================================================
+Presto compilation completed successfully. (tpu)
+Elaborated 1 design.
+Current design is now 'tpu'.
+Information: Building the design 'mac'. (HDL-193)
+
+Inferred memory devices in process
+	in routine mac line 11 in file
+		'/home/MingPaoHo/forgit/systolic_array_hw/src/mac.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     mat_out_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     up_out_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    left_out_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (mac)
+Autoread command completed successfully.
+current_design ${top}
+Current design is 'tpu'.
+{tpu}
+link
+
+  Linking design 'tpu'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (2 designs)               /home/MingPaoHo/forgit/systolic_array_hw/build/tpu.db, etc
+  slow (library)              /home/nfs_cad/lib/CBDK_IC_Contest_v2.1/SynopsysDC/db/slow.db
+  fast (library)              /home/nfs_cad/lib/CBDK_IC_Contest_v2.1/SynopsysDC/db/fast.db
+  dw_foundation.sldb (library) /home/nfs_cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb
+
+1
+# Setting Clock Constraits
+source -echo -verbose ../script/${top}.sdc
+# operating conditions and boundary conditions #
+set cycle 15.0
+15.0
+#set cycle 13.0
+create_clock -name clk  -period $cycle   [get_ports  clk] 
+1
+set_dont_touch_network      [all_clocks]
+1
+set_fix_hold                [all_clocks]
+1
+set_clock_uncertainty  0.1  [all_clocks]
+1
+set_clock_latency      0.5  [all_clocks]
+1
+set_ideal_network           [get_ports clk]
+1
+#Don't touch the basic env setting as below
+set_input_delay  0    -clock clk [remove_from_collection [all_inputs] [get_ports clk]] -clock_fall
+1
+set_output_delay 0    -clock clk [all_outputs]  -clock_fall
+1
+set_load         1   [all_outputs]
+1
+set_drive        0.1   [all_inputs]
+1
+set_operating_conditions -max_library slow -max slow
+Using operating conditions 'slow' found in library 'slow'.
+1
+set_wire_load_model -name tsmc13_wl10 -library slow                        
+1
+set_max_fanout 20 [all_inputs]
+1
+1
+# High fanout threshold
+set high_fanout_net_threshold 0
+0
+report_net_fanout -high_fanout
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Changed wire load model for 'alt1' from '(none)' to 'tsmc13_wl10'. (OPT-170)
+Information: Changed wire load model for 'apparch' from '(none)' to 'tsmc13_wl10'. (OPT-170)
+Information: Updating graph... (UID-83)
+ 
+****************************************
+Report : net fanout
+        -high_fanout
+Design : tpu
+Version: T-2022.03
+Date   : Mon Feb 27 20:30:35 2023
+****************************************
+
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+tpu                    tsmc13_wl10       slow
+
+
+Attributes:
+   dr - drc disabled
+    c - annotated capacitance
+    d - dont_touch
+    i - ideal_net
+    I - ideal_network
+    p - includes pin load
+    r - annotated resistance
+    h - high fanout
+
+Net                 Fanout   Attributes   Capacitance   Driver
+--------------------------------------------------------------------------------
+*Logic0*              1966   dr              19.65      U2/**logic_0**
+clk                    633   dr, d, I         0.00      clk
+1
+uniquify
+Information: Uniquified 16 instances of design 'mac'. (OPT-1056)
+1
+set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+1
+set_structure -timing true
+1
+check_design
+ 
+****************************************
+check_design summary:
+Version:     T-2022.03
+Date:        Mon Feb 27 20:30:35 2023
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     33
+    Unconnected ports (LINT-28)                                    33
+
+Cells                                                              16
+    Cells do not drive (LINT-1)                                    16
+
+Nets                                                               74
+    Unloaded nets (LINT-2)                                         74
+--------------------------------------------------------------------------------
+
+Warning: In design 'mac_15', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_0', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_1', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_2', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_3', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_4', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_5', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_6', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_7', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_8', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_9', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_10', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_11', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_12', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_13', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'mac_14', cell 'B_0' does not drive any nets. (LINT-1)
+Warning: In design 'tpu', net 'net197' driven by pin 'C1644/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net196' driven by pin 'C1641/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net195' driven by pin 'C1615/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net194' driven by pin 'C1614/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net193' driven by pin 'C1613/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net192' driven by pin 'C1610/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net191' driven by pin 'C1609/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net190' driven by pin 'C1601/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net189' driven by pin 'C1598/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'net188' driven by pin 'C1547/Z' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][31]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][30]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][29]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][28]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][27]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][26]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][25]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][24]' driven by pin 'sys_row[3].sys_col[3].ul_mac/left_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][23]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][22]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][21]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][20]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][19]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][18]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][17]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][16]' driven by pin 'sys_row[2].sys_col[3].ul_mac/left_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][15]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][14]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][13]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][12]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][11]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][10]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][9]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][8]' driven by pin 'sys_row[1].sys_col[3].ul_mac/left_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][7]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][6]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][5]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][4]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][3]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][2]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][1]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_left_net[4][0]' driven by pin 'sys_row[0].sys_col[3].ul_mac/left_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][31]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][30]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][29]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][28]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][27]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][26]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][25]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][24]' driven by pin 'sys_row[3].sys_col[3].ul_mac/up_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][23]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][22]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][21]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][20]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][19]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][18]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][17]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][16]' driven by pin 'sys_row[3].sys_col[2].ul_mac/up_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][15]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][14]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][13]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][12]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][11]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][10]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][9]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][8]' driven by pin 'sys_row[3].sys_col[1].ul_mac/up_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][7]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[0]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][6]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[1]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][5]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[2]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][4]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[3]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][3]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[4]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][2]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[5]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][1]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[6]' has no loads. (LINT-2)
+Warning: In design 'tpu', net 'from_top__net[4][0]' driven by pin 'sys_row[3].sys_col[0].ul_mac/up_out[7]' has no loads. (LINT-2)
+Warning: In design 'tpu', port 'start' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[31]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[30]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[29]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[28]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[27]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[26]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[25]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[24]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[22]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[21]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[20]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[19]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[18]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[17]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[16]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[6]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[5]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[4]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'tpu', port 'out_c[0]' is not connected to any nets. (LINT-28)
+1
+### Old command
+## Auto CG
+#insert_clock_gating
+#report_clock_gating
+## Synthesis (quick try)
+#compile -map_effort medium -area_effort low
+#compile -map_effort medium -area_effort low -inc
+## Synthesize (high effort)
+#compile -map_effort high -area_effort high
+#compile -map_effort high -area_effort high -inc
+## Register retiming (dcnxt only)
+# optimize_registers
+# Synthesize (ultimate)
+# compile_ultra -no_autoungroup -no_boundary_optimization -retime -gate_clock
+#compile_ultra			
+#compile_ultra -incremental
+compile
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | S-2021.06-DWBB_202106.0 |     *     |
+| Licensed DW Building Blocks        | S-2021.06-DWBB_202106.0 |     *     |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler NXT                                                               |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 994                                    |
+| Number of User Hierarchies                              | 16                                     |
+| Sequential Cell Count                                   | 633                                    |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch cells                              | 102                                    |
+| Number of Dont Touch nets                               | 17                                     |
+| Number of size only cells                               | 0                                      |
+| Design with UPF Data                                    | false                                  |
+----------------------------------------------------------------------------------------------------
+| Variables                                               | Value                                  |
+----------------------------------------------------------------------------------------------------
+| set_fix_multiple_port_nets                              | -all -buffer_constants                 |
+====================================================================================================
+
+Information: There are 123 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition slow set on design tpu has different process,
+voltage and temperatures parameters than the parameters at which target library 
+fast is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'mac_0'
+  Processing 'tpu'
+Information: Added key list 'DesignWare' to design 'tpu'. (DDB-72)
+Information: The register 'wr_en_b_reg' is a constant and will be removed. (OPT-1206)
+Information: The register 'wr_en_a_reg' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[31]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[29]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[28]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[27]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[24]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[23]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[22]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[21]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[20]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[19]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[18]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[17]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[16]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[14]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[13]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[12]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[11]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[10]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[9]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[8]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_a_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[31]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[29]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[28]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[27]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[24]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[23]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[22]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[21]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[20]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[19]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[18]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[17]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[16]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[14]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[13]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[12]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[11]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[10]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[9]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[8]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'in_b_reg[0]' is a constant and will be removed. (OPT-1206)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'tpu_DW01_add_0_DW01_add_2'
+  Processing 'tpu_DW01_inc_0_DW01_inc_2'
+  Processing 'tpu_DW01_add_1_DW01_add_3'
+  Processing 'tpu_DW01_inc_1_DW01_inc_3'
+  Processing 'tpu_DW01_inc_2_DW01_inc_4'
+  Mapping 'tpu_DW_cmp_0'
+  Processing 'tpu_DW01_inc_3_DW01_inc_5'
+  Processing 'tpu_DW01_add_2_DW01_add_4'
+  Mapping 'tpu_DW_cmp_1'
+  Mapping 'tpu_DW_cmp_2'
+  Processing 'tpu_DW01_inc_4_DW01_inc_6'
+  Building model 'DW01_NAND2'
+  Processing 'DW01_NAND2'
+  Building model 'DW01_add_width8' (rpl)
+  Processing 'DW01_add_width8'
+  Processing 'mac_0_DW01_add_0_DW01_add_5'
+  Mapping 'mac_0_DW_mult_uns_0'
+  Processing 'mac_1_DW01_add_0_DW01_add_6'
+  Mapping 'mac_1_DW_mult_uns_0'
+  Processing 'mac_2_DW01_add_0_DW01_add_7'
+  Mapping 'mac_2_DW_mult_uns_0'
+  Processing 'mac_4_DW01_add_0_DW01_add_8'
+  Mapping 'mac_4_DW_mult_uns_0'
+  Processing 'mac_5_DW01_add_0_DW01_add_9'
+  Mapping 'mac_5_DW_mult_uns_0'
+  Processing 'mac_6_DW01_add_0_DW01_add_10'
+  Mapping 'mac_6_DW_mult_uns_0'
+  Processing 'mac_8_DW01_add_0_DW01_add_11'
+  Mapping 'mac_8_DW_mult_uns_0'
+  Processing 'mac_9_DW01_add_0_DW01_add_12'
+  Mapping 'mac_9_DW_mult_uns_0'
+  Processing 'mac_10_DW01_add_0_DW01_add_13'
+  Mapping 'mac_10_DW_mult_uns_0'
+  Processing 'mac_7_DW01_add_0_DW01_add_14'
+  Mapping 'mac_7_DW_mult_uns_0'
+  Processing 'mac_3_DW01_add_0_DW01_add_15'
+  Mapping 'mac_3_DW_mult_uns_0'
+  Processing 'mac_11_DW01_add_0_DW01_add_16'
+  Mapping 'mac_11_DW_mult_uns_0'
+  Processing 'mac_13_DW01_add_0_DW01_add_17'
+  Mapping 'mac_13_DW_mult_uns_0'
+  Processing 'mac_12_DW01_add_0_DW01_add_18'
+  Mapping 'mac_12_DW_mult_uns_0'
+  Processing 'mac_14_DW01_add_0_DW01_add_19'
+  Mapping 'mac_14_DW_mult_uns_0'
+  Processing 'mac_15_DW01_add_0_DW01_add_20'
+  Mapping 'mac_15_DW_mult_uns_0'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+Loading db file '/home/nfs_cad/lib/CBDK_IC_Contest_v2.1/SynopsysDC/db/fast.db'
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:05   65202.2      0.00       0.0   43473.2                                0.00  
+    0:00:05   65202.2      0.00       0.0   43473.2                                0.00  
+    0:00:05   65202.2      0.00       0.0   43473.2                                0.00  
+    0:00:05   65202.2      0.00       0.0   43473.2                                0.00  
+    0:00:05   65202.2      0.00       0.0   43473.2                                0.00  
+    0:00:05   44081.5      2.18       6.1   42923.0                                0.00  
+    0:00:05   44202.0      1.69       4.5   42923.0                                0.00  
+    0:00:06   44239.3      0.55       0.8   42850.7                                0.00  
+    0:00:06   44303.8      0.00       0.0   42850.7                                0.00  
+    0:00:06   44278.4      0.16       0.2   42850.7                                0.00  
+    0:00:06   44314.0      0.41       0.8   42850.7                                0.00  
+    0:00:06   44310.6      0.26       0.4   42850.7                                0.00  
+    0:00:06   44314.0      0.00       0.0   42850.7                                0.00  
+    0:00:06   44305.5      0.03       0.0   42850.7                                0.00  
+    0:00:06   44307.2      0.00       0.0   42850.7                                0.00  
+    0:00:06   44307.2      0.00       0.0   42850.7                                0.00  
+    0:00:06   44307.2      0.00       0.0   42850.7                                0.00  
+    0:00:06   44307.2      0.00       0.0   42850.7                                0.00  
+    0:00:06   44220.7      0.00       0.0    2304.1                                0.00  
+    0:00:06   44224.1      0.00       0.0     765.6                                0.00  
+    0:00:06   44227.5      0.00       0.0     748.5                                0.00  
+    0:00:06   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:06   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:06   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:06   44229.2      0.00       0.0       0.0                                0.00  
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:06   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:06   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:07   44188.4      0.00       0.0    1167.1                                0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:07   44188.4      0.00       0.0    1167.1                                0.00  
+    0:00:07   44229.2      0.00       0.0       0.0                                0.00  
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:07   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:07   44229.2      0.00       0.0       0.0                                0.00  
+    0:00:07   44090.0      0.00       0.0       0.0                                0.00  
+    0:00:07   44037.3      0.00       0.0       0.0                                0.00  
+    0:00:07   43998.3      0.00       0.0       0.0                                0.00  
+    0:00:07   43964.4      0.00       0.0       0.0                                0.00  
+    0:00:07   43944.0      0.00       0.0       0.0                                0.00  
+    0:00:07   43944.0      0.00       0.0       0.0                                0.00  
+    0:00:07   43944.0      0.00       0.0       0.0                                0.00  
+    0:00:07   43867.6      0.57       0.9       0.0                                0.00  
+    0:00:07   43864.2      0.57       0.9       0.0                                0.00  
+    0:00:07   43864.2      0.57       0.9       0.0                                0.00  
+    0:00:07   43864.2      0.57       0.9       0.0                                0.00  
+    0:00:07   43864.2      0.57       0.9       0.0                                0.00  
+    0:00:07   43864.2      0.57       0.9       0.0                                0.00  
+    0:00:07   43864.2      0.57       0.9       0.0                                0.00  
+    0:00:07   44594.1      0.00       0.0   20657.7                                0.00  
+Loading db file '/home/nfs_cad/lib/CBDK_IC_Contest_v2.1/SynopsysDC/db/slow.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+current_design [get_designs ${top}]
+Current design is 'tpu'.
+{tpu}
+remove_unconnected_ports -blast_buses [get_cells -hierarchical *]
+Removing port 'B[7]' from design 'tpu_DW01_add_0_DW01_add_2'
+Removing port 'B[6]' from design 'tpu_DW01_add_0_DW01_add_2'
+Removing port 'B[5]' from design 'tpu_DW01_add_0_DW01_add_2'
+Removing port 'CI' from design 'tpu_DW01_add_0_DW01_add_2'
+Removing port 'CO' from design 'tpu_DW01_add_0_DW01_add_2'
+Removing port 'CI' from design 'mac_0_DW01_add_0_DW01_add_5'
+Removing port 'CO' from design 'mac_0_DW01_add_0_DW01_add_5'
+Removing port 'product[15]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[14]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[13]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[12]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[11]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[10]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[9]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'product[8]' from design 'mac_0_DW_mult_uns_0'
+Removing port 'CI' from design 'mac_1_DW01_add_0_DW01_add_6'
+Removing port 'CO' from design 'mac_1_DW01_add_0_DW01_add_6'
+Removing port 'product[15]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[14]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[13]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[12]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[11]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[10]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[9]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'product[8]' from design 'mac_1_DW_mult_uns_0_DW_mult_uns_1'
+Removing port 'CI' from design 'mac_2_DW01_add_0_DW01_add_7'
+Removing port 'CO' from design 'mac_2_DW01_add_0_DW01_add_7'
+Removing port 'product[15]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[14]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[13]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[12]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[11]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[10]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[9]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'product[8]' from design 'mac_2_DW_mult_uns_0_DW_mult_uns_2'
+Removing port 'CI' from design 'mac_3_DW01_add_0_DW01_add_15'
+Removing port 'CO' from design 'mac_3_DW01_add_0_DW01_add_15'
+Removing port 'product[15]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[14]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[13]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[12]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[11]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[10]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[9]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'product[8]' from design 'mac_3_DW_mult_uns_0_DW_mult_uns_10'
+Removing port 'CI' from design 'mac_4_DW01_add_0_DW01_add_8'
+Removing port 'CO' from design 'mac_4_DW01_add_0_DW01_add_8'
+Removing port 'product[15]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[14]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[13]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[12]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[11]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[10]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[9]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'product[8]' from design 'mac_4_DW_mult_uns_0_DW_mult_uns_3'
+Removing port 'CI' from design 'mac_5_DW01_add_0_DW01_add_9'
+Removing port 'CO' from design 'mac_5_DW01_add_0_DW01_add_9'
+Removing port 'product[15]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[14]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[13]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[12]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[11]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[10]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[9]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'product[8]' from design 'mac_5_DW_mult_uns_0_DW_mult_uns_4'
+Removing port 'CI' from design 'mac_6_DW01_add_0_DW01_add_10'
+Removing port 'CO' from design 'mac_6_DW01_add_0_DW01_add_10'
+Removing port 'product[15]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[14]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[13]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[12]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[11]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[10]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[9]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'product[8]' from design 'mac_6_DW_mult_uns_0_DW_mult_uns_5'
+Removing port 'CI' from design 'mac_7_DW01_add_0_DW01_add_14'
+Removing port 'CO' from design 'mac_7_DW01_add_0_DW01_add_14'
+Removing port 'product[15]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[14]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[13]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[12]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[11]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[10]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[9]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'product[8]' from design 'mac_7_DW_mult_uns_0_DW_mult_uns_9'
+Removing port 'CI' from design 'mac_8_DW01_add_0_DW01_add_11'
+Removing port 'CO' from design 'mac_8_DW01_add_0_DW01_add_11'
+Removing port 'product[15]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[14]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[13]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[12]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[11]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[10]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[9]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'product[8]' from design 'mac_8_DW_mult_uns_0_DW_mult_uns_6'
+Removing port 'CI' from design 'mac_9_DW01_add_0_DW01_add_12'
+Removing port 'CO' from design 'mac_9_DW01_add_0_DW01_add_12'
+Removing port 'product[15]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[14]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[13]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[12]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[11]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[10]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[9]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'product[8]' from design 'mac_9_DW_mult_uns_0_DW_mult_uns_7'
+Removing port 'CI' from design 'mac_10_DW01_add_0_DW01_add_13'
+Removing port 'CO' from design 'mac_10_DW01_add_0_DW01_add_13'
+Removing port 'product[15]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[14]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[13]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[12]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[11]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[10]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[9]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'product[8]' from design 'mac_10_DW_mult_uns_0_DW_mult_uns_8'
+Removing port 'CI' from design 'mac_11_DW01_add_0_DW01_add_16'
+Removing port 'CO' from design 'mac_11_DW01_add_0_DW01_add_16'
+Removing port 'product[15]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[14]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[13]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[12]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[11]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[10]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[9]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'product[8]' from design 'mac_11_DW_mult_uns_0_DW_mult_uns_11'
+Removing port 'CI' from design 'mac_12_DW01_add_0_DW01_add_18'
+Removing port 'CO' from design 'mac_12_DW01_add_0_DW01_add_18'
+Removing port 'product[15]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[14]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[13]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[12]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[11]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[10]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[9]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'product[8]' from design 'mac_12_DW_mult_uns_0_DW_mult_uns_13'
+Removing port 'CI' from design 'mac_13_DW01_add_0_DW01_add_17'
+Removing port 'CO' from design 'mac_13_DW01_add_0_DW01_add_17'
+Removing port 'product[15]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[14]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[13]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[12]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[11]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[10]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[9]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'product[8]' from design 'mac_13_DW_mult_uns_0_DW_mult_uns_12'
+Removing port 'CI' from design 'mac_14_DW01_add_0_DW01_add_19'
+Removing port 'CO' from design 'mac_14_DW01_add_0_DW01_add_19'
+Removing port 'product[15]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[14]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[13]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[12]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[11]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[10]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[9]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'product[8]' from design 'mac_14_DW_mult_uns_0_DW_mult_uns_14'
+Removing port 'CI' from design 'mac_15_DW01_add_0_DW01_add_20'
+Removing port 'CO' from design 'mac_15_DW01_add_0_DW01_add_20'
+Removing port 'product[15]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[14]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[13]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[12]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[11]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[10]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[9]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+Removing port 'product[8]' from design 'mac_15_DW_mult_uns_0_DW_mult_uns_15'
+1
+set bus_inference_style {%s[%d]}
+%s[%d]
+set bus_naming_style {%s[%d]}
+%s[%d]
+set hdlout_internal_busses true
+true
+change_names -hierarchy -rule verilog
+1
+define_name_rules name_rule -allowed {a-z A-Z 0-9 _}   -max_length 255 -type cell
+1
+define_name_rules name_rule -allowed {a-z A-Z 0-9 _[]} -max_length 255 -type net
+1
+define_name_rules name_rule -map {{"\\*cell\\*" "cell"}}
+1
+define_name_rules name_rule -case_insensitive
+1
+change_names -hierarchy -rules name_rule
+1
+write -format ddc  -hierarchy -output "${top}_syn.ddc"
+Writing ddc file 'tpu_syn.ddc'.
+1
+write_sdf ../syn/${top}_syn.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/home/MingPaoHo/forgit/systolic_array_hw/syn/tpu_syn.sdf'. (WT-3)
+Information: Updating design information... (UID-85)
+1
+write_file -format verilog -hierarchy -output ../syn/${top}_syn.v
+Writing verilog file '/home/MingPaoHo/forgit/systolic_array_hw/syn/tpu_syn.v'.
+1
+report_area > area.log
+report_timing > timing.log
+report_qor > ${top}_syn.qor
+# exit
+Warning: Cannot use command line editor for terminal type 'xterm-256color'.  (UI-74)
+dcnxt_shell> 
+Memory usage for this session 330 Mbytes.
+Memory usage for this session including child processes 330 Mbytes.
+CPU usage for this session 22 seconds ( 0.01 hours ).
+Elapsed time for this session 30 seconds ( 0.01 hours ).
+
+Thank you...

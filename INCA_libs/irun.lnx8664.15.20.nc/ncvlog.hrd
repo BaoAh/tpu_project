@@ -1,0 +1,10 @@
+//
+// File created by:  ncverilog
+// Do not modify this file
+//
+-INCDIR
+src
+-DEFINE
+SHM_FILE=testfixture.shm
+-DEFINE
+FSDB_FILE=testfixture.fsdb
