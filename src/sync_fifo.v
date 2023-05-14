@@ -4,15 +4,18 @@ module sync_fifo (
   input [7:0] datain,
   input wr_en,
   input rd_en,
-  output reg [7:0] dataout,
+  output [7:0] dataout,
   output reg empty,
   output reg full
 );
+
 
 reg [7:0] buffer [0:3];
 reg wr_ptr = 0;
 reg rd_ptr = 0;
 reg [1:0] count = 0;
+
+assign dataout = buffer[rd_ptr];
 
 integer k;
 always @(posedge clk) begin
@@ -33,7 +36,8 @@ always @(posedge clk) begin
       if (count == 3) full <= 1;
     end
     if (rd_en && !empty) begin
-      dataout <= buffer[rd_ptr];
+      //dataout <= buffer[rd_ptr];
+	  buffer[rd_ptr] <= 0;
       rd_ptr <= (rd_ptr == 3) ? 0 : rd_ptr + 1;
       count <= count - 1;
       full <= 0;

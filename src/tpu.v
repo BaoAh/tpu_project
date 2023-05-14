@@ -15,40 +15,12 @@ module tpu(
   //---------Write your code here----------------
 // `define sys_OFF = 3'd4;
 
-localparam off_1 =  3'd1;
-localparam off_2 =  3'd2;
-localparam off_3 =  3'd3;
 localparam IDLE  = 3'd0;
 localparam CAL   = 3'd1;
 localparam WRITE = 3'd2;
 localparam FINISH = 3'd3;
 localparam MAC_HOLD = 3'd4;
 localparam IDLE2 = 3'd5;
-/*
-// mat_A
-// reg [0:0] buf_a_0; // offset is 0
-reg [`DATA_SIZE*off_1-1:0] buf_a_1;
-reg [`DATA_SIZE*off_2-1:0] buf_a_2;
-reg [`DATA_SIZE*off_3-1:0] buf_a_3;
-//mat_B
-//reg [0:0] buf_b_0; //offset is 0
-reg [`DATA_SIZE*off_1-1:0] buf_b_1;
-reg [`DATA_SIZE*off_2-1:0] buf_b_2;
-reg [`DATA_SIZE*off_3-1:0] buf_b_3;
-*/
-
-// mat_A
-// reg [0:0] buf_a_0; // offset is 0
-reg [`DATA_SIZE-1:0] buf_a_4;
-reg [`DATA_SIZE-1:0] buf_a_1;
-reg [`DATA_SIZE-1:0] buf_a_2;
-reg [`DATA_SIZE-1:0] buf_a_3;
-//mat_B
-//reg [0:0] buf_b_0; //offset is 0
-reg [`DATA_SIZE-1:0] buf_b_4;
-reg [`DATA_SIZE-1:0] buf_b_1;
-reg [`DATA_SIZE-1:0] buf_b_2;
-reg [`DATA_SIZE-1:0] buf_b_3;
 
 reg [2:0] state,next_state;
 reg [4:0] cnt;
@@ -83,11 +55,23 @@ always @(posedge clk or posedge rst) begin
 		rd_a_4 <= 0;
 	end
 	else begin	
-		//need a ctrl unit for the first
-		if(state==IDLE2) rd_a_1 <= 1;
-		rd_a_2 <= rd_a_1;
-		rd_a_3 <= rd_a_2;
-		rd_a_4 <= rd_a_3;
+		case(state)
+			//IDLE2: rd_a_1 <= 1;
+			CAL:begin
+				if(cnt==1) rd_a_1 <= 1;
+				//else 
+				else if(cnt==k+1) rd_a_1 <= 0;	//not sure
+				rd_a_2 <= rd_a_1;
+				rd_a_3 <= rd_a_2;
+				rd_a_4 <= rd_a_3;
+			end
+			default:begin
+				rd_a_1 <= 0;
+				rd_a_2 <= 0;
+				rd_a_3 <= 0;
+				rd_a_4 <= 0;
+			end
+		endcase
 	end
 end
 
@@ -161,11 +145,23 @@ always @(posedge clk or posedge rst) begin
 		rd_b_4 <= 0;
 	end
 	else begin	
-		//need a ctrl unit for the first
-		if(state==IDLE2) rd_b_1 <= 1;
-		rd_b_2 <= rd_b_1;
-		rd_b_3 <= rd_b_2;
-		rd_b_4 <= rd_b_3;
+		case(state)
+			//IDLE2: rd_b_1 <= 1;
+			CAL:begin
+				if(cnt==1) rd_b_1 <= 1;
+				//else 
+				else if(cnt==k+1) rd_b_1 <= 0;
+				rd_b_2 <= rd_b_1;
+				rd_b_3 <= rd_b_2;
+				rd_b_4 <= rd_b_3;
+			end
+			default:begin
+				rd_b_1 <= 0;
+				rd_b_2 <= 0;
+				rd_b_3 <= 0;
+				rd_b_4 <= 0;
+			end
+		endcase
 	end
 end
 
@@ -237,14 +233,6 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 
-/*
-assign from_top__net[0][0:7] = (((cnt >= {1'd0,k}+5'd1)&&state==CAL)||state!=CAL||(cnt==5'd0&&state==CAL)) ? 8'd0 : out_b[31:24];
-assign from_top__net[0][8:31] = (state!=CAL) ? 24'd0 : {buf_b_1,buf_b_2[7:0],buf_b_3[7:0]};
-
-assign from_left_net[0][0:7] = (((cnt >= {1'd0,k}+5'd1)&&state==CAL)||state!=CAL||(cnt==5'd0&&state==CAL)) ? 8'd0 : out_a[31:24];
-assign from_left_net[0][8:31] = (state!=CAL) ? 24'd0 : {buf_a_1,buf_a_2[7:0],buf_a_3[7:0]};
-*/
-
 assign from_top__net[0][0:7]   = ((rd_b_1) ? dataout_b_1 : 0);
 assign from_top__net[0][8:15]  = ((rd_b_2) ? dataout_b_2 : 0);
 assign from_top__net[0][16:23] = ((rd_b_3) ? dataout_b_3 : 0);
@@ -274,6 +262,8 @@ endgenerate
 
 reg [`GBUFF_INDX_SIZE-1:0] last_addr_a,last_addr_b,last_addr_c;	//8 bit
 
+wire cnt_end = (cnt == {1'd0,k} + 5'd7);
+
 always @(posedge clk or posedge rst) begin
     if(rst)begin
 		done <= 0;
@@ -302,8 +292,8 @@ always @(posedge clk or posedge rst) begin
 		wr_en_c <= 0;
         case(state)
             CAL:begin
-                if(cnt == {1'd0,k} + 5'd7)begin
-				//if((k>4'd4&&cnt== {1'd0,k} + 5'd4)||k<=4'd4&&cnt=={k,1'd0}+5'd4)begin //not sure???
+                //if(cnt == {1'd0,k} + 5'd7)begin
+                if(cnt_end)begin
 					cnt <= 5'd0;
                 end
 				else  cnt <= cnt+5'd1;
@@ -314,11 +304,6 @@ always @(posedge clk or posedge rst) begin
                     addr_a <= addr_a + 8'd1;
                     addr_b <= addr_b + 8'd1;                    
                 end
-				/*
-                else begin
-                    addr_a <= 8'd0;
-                    addr_b <= 8'd0;
-                endi*/
             end
             WRITE:begin
                 if(cnt==5'd4)begin
@@ -376,7 +361,7 @@ always @(*) begin
 	case (state)
 	  IDLE:  next_state = IDLE2;  //CAL;
 	  IDLE2: next_state = CAL;
-	  CAL:   if(cnt == {1'd0,k} + 5'd7) next_state = WRITE;
+	  CAL:   if(cnt_end) next_state = WRITE;
 	  WRITE:begin
 		if(cnt==5'd4&&cnt_m==rnd_m-1&&cnt_n==rnd_n-1) next_state = FINISH;
 		else if(cnt==5'd4)next_state = IDLE2;  //CAL;
