@@ -21,7 +21,7 @@ reg [1:0] count = 0;
 //assign data_out = buffer[rd_ptr];
 
 integer k;
-always @(posedge clk) begin
+always @(posedge clk or negedge rst) begin
   if (!rst) begin
     wr_ptr <= 0;
     rd_ptr <= 0;
@@ -61,4 +61,3 @@ assign empty = (wr_ptr == rd_ptr);
 
 
 endmodule
-

@@ -22,24 +22,24 @@ set_structure -timing true
  
 check_design
 
-### Old command
-## Auto CG
+## Old command
+# Auto CG
 #insert_clock_gating
 #report_clock_gating
-### Synthesis (quick try)
-#compile -map_effort medium -area_effort low
-#compile -map_effort medium -area_effort low -inc
-### Synthesize (high effort)
+## Synthesis (quick try)
+compile -map_effort medium -area_effort low
+compile -map_effort medium -area_effort low -inc
+## Synthesize (high effort)
 #compile -map_effort high -area_effort high
 #compile -map_effort high -area_effort high -inc
-### Register retiming (dcnxt only)
+## Register retiming (dcnxt only)
 # optimize_registers
 
 # Synthesize (ultimate)
 # compile_ultra -no_autoungroup -no_boundary_optimization -retime -gate_clock
 
-compile_ultra			
-compile_ultra -incremental
+#compile_ultra			
+#compile_ultra -incremental
 
 current_design [get_designs ${top}]
  

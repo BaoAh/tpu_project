@@ -12,9 +12,13 @@ set_ideal_network           [get_ports clk]
 
 
 #Don't touch the basic env setting as below
-set_input_delay  3    -clock clk [remove_from_collection [k*] [get_ports clk]] -clock_fall
-set_input_delay  0    -clock clk [remove_from_collection [all_inputs-k*] [get_ports clk]] -clock_fall
+#set_input_delay  3    -clock clk [remove_from_collection [k*] [get_ports clk]] -clock_fall
+#set_input_delay  0    -clock clk [remove_from_collection [all_inputs-k*] [get_ports clk]] -clock_fall
+set_input_delay  0    -clock clk [remove_from_collection [all_inputs] [get_ports clk]] -clock_fall
 set_output_delay 0    -clock clk [all_outputs]  -clock_fall
+
+#set_input_delay  3    -clock clk [remove_from_collection [*addr_b_reg_3_*] [get_ports clk]] -clock_fall
+#set_output_delay 3    -clock clk [*addr_b_reg_3_*]  -clock_fall
 
 set_load         1   [all_outputs]
 set_drive        0.1   [all_inputs]
