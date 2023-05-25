@@ -4,7 +4,7 @@ set RING_GAP 14
 source ../scripts/create_phy_cell.tcl
 
 read_pin_pad_physical_constraints ../design_data/io.tdf
-create_floorplan -core_utilization 0.7 -flip_first_row -left_io2core 90.0 -bottom_io2core 90.0 -right_io2core 90.0 -top_io2core 90.0
+create_floorplan -core_utilization 0.8 -flip_first_row -left_io2core 75.0 -bottom_io2core 75.0 -right_io2core 75.0 -top_io2core 75.0
 
 insert_pad_filler -cell {EMPTY16D EMPTY8D EMPTY4D EMPTY2D EMPTY1D} -overlap_cell {EMPTY1D}
 
