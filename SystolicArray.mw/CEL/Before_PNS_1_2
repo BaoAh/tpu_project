@@ -1,9 +1,0 @@
-set_object_boundary -boundary {  { 326.1000 459.5600 } { 415.3800 459.5600 } { 415.3800 313.4000 } { 326.1000 313.4000 } } [get_plan_groups { fifo_a_1 } ]
-set_object_boundary -boundary {  { 586.5000 333.5600 } { 704.9200 333.5600 } { 704.9200 217.6400 } { 586.5000 217.6400 } } [get_plan_groups { fifo_b_4 } ]
-set_object_boundary -boundary {  { 328.5800 701.4800 } { 469.9400 701.4800 } { 469.9400 600.6800 } { 328.5800 600.6800 } } [get_plan_groups { fifo_a_4 } ]
-set_object_boundary -boundary {  { 215.1200 701.4800 } { 328.5800 701.4800 } { 328.5800 580.5200 } { 215.1200 580.5200 } } [get_plan_groups { fifo_a_3 } ]
-set_object_boundary -boundary {  { 215.1200 580.5200 } { 328.5800 580.5200 } { 328.5800 459.5600 } { 215.1200 459.5600 } } [get_plan_groups { fifo_a_2 } ]
-set_object_boundary -boundary {  { 326.1000 313.4000 } { 469.9400 313.4000 } { 469.9400 217.6400 } { 326.1000 217.6400 } } [get_plan_groups { fifo_b_3 } ]
-set_object_boundary -boundary {  { 215.1200 459.5600 } { 326.1000 459.5600 } { 326.1000 338.6000 } { 215.1200 338.6000 } } [get_plan_groups { fifo_b_1 } ]
-set_object_boundary -boundary {  { 215.1200 338.6000 } { 326.1000 338.6000 } { 326.1000 217.6400 } { 215.1200 217.6400 } } [get_plan_groups { fifo_b_2 } ]
-
