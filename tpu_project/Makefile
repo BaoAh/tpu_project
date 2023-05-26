@@ -55,7 +55,7 @@ check:
 # Run RTL simulation
 rtl: $(BUILD) gen_def cp_tb_src
 	cd $(BUILD_DIR); \
-	ncverilog $(SIM_DIR)/$(TB_TOP).v $(SRC) \
+	ncverilog $(SIM_DIR)/$(TB_TOP).v $(SRC)   \
 	+incdir+$(SRC_DIR) \
 	+nc64bit \
 	+access+r \
@@ -87,13 +87,15 @@ autosyn: $(BUILD) syn_init
 	cp $(SCRIPT_DIR)/synopsys_dc.setup $(BUILD_DIR)/.synopsys_dc.setup; \
 	nohup dcnxt_shell -f $(SCRIPT_DIR)/synthesize.tcl &> $(ROOT_DIR)/nohup.log &
 
+
+	#-v $(SIM_DIR)/tsmc13_neg.v 
 # Run gate-level simulation (nWave)
 pre: $(BUILD) cp_tb_src syn_init
 	cd $(BUILD_DIR); \
 	cp $(SYN_DIR)/$(TOP)_syn.sdf $(BUILD_DIR); \
 	cp $(SIM_DIR)/define.v $(BUILD_DIR); \
 	cp $(SIM_DIR)/matrix_define.v $(BUILD_DIR); \
-ncverilog $(SIM_DIR)/$(TB_TOP).v $(SYN_DIR)/$(TOP)_syn.v -v $(SIM_DIR)/tsmc13_neg.v \
+ncverilog $(SIM_DIR)/$(TB_TOP).v $(SYN_DIR)/$(TOP)_syn.v -v $(SIM_DIR)/fsa0m_a_generic_core_21.lib.src \
 	+nc64bit \
 	+access+r \
 	+define+SHM_FILE=\"$(TOP).shm\" \

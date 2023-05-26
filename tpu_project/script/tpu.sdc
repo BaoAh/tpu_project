@@ -1,0 +1,34 @@
+# operating conditions and boundary conditions #
+
+set cycle 15.0
+#set cycle 13.0
+create_clock -name clk  -period $cycle   [get_ports  clk] 
+
+set_dont_touch_network      [all_clocks]
+set_fix_hold                [all_clocks]
+set_clock_uncertainty  0.1  [all_clocks]
+set_clock_latency      0.5  [all_clocks]
+set_ideal_network           [get_ports clk]
+
+
+#Don't touch the basic env setting as below
+#set_input_delay  3    -clock clk [remove_from_collection [k*] [get_ports clk]] -clock_fall
+#set_input_delay  0    -clock clk [remove_from_collection [all_inputs-k*] [get_ports clk]] -clock_fall
+set_input_delay  0    -clock clk [remove_from_collection [all_inputs] [get_ports clk]] -clock_fall
+set_output_delay 0    -clock clk [all_outputs]  -clock_fall
+
+#set_input_delay  3    -clock clk [remove_from_collection [*addr_b_reg_3_*] [get_ports clk]] -clock_fall
+#set_output_delay 3    -clock clk [*addr_b_reg_3_*]  -clock_fall
+
+set_load         1   [all_outputs]
+set_drive        0.1   [all_inputs]
+
+#set_operating_conditions -max_library slow -max slow
+#set_wire_load_model -name tsmc13_wl10 -library slow                        
+
+set_operating_conditions  -min_library fsa0m_a_generic_core_ff1p98vm40c -min BCCOM -max_library fsa0m_a_generic_core_ss1p62v125c -max WCCOM
+set_wire_load_model -name G5K -library fsa0m_a_generic_core_ss1p62v125c
+
+set_max_fanout 20 [all_inputs]
+                     
+
