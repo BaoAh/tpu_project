@@ -25,9 +25,9 @@ num_classes = 10
 
 # Models to train
 # mlp model normal quantized to fixed point
-model_name = "mlp_qnn_v2"
+#model_name = "mlp_qnn_v2"
 # mlp model quantized to power of 2
-# model_name = "mlp_po2_v2"
+model_name = "mlp_po2_v2"
 
 if model_name not in model_zoo():
     print(
