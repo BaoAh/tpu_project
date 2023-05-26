@@ -12,10 +12,9 @@ input_shape = (28, 28, 1)
 # Define the number of classes
 num_classes = 10
 
-model_name = "mlp_v2"
 # model_name = "mlp_qnn_v1"
 # model_name = "mlp"
-# model_name = "mlp_no_bias"
+model_name = "mlp_no_bias"
 
 if model_name not in model_zoo():
     print(
