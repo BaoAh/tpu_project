@@ -9,8 +9,8 @@ config_rtlds -rule  -disable -tag { IDN_NR_SVKY ARY_MS_DRNG IDN_NR_AMKY IDN_NR_C
 config_rtlds -rule  -disable -tag { REG_NR_RWRC }
 # vsd2018_constrain //
 
-analyze -sv ./src/matrix_define.v ./src/define.v ./src/def.v ./src/ctrl.v ./src/dp.v ./src/tpu.v 
-elaborate -bbox true -top tpu  
+analyze -sv ./src/traffic_light.v 
+elaborate -bbox true -top traffic_light
 
 # Setup clock and reset
 clock clk

@@ -31,8 +31,8 @@ module top_tb;
           .done(done));
 
   initial begin
-    $shm_open(`SHM_FILE);
-    $shm_probe("ASM");
+    //$shm_open(`SHM_FILE);
+    //$shm_probe("ASM");
     $fsdbDumpfile(`FSDB_FILE);
     $fsdbDumpvars;
     $fsdbDumpMDA;
