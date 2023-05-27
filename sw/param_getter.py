@@ -25,13 +25,15 @@ class ParamGetter:
         for layer in self.model.layers:
             if layer.name == layer_name:
                 tensor_w = layer.get_weights()[0]
+               # temp_w = tensor_w
+               # a,b = temp_w.shape
+               # temp_w = temp_w.reshape(int(a*b/10),10)
                 print(f"Layer {layer_name} weights shape: {tensor_w.shape}")
                 save_weights(tensor_w,
-                             os.path.join(self.store_path, layer_name+"_w.hex"),
+                             os.path.join(self.store_path, layer_name+"_w_hex"),
                              self.q_scheme)
                 # Plot weight distributions and save as an image
                 # plot_distribution(tensor_w, str(layer_name+"_w.png"))
-
     def get_bias(self, layer_name):
         # Iterate through layers of interests and store weight tensors
         for layer in self.model.layers:
@@ -39,8 +41,7 @@ class ParamGetter:
                 tensor_b = layer.get_weights()[1]
                 print(f"Layer {layer_name} bias shape: {tensor_b.shape}")
                 save_weights(tensor_b,
-                             os.path.join(self.store_path,
-                                          layer_name+"_bias.hex"),
+                             os.path.join(self.store_path,layer_name+"_bias_hex"),
                              self.q_scheme)
                 # Plot weight distributions and save as an image
                 # plot_distribution(tensor_b, str(layer_name+"_bias.png"))
@@ -53,7 +54,7 @@ class ParamGetter:
         print(f"Layer {layer_name} output shape: {tensor_out.shape}")
         # Save outputs as text file
         save_weights(tensor_out,
-                     os.path.join(self.store_path, layer_name+"_out.hex"),
+                     os.path.join(self.store_path, layer_name+"_out_hex"),
                      self.q_scheme)
         # Plot weight distributions and save as an image
         # plot_distribution(tensor_out, str(layer_name+"_out.png"))
@@ -94,13 +95,16 @@ if __name__ == "__main__":
     # Use mnist dataset for testing
     (x_train, y_train), (x_test, y_test) = datasets.mnist.load_data()
     input_x = x_train[0].reshape(-1, 28, 28, 1)
+    temp_x = input_x
 
     # Quantization scheme
     q_scheme = QuantizationScheme(16, 8)
 
     # Save inputs (of format: NHWC) as text file
     hex_dir = os.path.join(os.getcwd(), 'hex')
-    save_inputs(input_x, os.path.join(hex_dir, "quant_input.hex"), q_scheme)
+    temp_x = temp_x.reshape(1,784)
+    temp_x = q_scheme.convert(temp_x)
+    save_inputs(temp_x, os.path.join(hex_dir, "quant_input_hex"), q_scheme)
 
     getter = ParamGetter(model, q_scheme, hex_dir)
 
