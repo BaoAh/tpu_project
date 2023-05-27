@@ -1,5 +1,5 @@
 ### Config
-set RING_GAP 14
+set RING_GAP 7
 
 source ../scripts/create_phy_cell.tcl
 
@@ -19,8 +19,10 @@ save_mw_cel -design "CHIP" -as "Before_PNS"
 
 derive_pg_connection -power_net {VCC} -ground_net {GND} -power_pin {VCC} -ground_pin {GND}
 
-set_fp_rail_constraints -add_layer  -layer metal2 -direction vertical -max_strap 6 -min_strap 4 -max_width 8 -min_width 8 -spacing minimum
-set_fp_rail_constraints -add_layer  -layer metal3 -direction horizontal -max_strap 6 -min_strap 4 -max_width 8 -min_width 8 -spacing minimum
+set_fp_rail_constraints -add_layer  -layer metal2 -direction vertical 
+# -max_strap 6 -min_strap 4 -max_width 8 -min_width 8 -spacing minimum
+set_fp_rail_constraints -add_layer  -layer metal3 -direction horizontal 
+# -max_strap 6 -min_strap 4 -max_width 8 -min_width 8 -spacing minimum
 set_fp_rail_constraints  -set_ring -nets  {VCC GND VCC GND VCC GND}  -horizontal_ring_layer { metal3 } -vertical_ring_layer { metal2 } -ring_width 8 -ring_spacing 3 -extend_strap core_ring
 
 set_fp_rail_constraints -set_global -no_routing_over_hard_macros
@@ -29,7 +31,9 @@ commit_fp_rail
 
 set_preroute_drc_strategy -use_fat_via -min_layer metal1 -max_layer metal6
 
-preroute_instances  -ignore_macros -ignore_cover_cells -primary_routing_layer pin -extend_for_multiple_connections -extension_gap $RING_GAP
+preroute_instances  -ignore_macros -ignore_cover_cells -primary_routing_layer pin 
+# -extend_for_multiple_connections -extension_gap $RING_GAP
+# preroute_instances -undo
 
 preroute_standard_cells -extend_for_multiple_connections  -extension_gap $RING_GAP -connect horizontal  -remove_floating_pieces  -do_not_route_over_macros  -fill_empty_rows  -port_filter_mode off -cell_master_filter_mode off -cell_instance_filter_mode off -voltage_area_filter_mode off -route_type {P/G Std. Cell Pin Conn}
 

@@ -8,12 +8,12 @@ SCRIPT_DIR         =$(ROOT_DIR)/script
 REPORT_DIR         =$(ROOT_DIR)/report
 NC_DIR             =$(ROOT_DIR)/conf
 
-TB_TOP             =traffic_light_tb
-TOP                =traffic_light
+TB_TOP             =top_tb
+TOP                =tpu
 
 SRC=$(filter-out $(SRC_DIR)/CHIP.v, $(shell ls $(SRC_DIR)/*.v))
 
-TB_SRC=$(SIM_DIR)/ans.txt
+TB_SRC=$(shell ls $(SIM_DIR)/*.bin)
 
 # icc, u18, t18
 PROC               =u18
@@ -69,6 +69,7 @@ icc_init:
 
 cp_tb_src: gen_hex
 	cd $(BUILD_DIR); \
+	cp $(SIM_DIR)/matrix_define.v .; \
 	cp $(TB_SRC) .;
 
 cp_CHIP_v:
@@ -112,6 +113,7 @@ syn: $(BUILD) cp_tb_src syn_init
 	cd $(BUILD_DIR); \
 	ncverilog $(SIM_DIR)/$(TB_TOP).v $(SYN_DIR)/$(TOP)_syn.v \
 	-v $(CBDK_DIR)/$(CORE_CELL) \
+	+incdir+$(SRC_DIR) \
 	+nc64bit \
 	+access+r \
 	+define+FSDB_FILE=\"$(TOP).fsdb\" \
@@ -124,6 +126,7 @@ pr: $(BUILD) cp_tb_src
 	cp $(APR_DIR)/$(TOP)_pr.sdf $(BUILD_DIR); \
 	ncverilog $(SIM_DIR)/$(TB_TOP).v $(APR_DIR)/$(TOP)_pr.v \
 	-v $(CBDK_DIR)/$(CORE_CELL) \
+	+incdir+$(SRC_DIR) \
 	+nc64bit \
 	+access+r \
 	+define+FSDB_FILE=\"$(TOP).fsdb\" \

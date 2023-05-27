@@ -1,27 +1,46 @@
-// Check the # of bits for state registers !!!
-// Check the # of bits for flag registers !!!
-
+// This is generated automatically on 2023/05/14-13:55:02
 `ifndef __FLAG_DEF__
 `define __FLAG_DEF__
 
-// There're 5 states in this design
-`define S_INIT 0  
-`define S_G 1  
-`define S_Y 2  
-`define S_R 3  
-`define S_END 4  
-`define S_ZVEC 5'b0
-`define STATE_W 5  
+// There're 7 interrupt flags in this design
+`define INT_WAIT 0  
+`define INT_READ_A 1  
+`define INT_READ_B 2  
+`define INT_FEED 3  
+`define INT_WRIT 4  
+`define INT_BLK_B 5  
+`define INT_BLK_A 6  
+`define INT_FLAG_W 7  
+
+// There're 7 output flags in this design
+`define CMD_WAIT 0  
+`define CMD_READ_A 1  
+`define CMD_READ_B 2  
+`define CMD_FEED 3  
+`define CMD_WRIT 4  
+`define CMD_BLK_B 5  
+`define CMD_BLK_A 6  
+`define CMD_FLAG_W 7  
+
+// There're 9 states in this design
+`define S_WAIT 0  
+`define S_READ_A 1  
+`define S_READ_B 2  
+`define S_FEED 3  
+`define S_BLK_CHK 4  
+`define S_WRIT 5  
+`define S_BLK_B 6  
+`define S_BLK_A 7  
+`define S_END 8  
+`define S_ZVEC 9'b0
+`define STATE_W 9  
 
 // Macro from template
-`define BUF_SIZE 8'd66
-`define READ_MEM_DELAY 2'd2
-`define EMPTY_ADDR {12{1'b0}}
-`define EMPTY_DATA {20{1'b0}}
-`define LOCAL_IDX_W 16 
-`define DATA_W 20 
+`define BUF_SIZE 6  
 
 // Self-defined macro
-`define CNT_W 15 
+`define CNT_W 5  
+`define GLB_CNT_W 3  
+`define LOC_CNT_W 3  
 
 `endif

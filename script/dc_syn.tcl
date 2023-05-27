@@ -1,4 +1,4 @@
-set top traffic_light
+set top tpu
 set SDF_VERSION 2.1; # 1.0 or 2.1
 
 # Don't change anything below this line

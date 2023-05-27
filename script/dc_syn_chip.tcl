@@ -1,4 +1,4 @@
-set design_top traffic_light
+set design_top tpu
 set top CHIP
 set SDF_VERSION 2.1; # 1.0 or 2.1
 
