@@ -309,7 +309,8 @@ module tpu (
       wr_en_a <= 0;
       wr_en_b <= 0;
       wr_en_c <= 0;
-    end else begin
+    end 
+    else begin
       in_a <= 32'd0;
       in_b <= 32'd0;
       in_c <= 32'd0;
@@ -337,7 +338,8 @@ module tpu (
             //monster
             if (fit_m == 0 && cnt_m == rnd_m - 2'd1) begin
               last_addr_c <= last_addr_c + {6'd0, m[1:0]};
-            end else last_addr_c <= addr_c + 8'd1;
+            end 
+            else last_addr_c <= addr_c + 8'd1;
 
 
             //last_addr_c <= addr_c+8'd1;
@@ -373,6 +375,8 @@ module tpu (
     end
   end
 
+
+  // FSM
   always @(posedge clk or posedge rst) begin
     if (rst) state <= IDLE;
     else state <= next_state;
