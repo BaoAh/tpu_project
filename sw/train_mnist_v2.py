@@ -24,10 +24,14 @@ input_shape = (28, 28, 1)
 num_classes = 10
 
 # Models to train
+# testing models
+# model_name = "mlp_v2"
 # mlp model normal quantized to fixed point
-#model_name = "mlp_qnn_v2"
+# model_name = "mlp_qnn_v2"
 # mlp model quantized to power of 2
-model_name = "mlp_po2_v2"
+# model_name = "mlp_po2_v2"
+# mlp quantized to 4bit
+model_name = "mlp_qnn_4bits_v2"
 
 if model_name not in model_zoo():
     print(
@@ -54,12 +58,13 @@ tb_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 # Compile Model
 # model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 
+# Summary
+model.summary()
+
 # Train the model on the training data
-model.fit(x_train, y_train, batch_size=64, epochs=30,
+model.fit(x_train, y_train, batch_size=64, epochs=20,
           validation_data=(x_test, y_test),
           callbacks=[tb_callback])
-
-model.summary()
 
 # Saving quantized weights
 model_save_quantized_weights(model)
