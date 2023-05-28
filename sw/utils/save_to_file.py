@@ -1,10 +1,18 @@
 import numpy as np
 from .quantization_scheme import QuantizationScheme
+# for parse file name
+import os
 
 
 def save_weights(w, filename, q_scheme):
     data = w.flatten()
     write_quant_int(data, q_scheme, filename)
+
+    # to check float value
+    # name = os.path.dirname(filename)
+    filename_f = filename + '_f'
+    print(filename_f)
+    write_float32(data, q_scheme, filename_f)
 
 
 def save_inputs(inp, filename, q_scheme):

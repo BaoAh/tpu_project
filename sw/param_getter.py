@@ -85,7 +85,7 @@ if __name__ == "__main__":
     model.summary()
 
     # Specify the names of the layers whose weights you want to print
-	#specific_layers = ['quant_fc1', 'quant_fc2', 'quant_fc3']
+    # specific_layers = ['quant_fc1', 'quant_fc2', 'quant_fc3']
     specific_layers = ['fc1', 'fc2', 'fc3']
 
     # Create a random input tensor for testing
