@@ -1,4 +1,4 @@
-`define MATRIX_A_ROW 2
-`define MATRIX_A_COL 2
-`define MATRIX_B_ROW 2
-`define MATRIX_B_COL 2
+`define MATRIX_A_ROW 784
+`define MATRIX_A_COL 10
+`define MATRIX_B_ROW 10
+`define MATRIX_B_COL 10
