@@ -34,6 +34,7 @@ class ParamGetter:
                              self.q_scheme)
                 # Plot weight distributions and save as an image
                 # plot_distribution(tensor_w, str(layer_name+"_w.png"))
+
     def get_bias(self, layer_name):
         # Iterate through layers of interests and store weight tensors
         for layer in self.model.layers:
@@ -41,7 +42,8 @@ class ParamGetter:
                 tensor_b = layer.get_weights()[1]
                 print(f"Layer {layer_name} bias shape: {tensor_b.shape}")
                 save_weights(tensor_b,
-                             os.path.join(self.store_path,layer_name+"_bias_hex"),
+                             os.path.join(self.store_path,
+                                          layer_name+"_bias_hex"),
                              self.q_scheme)
                 # Plot weight distributions and save as an image
                 # plot_distribution(tensor_b, str(layer_name+"_bias.png"))
@@ -87,7 +89,7 @@ if __name__ == "__main__":
 
     # Specify the names of the layers whose weights you want to print
     # specific_layers = ['quant_fc1', 'quant_fc2', 'quant_fc3']
-    specific_layers = ['fc1', 'fc2', 'fc3']
+    specific_layers = ['fc1', 'fc2']
 
     # Create a random input tensor for testing
     # input_x = np.random.rand(1, 28, 28, 1)
@@ -98,11 +100,11 @@ if __name__ == "__main__":
     temp_x = input_x
 
     # Quantization scheme
-    q_scheme = QuantizationScheme(16, 8)
+    q_scheme = QuantizationScheme(8, 8)
 
     # Save inputs (of format: NHWC) as text file
     hex_dir = os.path.join(os.getcwd(), 'hex')
-    temp_x = temp_x.reshape(1,784)
+    temp_x = temp_x.reshape(1, 784)
     temp_x = q_scheme.convert(temp_x)
     save_inputs(temp_x, os.path.join(hex_dir, "quant_input_hex"), q_scheme)
 

@@ -18,7 +18,7 @@ def mlp(input_shape, num_classes,
     model.add(tf.keras.layers.Flatten())
     for i, (units, activation) in enumerate(fc_config):
         model.add(tf.keras.layers.Dense(
-            units, activation=activation, name=f'fc{i+1}'))
+            units, activation=None, name=f'fc{i+1}'))
 
     # Add the output layer
     model.add(tf.keras.layers.Dense(

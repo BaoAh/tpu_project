@@ -5,9 +5,9 @@ import os
 
 
 def save_weights(w, filename, q_scheme):
-    a,b = w.shape
+    a, b = w.shape
     data = w.flatten()
-    write_quant_int(data, q_scheme, filename,a,b)
+    write_quant_int(data, q_scheme, filename, a, b)
 
     # to check float value
     # name = os.path.dirname(filename)
@@ -17,15 +17,15 @@ def save_weights(w, filename, q_scheme):
 
 
 def save_inputs(inp, filename, q_scheme):
-    a,b = inp.shape
+    a, b = inp.shape
     data = inp.flatten()
-    write_quant_int(data, q_scheme, filename,a,b)
+    write_quant_int(data, q_scheme, filename, a, b)
 
 
 def save_outputs(outp, filename, q_scheme):
-    a,b = outp.shape
+    a, b = outp.shape
     data = outp.flatten()
-    write_quant_int(data, q_scheme, filename,a,b)
+    write_quant_int(data, q_scheme, filename, a, b)
 
 
 def write_float32(data, q_scheme, filename):
@@ -40,7 +40,7 @@ def write_float32(data, q_scheme, filename):
     f.close()
 
 
-def write_quant_int(data, q_scheme, filename,a,b):
+def write_quant_int(data, q_scheme, filename, a, b):
     if not isinstance(data, np.ndarray):
         raise ("This is not an numpy ndarray")
     if len(data.shape) != 1:
@@ -74,5 +74,5 @@ def write_quant_int(data, q_scheme, filename,a,b):
         else:  # Positive case
             data_temp[i] = "{data:0{width}X}".format(
                 width=num_of_hex, data=data)
-    data_temp = data_temp.reshape(a,b)
-    np.savez(filename,arr_0 = data_temp)
+    data_temp = data_temp.reshape(a, b)
+    np.savez(filename, arr_0=data_temp)

@@ -13,8 +13,8 @@ input_shape = (28, 28, 1)
 num_classes = 10
 
 # model_name = "mlp_qnn_v1"
-# model_name = "mlp"
-model_name = "mlp_no_bias"
+model_name = "mlp"
+# model_name = "mlp_no_bias"
 
 if model_name not in model_zoo():
     print(
@@ -39,11 +39,11 @@ log_dir = "logs/fit"
 tb_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 # Train the model on the training data
-model.fit(x_train, y_train, batch_size=128, epochs=10,
+model.fit(x_train, y_train, batch_size=64, epochs=30,
           validation_data=(x_test, y_test),
           callbacks=[tb_callback])
 
-#Summary
+# Summary
 model.summary()
 
 
