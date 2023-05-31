@@ -27,11 +27,11 @@ num_classes = 10
 # testing models
 # model_name = "mlp_v2"
 # mlp model normal quantized to fixed point
-# model_name = "mlp_qnn_v2"
+#model_name = "mlp_qnn_v2"
 # mlp model quantized to power of 2
-# model_name = "mlp_po2_v2"
+#model_name = "mlp_po2_v2"
 # mlp quantized to 4bit
-model_name = "mlp_qnn_4bits_v2"
+model_name = "mlp_po2_4bits_v2"
 
 if model_name not in model_zoo():
     print(
@@ -62,7 +62,7 @@ tb_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 model.summary()
 
 # Train the model on the training data
-model.fit(x_train, y_train, batch_size=64, epochs=20,
+model.fit(x_train, y_train, batch_size=86, epochs=2,
           validation_data=(x_test, y_test),
           callbacks=[tb_callback])
 

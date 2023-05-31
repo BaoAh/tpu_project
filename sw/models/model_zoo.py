@@ -10,6 +10,7 @@ from models.mlp_no_bias import mlp_no_bias
 from models.mlp_v2 import mlp_v2
 from models.mlp_qnn_v2 import mlp_qnn_v2
 from models.mlp_po2_v2 import mlp_po2_v2
+from models.mlp_po2_4bits_v2 import mlp_po2_4bits_v2
 
 
 def model_zoo():
@@ -26,7 +27,8 @@ def model_zoo():
         'mlp_no_bias': mlp_no_bias,
         'mlp_v2': mlp_v2,
         'mlp_qnn_v2': mlp_qnn_v2,
-        'mlp_po2_v2': mlp_po2_v2
+        'mlp_po2_v2': mlp_po2_v2,
+        'mlp_po2_4bits_v2': mlp_po2_4bits_v2,
     }
 
     return model_dict
