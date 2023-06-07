@@ -41,14 +41,15 @@ APR_DIR            =$(ROOT_DIR)/icc/$(PROC)/run
 
 # Show available all command
 default:
-	@echo "clean       => Clean previous build"
-	@echo "rtl         => Run RTL simulation"
-	@echo "nw          => Run nWave"
-	@echo "synthesize  => Run synthesize in interactive mode"
+	@echo "clean       		=> Clean previous build"
+	@echo "rtl         		=> Run RTL simulation"
+	@echo "nw          		=> Run nWave"
+	@echo "synthesize  		=> Run synthesize in interactive mode"
 	@echo "synthesize_chip  => Run chip-level synthesize in interactive mode"
-	@echo "syn         => Run gate-level simulation"
-	@echo "syn_chip    => Run chip-level gate-level simulation"
-	@echo "check       => Run superlint"
+	@echo "syn         		=> Run gate-level simulation"
+	@echo "pre    			=> Run gate-level simulation"
+	@echo "syn_chip    		=> Run chip-level gate-level simulation"
+	@echo "check       		=> Run superlint"
 
 $(BUILD):
 	mkdir -p $(BUILD)
@@ -120,6 +121,22 @@ syn: $(BUILD) cp_tb_src syn_init
 	+define+SDF \
 	+define+SDFFILE=\"$(SYN_DIR)/$(TOP)_syn.sdf\"
 
+# Run gate-level simulation (nWave)
+pre: $(BUILD) cp_tb_src syn_init
+	cd $(BUILD_DIR); \
+	cp $(SYN_DIR)/$(TOP)_syn.sdf $(BUILD_DIR); \
+	cp $(SIM_DIR)/define.v $(BUILD_DIR); \
+	cp $(SIM_DIR)/matrix_define.v $(BUILD_DIR); \
+ncverilog $(SIM_DIR)/$(TB_TOP).v $(SYN_DIR)/$(TOP)_syn.v -v $(SIM_DIR)/fsa0m_a_generic_core_21.lib.src \
+	+nc64bit \
+	+access+r \
+	+define+SHM_FILE=\"$(TOP).shm\" \
+	+define+FSDB_FILE=\"$(TOP).fsdb\" \
+	+define+SDF \
+	+define+SDFFILE=\"$(SYN_DIR)/$(TOP)_syn.sdf\"; \
+	rm $(BUILD_DIR)/define.v; \
+	rm $(BUILD_DIR)/matrix_define.v;
+
 # Run post-apr simulation (nWave)
 pr: $(BUILD) cp_tb_src
 	cd $(BUILD_DIR); \
@@ -173,3 +190,16 @@ icc: syn_init icc_init
 # Remove all files
 clean:
 	rm -rf $(BUILD_DIR) $(SYN_DIR) $(APR_DIR) $(REPORT_DIR) *.log
+
+
+test1:
+	cd $(SIM_DIR) && python3 matmul.py inputs1
+
+test2:
+	cd $(SIM_DIR) && python3 matmul.py inputs2
+
+test3:
+	cd $(SIM_DIR) && python3 matmul.py inputs3
+
+monster:
+	cd $(SIM_DIR) && python3 matmul.py monster
