@@ -11,13 +11,14 @@
 `ifndef __GLOBAL_BUFFER_V
 `define __GLOBAL_BUFFER_V
 
-module global_buffer (
+module global_buffer#(parameter LOCAL_WORD = `WORD_SIZE)(
     input clk,
     input rst,
     input wr_en,  // Write enable: 1->write 0->read
     input [`GBUFF_INDX_SIZE-1:0] index,
-    input [`WORD_SIZE-1:0] data_in,
-    output reg [`WORD_SIZE-1:0] data_out
+    //input [`WORD_SIZE-1:0] data_in,
+    input [LOCAL_WORD-1:0] data_in,
+    output reg [LOCAL_WORD-1:0] data_out
 );
 
   integer i;

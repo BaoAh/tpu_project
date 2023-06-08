@@ -30,8 +30,10 @@ module top (
 
   wire wr_en_a, wr_en_b, wr_en_out;
   wire [`GBUFF_INDX_SIZE-1:0] index_a, index_b, index_out;
-  wire [`WORD_SIZE-1:0] data_in_a, data_in_b, data_in_o;
-  wire [`WORD_SIZE-1:0] data_out_a, data_out_b, data_out_o;
+  wire [`WORD_SIZE-1:0] data_in_a, data_in_b;
+  wire [`EXTEND_WORD_SIZE-1:0] data_in_o,data_out_o;
+  //wire [`WORD_SIZE-1:0] data_out_a, data_out_b, data_out_o;
+  wire [`WORD_SIZE-1:0] data_out_a, data_out_b;//, data_out_o;
 
   //----------------------------------------------------------------------------//
   // TPU module declaration                                                     //
@@ -79,7 +81,7 @@ module top (
       .data_out(data_out_b)
   );
 
-  global_buffer GBUFF_OUT (
+  global_buffer #(.LOCAL_WORD(`EXTEND_WORD_SIZE))GBUFF_OUT (
       .clk     (clk),
       .rst     (rst),
       .wr_en   (wr_en_out),

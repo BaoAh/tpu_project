@@ -7,6 +7,7 @@ SYN_DIR            =$(ROOT_DIR)/syn
 SCRIPT_DIR         =$(ROOT_DIR)/script
 REPORT_DIR         =$(ROOT_DIR)/report
 NC_DIR             =$(ROOT_DIR)/conf
+SW_DIR			   =$(ROOT_DIR)/sw
 
 TB_TOP             =top_tb
 TOP                =tpu
@@ -50,6 +51,8 @@ default:
 	@echo "pre    			=> Run gate-level simulation"
 	@echo "syn_chip    		=> Run chip-level gate-level simulation"
 	@echo "check       		=> Run superlint"
+	@echo "fc1       		=> Get FC layer1 content"
+	@echo "fc2       		=> Get FC layer2 content"
 
 $(BUILD):
 	mkdir -p $(BUILD)
@@ -192,14 +195,16 @@ clean:
 	rm -rf $(BUILD_DIR) $(SYN_DIR) $(APR_DIR) $(REPORT_DIR) *.log
 
 
-test1:
-	cd $(SIM_DIR) && python3 matmul.py inputs1
+#fc1:
+#	python3 $(SIM_DIR)/matmul.py fc1_out_hex.npz fc2_w_hex.npz
 
-test2:
-	cd $(SIM_DIR) && python3 matmul.py inputs2
+fc2:
+	python3 $(SIM_DIR)/matmul.py fc1_out_hex.npz fc2_w_hex.npz
 
-test3:
-	cd $(SIM_DIR) && python3 matmul.py inputs3
+mlp:
+	cd $(SW_DIR) && python3 param_getter.py mlp_v2.h5
 
-monster:
-	cd $(SIM_DIR) && python3 matmul.py monster
+po2:
+	cd $(SW_DIR) && python3 param_getter.py mlp_po2_v2.h5  
+
+

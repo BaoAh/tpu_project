@@ -16,9 +16,11 @@ import os
 # Function Definations                                                         #
 # ------------------------------------------------------------------------------#
 
+num_of_bits = 8
+#num_of_bits_d = 16
 
-def write_binary_file(filename, matrix):
-
+def write_binary_file(filename, matrix,num_of_bits_d=8):
+	#global num_of_bits
     fd = open(filename, "w")
     row, col = matrix.shape
     reset_col = 0
@@ -26,7 +28,7 @@ def write_binary_file(filename, matrix):
     r = 0
     c = 0
     p = 0
-    num_of_bits = 16
+	#num_of_bits = 16
 
     while (p < col):
         while (r < row):
@@ -35,21 +37,21 @@ def write_binary_file(filename, matrix):
                 # wirte word when 4bytes reached
                 if ((c + 1) % 4 == 0):
                     hexdata = matrix[r][c]
-                    byte_value = bin(int(hexdata, 16))[2:].zfill(num_of_bits)
+                    byte_value = bin(int(hexdata, 16))[2:].zfill(num_of_bits_d)
                     # byte_value = "%08d\n" % int(bin(int(matrix[r][c]))[2:])
                     fd.write(byte_value)
                     fd.write("\n")
                     reset_col = 1
                 elif ((c + 1) == col):
                     hexdata = matrix[r][c]
-                    byte_value = bin(int(hexdata, 16))[2:].zfill(num_of_bits)
+                    byte_value = bin(int(hexdata, 16))[2:].zfill(num_of_bits_d)
                     # byte_value = "%08d_" % int(bin(int(matrix[r][c]))[2:])
                     fd.write(byte_value)
                     fd.write("_")
                     # Zero padding
                     pad = c
                     while ((pad + 1) % 4 != 0):
-                        byte_value = "0".zfill(num_of_bits)
+                        byte_value = "0".zfill(num_of_bits_d)
                         fd.write(byte_value)
                         pad += 1
                         if ((pad + 1) % 4 == 0):
@@ -61,7 +63,7 @@ def write_binary_file(filename, matrix):
                             fd.write(delimeter)
                 else:
                     hexdata = matrix[r][c]
-                    byte_value = bin(int(hexdata, 16))[2:].zfill(num_of_bits)
+                    byte_value = bin(int(hexdata, 16))[2:].zfill(num_of_bits_d)
                     # byte_value = "%08d_" % int(bin(matrix[r][c])[2:])
                     fd.write(byte_value)
                     fd.write("_")
@@ -96,13 +98,13 @@ def check_valid_mul_size(matrix_a, matrix_b):
 # Matrix Declaration                                                           #
 # ------------------------------------------------------------------------------#
 
-if (len(sys.argv) < 4):
+if (len(sys.argv) < 3):
     print("<error> Arguements :matrixA matrixB matrixA*matrixB")
     exit()
 else:
     inputs_set1 = sys.argv[1]
     inputs_set2 = sys.argv[2]
-    inputs_set3 = sys.argv[3]
+	#inputs_set3 = sys.argv[3]
 
 
 # if (inputs_set == "monster"):
@@ -121,16 +123,16 @@ else:
 #  matrix_a = np.genfromtxt(filename_a, delimiter = ",", dtype="int")
 #  matrix_b = np.genfromtxt(filename_b, delimiter = ",", dtype="int")
 
-matrix_address_a = '../sw/hex/'+inputs_set1
-matrix_address_b = '../sw/hex/'+inputs_set2
-res_address = '../sw/hex/'+inputs_set3
+matrix_address_a = './sw/hex/'+inputs_set1
+matrix_address_b = './sw/hex/'+inputs_set2
+#res_address = '../sw/hex/'+inputs_set3
 
 matrix_a_t = np.load(matrix_address_a)
 matrix_b_t = np.load(matrix_address_b)
-res_t = np.load(res_address)
+#res_t = np.load(res_address)
 matrix_a = matrix_a_t['arr_0']
 matrix_b = matrix_b_t['arr_0']
-res = res_t['arr_0']
+#res = res_t['arr_0']
 
 if (check_valid_mul_size(matrix_a, matrix_b) == 0):
     print("<error> Invalid input matrix size for multiplication")
@@ -160,10 +162,26 @@ if (check_valid_mul_size(matrix_a, matrix_b) == 0):
 
 print("Matrix A:", matrix_a.shape)
 print(matrix_a)
+matrix_a_m = np.vectorize(lambda x: int(x, 16) - (2**(num_of_bits)) if int(x, 16) >= (2**(num_of_bits-1)) else int(x, 16))(matrix_a)
+print(matrix_a_m)
+
 print("Matrix B:", matrix_b.shape)
+
 print(matrix_b)
+matrix_b_m = np.vectorize(lambda x: int(x, 16) - (2**(num_of_bits)) if int(x, 16) >= (2**(num_of_bits-1)) else int(x, 16))(matrix_b)
+print(matrix_b_m)
 #
-# res = np.matmul(matrix_a, matrix_b)
+res = np.matmul(matrix_a_m, matrix_b_m)
+#res = np.clip(res, -(2**(num_of_bits-1))+1, 2**(num_of_bits-1)-1)
+print(res)
+
+num_of_bits_d = 2*num_of_bits
+
+#res = np.where(res < 0, res + 2**num_of_bits, res)
+res = np.where(res < 0, res + 2**num_of_bits_d, res)
+print(res)
+res = np.vectorize(lambda x: format(x, '04X'))(res)
+
 print("Matrix Multiplication: A x B")
 print("Results:", res.shape)
 print(res)
@@ -192,14 +210,14 @@ print("<log> matrix definations written in ./matrix_define.v")
 # ------------------------------------------------------------------------------#
 # Write Matrix A                                                               #
 # ------------------------------------------------------------------------------#
-write_binary_file("./matrix_a.bin", np.transpose(matrix_a))
+write_binary_file("./sim/matrix_a.bin", np.transpose(matrix_a))
 
 # ------------------------------------------------------------------------------#
 # Write Matrix B                                                               #
 # ------------------------------------------------------------------------------#
-write_binary_file("./matrix_b.bin", matrix_b)
+write_binary_file("./sim/matrix_b.bin", matrix_b)
 
 # ------------------------------------------------------------------------------#
 # Write golden output                                                          #
 # ------------------------------------------------------------------------------#
-write_binary_file("./golden.bin", res)
+write_binary_file("./sim/golden.bin", res,16)
