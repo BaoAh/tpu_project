@@ -19,6 +19,7 @@
 //----------------------------------------------------------------------------//
 `define DATA_SIZE 8
 `define WORD_SIZE 32
+`define EXTEND_WORD_SIZE 64
 `define GBUFF_ADDR_SIZE 256
 `define GBUFF_INDX_SIZE (`GBUFF_ADDR_SIZE/`WORD_SIZE)
 //`define GBUFF_INDX_SIZE 8

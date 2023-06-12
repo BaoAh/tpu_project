@@ -19,7 +19,9 @@ module top_tb;
   reg [3:0] row_a, col_b, k;
   integer err, i, row_offset;
 
-  reg [`GBUFF_ADDR_SIZE-1:0] GOLDEN [`WORD_SIZE-1:0];
+  //reg [`GBUFF_ADDR_SIZE-1:0] GOLDEN [`WORD_SIZE-1:0];
+  reg [`GBUFF_ADDR_SIZE-1:0] GOLDEN [`EXTEND_WORD_SIZE-1:0];
+  
   always #(`CYCLE/2) clk = ~clk;
 
   top TOP(.clk(clk),
@@ -56,7 +58,7 @@ module top_tb;
                      (`MATRIX_B_COL >= 5 && `MATRIX_B_COL < 9)? 2: 1;
     wait(done == 1);
     $display("\nSimulation Done.\n");
-
+/*
 //----------------------------------------------------------------------------//
 // Verify output global buffer with golden                                    //
 //----------------------------------------------------------------------------//
@@ -109,7 +111,117 @@ module top_tb;
 
     check_err(err);
   end
+*/
+//----------------------------------------------------------------------------//
+// Verify output global buffer with golden                                    //
+//----------------------------------------------------------------------------//
+    err = 0;
+    for (i = 0; i < `MATRIX_A_ROW * row_offset; i=i+1) begin
+      // [7:0]
+      if (GOLDEN[i][63:48] !== TOP.GBUFF_OUT.gbuff[i][15:0]) begin
+        $display("GBUFF_OUT[%2d][ 15: 0] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][15:0], GOLDEN[i][63:48]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][ 15: 0] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][15:0]);
+      end
+      // [15:8]
+      if (GOLDEN[i][47:32] !== TOP.GBUFF_OUT.gbuff[i][31:16]) begin
+        $display("GBUFF_OUT[%2d][31: 16] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][31:16], GOLDEN[i][47:32]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][31: 16] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][31:16]);
+      end
+      // [23:16]
+      if (GOLDEN[i][31:16] !== TOP.GBUFF_OUT.gbuff[i][47:32]) begin
+        $display("GBUFF_OUT[%2d][47:32] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][47:32], GOLDEN[i][31:16]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][47:32] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][47:32]);
+      end
+      // [31:24]
+      if (GOLDEN[i][15:0] !== TOP.GBUFF_OUT.gbuff[i][63:48]) begin
+        $display("GBUFF_OUT[%2d][63:48] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][63:48], GOLDEN[i][15:0]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][63:48] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][63:48]);
+      end
 
+      $display("%h %h %h %h",
+        GOLDEN[i][15:0], GOLDEN[i][31:16], GOLDEN[i][47:32], GOLDEN[i][63:48]);
+    end
+
+    check_err(err);
+  end
+
+//----------------------------------------------------------------------------//
+// Maximum Simulation time                                                    //
+//----------------------------------------------------------------------------//
+  initial begin
+
+    #(`CYCLE*`MAX)
+    err = 0;
+    for (i = 0; i < `MATRIX_A_ROW * row_offset; i=i+1) begin
+      // [7:0]
+      if (GOLDEN[i][63:48] !== TOP.GBUFF_OUT.gbuff[i][15:0]) begin
+        $display("GBUFF_OUT[%2d][ 15: 0] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][15:0], GOLDEN[i][63:48]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][ 15: 0] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][15:0]);
+      end
+      // [15:8]
+      if (GOLDEN[i][47:32] !== TOP.GBUFF_OUT.gbuff[i][31:16]) begin
+        $display("GBUFF_OUT[%2d][31: 16] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][31:16], GOLDEN[i][47:32]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][31: 16] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][31:16]);
+      end
+      // [23:16]
+      if (GOLDEN[i][31:16] !== TOP.GBUFF_OUT.gbuff[i][47:32]) begin
+        $display("GBUFF_OUT[%2d][47:32] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][47:32], GOLDEN[i][31:16]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][47:32] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][47:32]);
+      end
+      // [31:24]
+      if (GOLDEN[i][15:0] !== TOP.GBUFF_OUT.gbuff[i][63:48]) begin
+        $display("GBUFF_OUT[%2d][63:48] = %4h, expect = %4h",
+          i, TOP.GBUFF_OUT.gbuff[i][63:48], GOLDEN[i][15:0]);
+        err = err + 1;
+      end
+      else begin
+        $display("GBUFF_OUT[%2d][63:48] = %4h, pass!",
+          i, TOP.GBUFF_OUT.gbuff[i][63:48]);
+      end
+
+      //$display("%h %h %h %h",
+      //  GOLDEN[i][7:0], GOLDEN[i][15:8], GOLDEN[i][23:16], GOLDEN[i][31:24]);
+    end
+
+    check_err(err);
+    $finish;
+  end
+/*
 //----------------------------------------------------------------------------//
 // Maximum Simulation time                                                    //
 //----------------------------------------------------------------------------//
@@ -163,7 +275,7 @@ module top_tb;
     check_err(err);
     $finish;
   end
-
+*/
   
 
 
