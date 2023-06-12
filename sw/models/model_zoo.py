@@ -3,6 +3,7 @@ from models.mynet import mynet
 from models.vgg16_qnn import vgg16_qnn_v1
 from models.vgg16 import vgg16
 from models.cifar10 import cifar10
+from models.cifar10_base import cifar10_base
 from models.cifar10_qnn import cifar10_qnn
 from models.cifar10_po2 import cifar10_po2
 from models.lenet5_qnn import lenet5_qnn_v1
@@ -24,6 +25,7 @@ def model_zoo():
         'vgg16_qnn_v1': vgg16_qnn_v1,
         'vgg16': vgg16,
         'cifar10': cifar10,
+        'cifar10_base': cifar10_base,
         'cifar10_qnn': cifar10_qnn,
         'cifar10_po2': cifar10_po2,
         'lenet5_qnn_v1': lenet5_qnn_v1,

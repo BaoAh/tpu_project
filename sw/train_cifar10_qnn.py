@@ -13,7 +13,7 @@ input_shape = (32, 32, 3)
 # Define the number of classes
 num_classes = 10
 
-model_name = "cifar10_qnn"
+model_name = "cifar10_base"
 if model_name not in model_zoo():
     print(
         f"Model '{model_name}' not found. Please choose from {list(model_zoo().keys())}.")
