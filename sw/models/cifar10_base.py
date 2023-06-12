@@ -6,9 +6,9 @@ from tensorflow.keras.layers import *
 from tensorflow.keras.models import Model
 from tensorflow.keras.utils import to_categorical
 
-q = "quantized_po2(3,log2_rounding = 'rnd')"
+q = "quantized_bits(8,0,1)"
 
-def cifar10_po2(input_shape, num_classes):
+def cifar10_base(input_shape, num_classes):
 
     # Add the input layer
     x = x_in = Input(input_shape)
