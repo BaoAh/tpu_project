@@ -8,18 +8,18 @@
 * Drawing inspiration from the **Tensor Processing Unit (TPU) Core** architecture, a hardware-friendly computation method is proposed. Our aim is to explore how to design an efficient and low-power neural network accelerator, following a complete hardware design flow, and using the **UMC U18** process for circuit synthesis and routing.
 
 
-![](./img/linear_q2)
-![](./img/PoT_q2)
+![](./img/linear_q2.png)
+![](./img/PoT_q2.png)
 
 ## Workflow
-![](./img/Design_Flow)
+![](./img/Design_Flow.png)
 
 ## Architecture
 ### Tpu core and Sync FIFO
-![](./img/tpu_n_fifo)
+![](./img/tpu_n_fifo.png)
 
 ### Model architecture
-![](./img/Quant_n_Model)
+![](./img/Quant_n_Model.png)
 
 
 ## Get started
