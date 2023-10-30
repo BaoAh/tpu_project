@@ -1,10 +1,3 @@
-//============================================================================//
-// AIC2021 Project1 - TPU Design                                              //
-// file: define.v                                                             //
-// description: All Definations                                               //
-// authors: kaikai (deekai9139@gmail.com)                                     //
-//          suhan  (jjs93126@gmail.com)                                       //
-//============================================================================//
 
 `ifndef __DEFINE_H
 `define __DEFINE_H
