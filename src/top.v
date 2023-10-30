@@ -1,11 +1,3 @@
-//============================================================================//
-// AIC2021 Project1 - TPU Design                                              //
-// file: top.v                                                                //
-// description: Top module complete your TPU design here                      //
-// authors: kaikai (deekai9139@gmail.com)                                     //
-//          suhan  (jjs93126@gmail.com)                                       //
-//============================================================================//
-
 `ifndef __TOP_V
 `define __TOP_V
 
