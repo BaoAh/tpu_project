@@ -1,39 +1,19 @@
-# 2023 TPU project
-
-## Introduction
-* With the widespread application of neural networks on edge devices, edge computing is extremely important in the era of the Internet of Things. Maintaining accuracy under limited power consumption is a major focus. 
-
-* However, with the current trend of increasing model weight quantities, this idea becomes somewhat challenging. Therefore, the goal of this study is to **quantize weights** by reducing the size of each parameter to save storage and computing power. 
-
-* Drawing inspiration from the **Tensor Processing Unit (TPU) Core** architecture, a hardware-friendly computation method is proposed. Our aim is to explore how to design an efficient and low-power neural network accelerator, following a complete hardware design flow, and using the **UMC U18** process for circuit synthesis and routing.
-
-
-![](./img/linear_q2.png)
-![](./img/PoT_q2.png)
-
-## Workflow
-![](./img/Design_Flow.png)
-
-## Architecture
-### Tpu core and Sync FIFO
-![](./img/tpu_n_fifo.png)
-
-### Model architecture
-![](./img/Quant_n_Model.png)
-
+# Weight-Compression-neural-network-accelerator-for-edge-computing
+* 此為最終版本 Baseline
+* 修改項目 : 8-bit 定點數 systolic array
+* 其他最終版本
+  * Branch huffman
+  * Branch dictionary-based
+  * Branch PoT-Shift4-bit
+  * Branch PoT-Shift3-bit
 
 ## Get started
 **Makefile**
-
--  ```make mlp```
-   Get the input, output, and weight of the baseline's FC layer.
--  ```make po2```
-   Get the input, output, and weight of the PoT's FC layer
-- ```make fc2```
-   Transform the matrices into hexadecimal format.
 - ```make rtl```
-        RTL simulation.
+        Run RTL simulation.
+- ```make synthesize```
+        Run synthesize with Design Compiler.
 - ```make syn```
-        Synthesis
-- ```make pre```
-        Gate-level simulation
+         Run gate-level simulation (nWave)
+- ```make power```
+        Run power analyze with Primetime

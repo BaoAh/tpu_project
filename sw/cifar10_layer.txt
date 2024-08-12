@@ -1,0 +1,72 @@
+Input array: [ 0.94451904 -2.95241547 -0.01460266  2.3578949  -2.34010315  3.61403656
+ -5.80096436 -2.05514526 -3.39022827  3.43481445]
+Fixed point array: [ 0.9375 -2.9375  0.      2.3125 -2.3125  3.5625 -5.75   -2.     -3.375
+  3.375 ]
+Model: "model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1 (InputLayer)        [(None, 32, 32, 3)]       0         
+                                                                 
+ conv2d_1 (QConv2D)          (None, 32, 32, 32)        896       
+                                                                 
+ act_1 (QActivation)         (None, 32, 32, 32)        0         
+                                                                 
+ conv2d_2 (QConv2D)          (None, 32, 32, 32)        9248      
+                                                                 
+ act_2 (QActivation)         (None, 32, 32, 32)        0         
+                                                                 
+ mp_0 (MaxPooling2D)         (None, 16, 16, 32)        0         
+                                                                 
+ dropout (Dropout)           (None, 16, 16, 32)        0         
+                                                                 
+ conv2d_3 (QConv2D)          (None, 16, 16, 64)        18496     
+                                                                 
+ act_3 (QActivation)         (None, 16, 16, 64)        0         
+                                                                 
+ conv2d_4 (QConv2D)          (None, 16, 16, 64)        36928     
+                                                                 
+ act_4 (QActivation)         (None, 16, 16, 64)        0         
+                                                                 
+ mp_1 (MaxPooling2D)         (None, 8, 8, 64)          0         
+                                                                 
+ dropout_1 (Dropout)         (None, 8, 8, 64)          0         
+                                                                 
+ conv2d_5 (QConv2D)          (None, 8, 8, 128)         73856     
+                                                                 
+ act_5 (QActivation)         (None, 8, 8, 128)         0         
+                                                                 
+ conv2d_6 (QConv2D)          (None, 8, 8, 128)         147584    
+                                                                 
+ act_6 (QActivation)         (None, 8, 8, 128)         0         
+                                                                 
+ mp_2 (MaxPooling2D)         (None, 4, 4, 128)         0         
+                                                                 
+ dropout_2 (Dropout)         (None, 4, 4, 128)         0         
+                                                                 
+ flatten (Flatten)           (None, 2048)              0         
+                                                                 
+ fc1 (QDense)                (None, 1024)              2097152   
+                                                                 
+ act_7 (Activation)          (None, 1024)              0         
+                                                                 
+ dropout_3 (Dropout)         (None, 1024)              0         
+                                                                 
+ fc2 (QDense)                (None, 10)                10240     
+                                                                 
+ act_8 (Activation)          (None, 10)                0         
+                                                                 
+=================================================================
+Total params: 2,394,400
+Trainable params: 2,394,400
+Non-trainable params: 0
+_________________________________________________________________
+/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/sw/hex/quant_input_hex_f
+Layer fc1 weights shape: (2048, 1024)
+/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/sw/hex/fc1_w_hex_f
+Layer fc1 output shape: (1, 1024)
+/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/sw/hex/fc1_out_hex_f
+Layer fc2 weights shape: (1024, 10)
+/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/sw/hex/fc2_w_hex_f
+Layer fc2 output shape: (1, 10)
+/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/sw/hex/fc2_out_hex_f

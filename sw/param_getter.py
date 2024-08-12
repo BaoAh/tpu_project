@@ -100,7 +100,7 @@ if __name__ == "__main__":
     temp_x = input_x
 
     # Quantization scheme
-    q_scheme = QuantizationScheme(8, 8)
+    q_scheme = QuantizationScheme(8, 4)
 
     # Save inputs (of format: NHWC) as text file
     hex_dir = os.path.join(os.getcwd(), 'hex')

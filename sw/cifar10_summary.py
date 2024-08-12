@@ -27,7 +27,7 @@ class ParamGetter:
                 tensor_w = layer.get_weights()[0]
                 print(f"Layer {layer_name} weights shape: {tensor_w.shape}")
                 save_weights(tensor_w,
-                             os.path.join(self.store_path, layer_name+"_w.hex"),
+                             os.path.join(self.store_path, layer_name+"_w_hex"),
                              self.q_scheme)
                 # Plot weight distributions and save as an image
                 # plot_distribution(tensor_w, str(layer_name+"_w.png"))
@@ -40,7 +40,7 @@ class ParamGetter:
                 print(f"Layer {layer_name} bias shape: {tensor_b.shape}")
                 save_weights(tensor_b,
                              os.path.join(self.store_path,
-                                          layer_name+"_bias.hex"),
+                                          layer_name+"_bias_hex"),
                              self.q_scheme)
                 # Plot weight distributions and save as an image
                 # plot_distribution(tensor_b, str(layer_name+"_bias.png"))
@@ -53,7 +53,7 @@ class ParamGetter:
         print(f"Layer {layer_name} output shape: {tensor_out.shape}")
         # Save outputs as text file
         save_weights(tensor_out,
-                     os.path.join(self.store_path, layer_name+"_out.hex"),
+                     os.path.join(self.store_path, layer_name+"_out_hex"),
                      self.q_scheme)
         # Plot weight distributions and save as an image
         # plot_distribution(tensor_out, str(layer_name+"_out.png"))
@@ -83,3 +83,32 @@ if __name__ == "__main__":
         input_shape=input_shape, num_classes=num_classes)
     model.load_weights(model_filename)
     model.summary()
+
+    # Specify the names of the layers whose weights you want to print
+    # specific_layers = ['quant_fc1', 'quant_fc2', 'quant_fc3']
+    specific_layers = ['fc1', 'fc2']
+
+    # Create a random input tensor for testing
+    # input_x = np.random.rand(1, 28, 28, 1)
+
+    # Use mnist dataset for testing
+    (x_train, y_train), (x_test, y_test) = datasets.cifar10.load_data()
+    input_x = x_train[0].reshape(-1, 32, 32, 3)
+    temp_x = input_x
+
+    # Quantization scheme
+    q_scheme = QuantizationScheme(8, 4)
+
+    # Save inputs (of format: NHWC) as text file
+    hex_dir = os.path.join(os.getcwd(), 'hex')
+    temp_x = temp_x.reshape(1, 3072)
+    temp_x = q_scheme.convert(temp_x)
+    save_inputs(temp_x, os.path.join(hex_dir, "quant_input_hex"), q_scheme)
+
+    getter = ParamGetter(model, q_scheme, hex_dir)
+
+    # TODO: Generate matrix multiplication dimension for this fc layer
+    for layer in specific_layers:
+        getter.get_weights(layer)
+        # getter.get_bias(layer)
+        getter.get_outputs(input_x, layer)

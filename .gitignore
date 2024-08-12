@@ -1,5 +1,4 @@
-*.log
-*.key
+*.log *.key
 *.conf
 *.fsdb
 *.dc

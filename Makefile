@@ -4,6 +4,7 @@ BUILD_DIR          =$(ROOT_DIR)/$(BUILD)
 SRC_DIR            =$(ROOT_DIR)/src
 SIM_DIR            =$(ROOT_DIR)/sim
 SYN_DIR            =$(ROOT_DIR)/syn
+POW_DIR            =$(ROOT_DIR)/power
 SCRIPT_DIR         =$(ROOT_DIR)/script
 REPORT_DIR         =$(ROOT_DIR)/report
 NC_DIR             =$(ROOT_DIR)/conf
@@ -65,6 +66,10 @@ init: clean
 syn_init:
 	mkdir -p $(SYN_DIR);
 
+# Pow directory init
+pow_init:
+	mkdir -p $(POW_DIR);
+
 icc_init:
 	mkdir -p $(APR_DIR); \
 	mkdir -p $(APR_DIR)/../design_data; \
@@ -73,7 +78,7 @@ icc_init:
 
 cp_tb_src: gen_hex
 	cd $(BUILD_DIR); \
-	cp $(SIM_DIR)/matrix_define.v .; \
+	cp $(SRC_DIR)/matrix_define.v .; \
 	cp $(TB_SRC) .;
 
 cp_CHIP_v:
@@ -111,6 +116,17 @@ synthesize: $(BUILD) syn_init
 	cd $(BUILD_DIR); \
 	cp $(SCRIPT_DIR)/${PROC}/synopsys_dc.setup.$(PROC) $(BUILD_DIR)/.synopsys_dc.setup; \
 	dcnxt_shell -f $(SCRIPT_DIR)/dc_syn.tcl -x "set proc ${PROC}";
+
+# Run power analyze with Primetime
+power:
+	cd $(BUILD_DIR); \
+	cp $(SCRIPT_DIR)/${PROC}/synopsys_pt.setup.$(PROC) $(BUILD_DIR)/.synopsys_pt.setup; \
+	pt_shell -f $(SCRIPT_DIR)/pt_script.tcl
+
+#Run synthesize and gate-level simulation and analyze power  
+all: synthesize \
+	 syn \
+	 power
 
 # Run gate-level simulation (nWave)
 syn: $(BUILD) cp_tb_src syn_init
@@ -194,17 +210,5 @@ icc: syn_init icc_init
 clean:
 	rm -rf $(BUILD_DIR) $(SYN_DIR) $(APR_DIR) $(REPORT_DIR) *.log
 
-
-#fc1:
-#	python3 $(SIM_DIR)/matmul.py fc1_out_hex.npz fc2_w_hex.npz
-
-fc2:
-	python3 $(SIM_DIR)/matmul.py fc1_out_hex.npz fc2_w_hex.npz
-
-mlp:
-	cd $(SW_DIR) && python3 param_getter.py mlp_v2.h5
-
-po2:
-	cd $(SW_DIR) && python3 param_getter.py mlp_po2_v2.h5  
 
 

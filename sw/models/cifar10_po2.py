@@ -6,7 +6,7 @@ from tensorflow.keras.layers import *
 from tensorflow.keras.models import Model
 from tensorflow.keras.utils import to_categorical
 
-q = "quantized_po2(3,log2_rounding = 'rnd')"
+q = "quantized_po2(8,log2_rounding = 'rnd')"
 
 def cifar10_po2(input_shape, num_classes):
 

@@ -1,0 +1,4 @@
+`define MATRIX_A_ROW 1
+`define MATRIX_A_COL 128
+`define MATRIX_B_ROW 128
+`define MATRIX_B_COL 10
