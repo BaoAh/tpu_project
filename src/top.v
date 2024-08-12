@@ -14,7 +14,6 @@ module top (
     k,
     compress_w,
     start_w,
-    tree_deep,
     done
 );
 
@@ -24,7 +23,6 @@ module top (
   input [3:0] m, k, n;
   input [`GBUFF_COMPRESS_SIZE-1:0] compress_w;
   input [`COMPRESS_INDEX-1 : 0] start_w;
-  input [`DEEP_SIZE -1 : 0] tree_deep;
   output done;
 
   wire wr_en_a, wr_en_b, wr_en_out;
@@ -48,7 +46,6 @@ module top (
       .k(k),
       .compress_w(compress_w),
       .start_w(start_w),
-      .tree_deep(tree_deep),
       .done(done),
       .wr_en_a(wr_en_a),
       .wr_en_b(wr_en_b),

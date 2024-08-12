@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const vector<string> split(const string &str, const char &delimiter) {
+ const vector<string> split(const string &str, const char &delimiter) {
         vector<string> result;
         stringstream ss(str);
         string tok;
@@ -12,39 +12,25 @@ const vector<string> split(const string &str, const char &delimiter) {
     }
 
 int main() {
-    string weight[31];
-    string number[31];
-    map<string, string> compress_map;
-    map<string, int> compress_length;
-    for(int i=0; i<28; i++){
-        cin >> weight[i];
-    }
-    char temp[35];
-    int j;
-    for(int i=0; i<28; i++){
-        for(j=0; j<i ; j++){
-            temp[j] = '1';
-        }
-        if(i<27)
-            temp[j++] = '0';
-        temp[j] = '\0';
-        number[i] = temp;
-    }
-    for(int i=0; i<28; i++){
-        int t_length;
-        if(i<27) t_length = i+1;
-        else t_length = 27;
-        compress_map[weight[i]] = number[i] ;
-        compress_length[weight[i]] = t_length;
-    }
+    map<string, string> compress_map
+    = { {"11110001", "0000"}, {"11110111", "0001"}, {"11111001", "0010"}, {"11111010", "0011"}, 
+    {"11111011", "0100"}, {"11111101", "0101"}, {"11111110", "0110"}, {"11111111", "0111"}, 
+    {"00000000", "1000"}, {"00000011", "1001"}, {"00000100", "1010"}, {"00001000", "1011"}, 
+    {"00001011", "1100"}, {"00001101", "1101"}, {"00001111", "1110"}};
+    
     string str;
     int sum = 0;
     for(int i=0 ; i<30; i++){
         cin >> str;
         vector<string> ret = split(str, '_');
         for (auto& s : ret) {
-            cout << compress_map[s] ;
-            sum += compress_length[s];
+            if(compress_map.count(s) > 0){
+               cout << "1" << compress_map[s];
+               sum += 5;
+            }else{
+                cout << "0" << s;
+                sum += 9;
+            }
         }
     }
     cout << endl << sum << endl;

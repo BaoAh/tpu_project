@@ -13,7 +13,7 @@ SW_DIR			   =$(ROOT_DIR)/sw
 TB_TOP             =top_tb
 TOP                =tpu
 
-SRC=$(filter-out $(SRC_DIR)/CHIP.v, $(shell ls $(SRC_DIR)/*.v))
+SRC=$(shell ls $(SRC_DIR)/*.v)
 
 TB_SRC=$(shell ls $(SIM_DIR)/*.bin)
 

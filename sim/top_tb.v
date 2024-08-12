@@ -7,10 +7,10 @@
 //============================================================================//
 
 `timescale 1ns/10ps
-`include "define.v"
-//`include "top.v"
+`include "../src/define.v"
 
 module top_tb;
+
   reg clk;
   reg rst;
   reg start;
@@ -18,7 +18,6 @@ module top_tb;
   reg [3:0] row_a, col_b, k;
   reg [`GBUFF_COMPRESS_SIZE-1:0] compress_w;
   reg [`COMPRESS_INDEX-1 : 0] start_w;
-  reg [`DEEP_SIZE-1 : 0] tree_deep;
   integer err, i, row_offset;
 
   reg [`GBUFF_ADDR_SIZE-1:0] GOLDEN [`WORD_SIZE-1:0];
@@ -36,7 +35,6 @@ module top_tb;
           .n(col_b),
           .compress_w(compress_w),
           .start_w(start_w),
-          .tree_deep(tree_deep),
           .done(done));
 
   initial begin
@@ -55,7 +53,6 @@ module top_tb;
     row_a = `MATRIX_A_ROW; col_b = `MATRIX_B_COL; k = `MATRIX_A_COL;
     compress_w = `COMPRESS_W;
     start_w  = `START_W;
-    tree_deep = `DEEP;
     //$readmemb("pattern_a.bin", TOP.DIC_D_A.dic);
     $readmemb("pattern_w.bin", TOP.DIC_D_W.dic);
     $readmemb("matrix_a.bin", TOP.GBUFF_A.gbuff);
