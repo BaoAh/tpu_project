@@ -184,10 +184,10 @@ module tpu (
     end
   end
 
-  wire [`DATA_SIZE_W-1:0] datain_b_1 = out_b[15:12];
-  wire [`DATA_SIZE_W-1:0] datain_b_2 = out_b[11:8];
-  wire [`DATA_SIZE_W-1:0] datain_b_3 = out_b[7:4];
-  wire [`DATA_SIZE_W-1:0] datain_b_4 = out_b[3:0];
+  wire [`DATA_SIZE_W-1:0] datain_b_1 = out_b[11:9];
+  wire [`DATA_SIZE_W-1:0] datain_b_2 = out_b[8:6];
+  wire [`DATA_SIZE_W-1:0] datain_b_3 = out_b[5:3];
+  wire [`DATA_SIZE_W-1:0] datain_b_4 = out_b[2:0];
 
   wire [`DATA_SIZE_W-1:0] dataout_b_1;
   wire [`DATA_SIZE_W-1:0] dataout_b_2;
@@ -247,7 +247,7 @@ module tpu (
   wire        out_limit = (out_n || out_m);
 
   //mac and wires
-  wire [0:15] from_top__net                    [0:4];
+  wire [0:11] from_top__net                    [0:4];
   wire [0:31] from_left_net                    [0:4];
   //wire [31:0] multi_out_net                    [0:3];
   wire [71:0] multi_out_net                    [0:3];
@@ -260,10 +260,10 @@ module tpu (
     end
   end
 
-  assign from_top__net[0][0:3]   = ((rd_b_1) ? dataout_b_1 : 0);
-  assign from_top__net[0][4:7]  = ((rd_b_2) ? dataout_b_2 : 0);
-  assign from_top__net[0][8:11] = ((rd_b_3) ? dataout_b_3 : 0);
-  assign from_top__net[0][12:15] = ((rd_b_4) ? dataout_b_4 : 0);
+  assign from_top__net[0][0:2]   = ((rd_b_1) ? dataout_b_1 : 0);
+  assign from_top__net[0][3:5]  = ((rd_b_2) ? dataout_b_2 : 0);
+  assign from_top__net[0][6:8] = ((rd_b_3) ? dataout_b_3 : 0);
+  assign from_top__net[0][9:11] = ((rd_b_4) ? dataout_b_4 : 0);
 
   assign from_left_net[0][0:7]   = ((rd_a_1) ? dataout_a_1 : 0);
   assign from_left_net[0][8:15]  = ((rd_a_2) ? dataout_a_2 : 0);
@@ -277,9 +277,9 @@ module tpu (
         mac ul_mac (
             .clk     (clk),
             .reset   (systolic_array_rst),
-            .up_in   (from_top__net[i][j*4 : j*4+3]),
+            .up_in   (from_top__net[i][j*3 : j*3+2]),
             .left_in (from_left_net[j][i*8 : i*8+7]),
-            .up_out  (from_top__net[i+1][j*4 : j*4+3]),     // move downward
+            .up_out  (from_top__net[i+1][j*3 : j*3+2]),     // move downward
             .left_out(from_left_net[j+1][i*8 : i*8+7]),     // move right
             .mat_out (multi_out_net[i][71-(j*18):54-(j*18)])  // move downward
         );

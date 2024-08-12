@@ -4,16 +4,16 @@ module sync_fifo_w #(
 ) (
     input clk,
     input rst,
-    input [3:0] data_in,
+    input [2:0] data_in,
     input w_en,
     input r_en,
-    output reg [3:0] data_out,
+    output reg [2:0] data_out,
     output empty,
     output full
 );
 
 
-  reg [3:0] buffer[0:7];
+  reg [2:0] buffer[0:7];
   reg [2:0] wr_ptr;
   reg [2:0] rd_ptr;
   //assign data_out = buffer[rd_ptr];
@@ -23,8 +23,8 @@ module sync_fifo_w #(
     if (rst) begin
       wr_ptr <= 0;
       rd_ptr <= 0;
-      data_out <= 4'd0;
-      for (k = 0; k < WIDTH; k = k + 1) buffer[k] <= 4'd0;
+      data_out <= 3'd0;
+      for (k = 0; k < WIDTH; k = k + 1) buffer[k] <= 3'd0;
     end else begin
       if (w_en && !full) begin
         buffer[wr_ptr] <= data_in;

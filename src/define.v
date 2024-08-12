@@ -11,8 +11,8 @@
 //----------------------------------------------------------------------------//
 `define DATA_SIZE 8
 `define WORD_SIZE 32
-`define DATA_SIZE_W 4
-`define WORD_SIZE_W 16
+`define DATA_SIZE_W 3
+`define WORD_SIZE_W 12
 `define GBUFF_ADDR_SIZE 256
 //`define GBUFF_INDX_SIZE (`GBUFF_ADDR_SIZE/`WORD_SIZE)
 `define GBUFF_INDX_SIZE 8
@@ -21,7 +21,7 @@
 //----------------------------------------------------------------------------//
 // Simulations Definations                                                    //
 //----------------------------------------------------------------------------//
-`define CYCLE 15
+`define CYCLE 7.1
 `define MAX   500000
 
 //----------------------------------------------------------------------------//

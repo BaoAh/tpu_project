@@ -29,8 +29,8 @@ for i in range(len(x)):
 ax.set_xlabel('Time(ns)')
 ax.set_ylabel('Area(um^2)')
 ax.set_zlabel('Power(mW)')
-ax.set_xlim(5.0, None)
-ax.set_ylim(140000, None)
+ax.set_xlim(5, None)
+ax.set_ylim(120000, None)
 ax.set_zlim(5, None)
 ax.set_title('Area*Time*Power')
 
