@@ -65,16 +65,14 @@ def write_int(data, q_scheme, filename,a,b):
     if len(data.shape) != 1:
         raise ("numpy ndarray is not flattened")
     q_data = q_scheme.convert(data)
-   # q_data = q_data.astype(int)
+    q_data = q_data.astype(int)
     with open(filename, 'w') as f:
         count = 0
-        for i in range(data.shape[0]):
-            f.write(f"{int(q_data[count]*100)} ")
-        # for i in range(a):
-        #     for j in range(b-1):
-        #         f.write(f"{q_data[count]} ")
-        #         count+=1
-            #f.write(f"{q_data[count]}\n")
+        for i in range(a):
+            for j in range(b-1):
+                f.write(f"{q_data[count]}, ")
+                count+=1
+            f.write(f"{q_data[count]}\n")
     f.close()
 
 def write_hex(data, q_scheme, filename):

@@ -1,10 +1,10 @@
 # Weight-Compression-neural-network-accelerator-for-edge-computing
-* 此為最終版本 dictionary-based
-* 項目 : Dictionary-Based Decompression, Systolic Array
+* 此為最終版本 PoT-Shift4-bit
+* 修改項目 : 修改編碼方式，使之更有利於硬體設計(Mac.v)
 * 其他最終版本
   * Branch baseline
   * Branch huffman
-  * Branch PoT-Shift4-bit
+  * Branch dictionary-based
   * Branch PoT-Shift3-bit
 
 ## Get started

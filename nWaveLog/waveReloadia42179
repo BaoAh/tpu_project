@@ -1,0 +1,138 @@
+Magic 271485
+Revision Verdi_Q-2020.03
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 23 1463 843 263 342
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / -i 0 "" "/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/build/tpu.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 7785.367096 16260.781138
+cursor 10500.000000
+marker 0.000000
+
+; visible top row signal index
+top 0
+; marker line index
+markerPos 24
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "" "/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/build/tpu.fsdb"
+addSignal -h 15 /top_tb/clk
+addSignal -h 15 -holdScope rst
+addSignal -h 15 -UNSIGNED -UDEC /top_tb/TOP/ul_tpu/state[2:0]
+addGroup "G2"
+addSignal -h 15 /top_tb/TOP/GBUFF_B/gbuff[31:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[10][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[11][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[12][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[30][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[13][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[31][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[0][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[14][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[1][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[15][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[2][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[16][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[3][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[17][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[4][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[18][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[5][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[19][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[6][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[7][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[8][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[9][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[20][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[21][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[22][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[23][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[24][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[25][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[26][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[27][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[28][255:0]
+addSignal -UNSIGNED -BIN -HIDDEN -holdScope gbuff[29][255:0]
+addSignal -h 15 /top_tb/TOP/ul_tpu/wr_en_b
+addSignal -h 15 -UNSIGNED -UDEC -holdScope addr_b[7:0]
+addGroup "G3"
+addSignal -h 15 /top_tb/TOP/ul_tpu/cnt[4:0]
+addSignal -h 15 -holdScope done
+addSignal -h 15 /top_tb/TOP/GBUFF_OUT/gbuff[31:0]
+addSignal -h 15 /top_tb/TOP/ul_tpu/in_c[31:0]
+addSignal -h 15 -holdScope wr_en_c
+addSignal -expanded -h 15 -holdScope multi_out_net[0:3]
+addSignal -h 15 -holdScope multi_out_net[0][71:0]
+addSignal -h 15 -holdScope multi_out_net[1][71:0]
+addSignal -h 15 -holdScope multi_out_net[2][71:0]
+addSignal -h 15 -holdScope multi_out_net[3][71:0]
+addGroup "G4"
+addSignal -h 15 -UNSIGNED -BIN /top_tb/TOP/ul_tpu/dataout_a_1[7:0]
+addSignal -h 15 -holdScope multi_out_net[0][71:54]
+addSignal -h 15 -holdScope multi_out_net[0][53:36]
+addSignal -h 15 -holdScope multi_out_net[0][35:18]
+addSignal -h 15 -holdScope multi_out_net[0][17:0]
+addGroup "G5"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+activeDirFile "" "/home/TsaiChiehCheng/Weight-Compression-neural-network-accelerator-for-edge-computing/build/tpu.fsdb"
+
+GETSIGNALFORM_SCOPE_HIERARCHY_BEGIN
+getSignalForm close
+
+"/top_tb"
+"/top_tb/TOP"
+"/top_tb/TOP/GBUFF_OUT"
+"/top_tb/TOP/ul_tpu"
+"/top_tb/TOP/ul_tpu/fifo_b_4"
+"/top_tb/TOP/ul_tpu/sys_row[2]"
+
+SCOPE_LIST_BEGIN
+"/top_tb"
+"/top_tb/TOP/ul_tpu"
+"/top_tb/TOP"
+"/top_tb/TOP/DIC_D_W"
+"/top_tb/TOP/GBUFF_A"
+"/top_tb/TOP/GBUFF_B"
+"/top_tb/TOP/ul_tpu/fifo_a_2"
+"/top_tb/TOP/ul_tpu/fifo_a_3"
+"/top_tb/TOP/ul_tpu/fifo_a_4"
+"/top_tb/TOP/ul_tpu/fifo_b_4"
+"/top_tb/TOP/GBUFF_OUT"
+"/top_tb/TOP/ul_tpu/sys_row[2]"
+"/top_tb/TOP/ul_tpu/fifo_a_1"
+SCOPE_LIST_END
+
+GETSIGNALFORM_SCOPE_HIERARCHY_END
+
+

@@ -17,6 +17,7 @@ module top_tb;
   reg start;
   wire done;
   reg [3:0] row_a, col_b, k;
+  reg [7:0] pattern_a,pattern_b;
   integer err, i, row_offset;
 
   reg [`GBUFF_ADDR_SIZE-1:0] GOLDEN [`WORD_SIZE-1:0];
@@ -28,6 +29,8 @@ module top_tb;
           .m(row_a),
           .k(k),
           .n(col_b),
+          .pattern_a(pattern_a),
+          .pattern_b(pattern_b),
           .done(done));
 
   initial begin
@@ -44,6 +47,7 @@ module top_tb;
     clk = 0;  rst = 1; start = 0;
     #(`CYCLE) rst = 0; start = 1;
     row_a = `MATRIX_A_ROW; col_b = `MATRIX_B_COL; k = `MATRIX_A_COL;
+    pattern_a = `PATTERN_A; pattern_b = `PATTERN_B;
     $readmemb("matrix_a.bin", TOP.GBUFF_A.gbuff);
     $readmemb("matrix_b.bin", TOP.GBUFF_B.gbuff);
     $readmemb("golden.bin", GOLDEN); 
@@ -108,7 +112,6 @@ module top_tb;
     end
 
     check_err(err);
-    $finish;
   end
 
 //----------------------------------------------------------------------------//
@@ -210,3 +213,4 @@ module top_tb;
 
 
 endmodule
+

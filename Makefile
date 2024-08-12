@@ -13,7 +13,7 @@ SW_DIR			   =$(ROOT_DIR)/sw
 TB_TOP             =top_tb
 TOP                =tpu
 
-SRC=$(shell ls $(SRC_DIR)/*.v)
+SRC=$(filter-out $(SRC_DIR)/CHIP.v, $(shell ls $(SRC_DIR)/*.v))
 
 TB_SRC=$(shell ls $(SIM_DIR)/*.bin)
 
@@ -209,5 +209,6 @@ icc: syn_init icc_init
 # Remove all files
 clean:
 	rm -rf $(BUILD_DIR) $(SYN_DIR) $(APR_DIR) $(REPORT_DIR) *.log
+
 
 

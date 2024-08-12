@@ -27,9 +27,9 @@ num_classes = 10
 # testing models
 # model_name = "mlp_v2"
 # mlp model normal quantized to fixed point
-#model_name = "mlp_qnn_v2"  //
+model_name = "mlp_qnn_v2"
 # mlp model quantized to power of 2
-model_name = "mlp_po2_v2"
+#model_name = "mlp_po2_v2"
 # mlp quantized to 4bit
 #model_name = "mlp_po2_4bits_v2"
 

@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # Generate some random data
-x = np.zeros(5)
-y = np.zeros(5)
-z = np.zeros(5)
+x = np.zeros(9)
+y = np.zeros(9)
+z = np.zeros(9)
 
 
-for i in range(5):
+for i in range(9):
     input_string = input()
     float_list = [float(x) for x in input_string.split()]
     x[i] = float_list[0]
@@ -29,10 +29,10 @@ for i in range(len(x)):
 ax.set_xlabel('Time(ns)')
 ax.set_ylabel('Area(um^2)')
 ax.set_zlabel('Power(mW)')
-ax.set_xlim(5.0, None)
-ax.set_ylim(140000, None)
+ax.set_xlim(4.8, None)
+ax.set_ylim(180000, None)
 ax.set_zlim(5, None)
 ax.set_title('Area*Time*Power')
 
 # Show the plot
-plt.savefig("PTA.png")
+plt.savefig("mygraph.png")
