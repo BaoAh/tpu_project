@@ -24,11 +24,11 @@ set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
  
 # Synthesize design
 ## compile_ultra ##
-#compile_ultra -no_autoungroup -no_boundary_optimization -retime
+compile_ultra -no_autoungroup -no_boundary_optimization -retime
 ## compile ##
 #compile -map_effort high -area_effort high
 #compile -map_effort high -area_effort high -inc
-compile
+# compile
 
 remove_unconnected_ports -blast_buses [get_cells -hierarchical *]
 

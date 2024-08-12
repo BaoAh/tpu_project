@@ -16,8 +16,7 @@ module tpu (
     addr_c,  //8
     output reg [      `WORD_SIZE-1:0] in_a,
     in_b,
-    output reg [`EXTEND_WORD_SIZE-1:0] in_c, 
-	//data of a,b,c
+    in_c,  //data of a,b,c
     input      [      `WORD_SIZE-1:0] out_a,
     out_b,
     out_c
@@ -242,7 +241,7 @@ module tpu (
   wire out_m = (m > 4'd4);
   wire out_n = (n > 4'd4);
   wire fit_m = (m[1:0] == 2'd0);
-  reg [3:0] cnt_m, cnt_n;
+  reg [1:0] cnt_m, cnt_n;
   wire [ 1:0] rnd_m = m[3:2] + (m[1:0] > 2'd0);
   wire [ 1:0] rnd_n = n[3:2] + (n[1:0] > 2'd0);
   wire        out_limit = (out_n || out_m);
@@ -252,7 +251,7 @@ module tpu (
   wire [0:31] from_top__net                    [0:4];
   wire [0:31] from_left_net                    [0:4];
   //wire [31:0] multi_out_net                    [0:3];
-  wire [63:0] multi_out_net                    [0:3];
+  wire [71:0] multi_out_net                    [0:3];
 
   always @(posedge clk or posedge rst) begin
     if (rst) systolic_array_rst <= 1;
@@ -283,13 +282,13 @@ module tpu (
             .left_in (from_left_net[j][i*8 : i*8+7]),
             .up_out  (from_top__net[i+1][j*8 : j*8+7]),     // move downward
             .left_out(from_left_net[j+1][i*8 : i*8+7]),     // move right
-            .mat_out (multi_out_net[i][63-(j*16):48-(j*16)])  // move downward
+            .mat_out (multi_out_net[i][71-(j*18):54-(j*18)])  // move downward
         );
       end
     end
   endgenerate
 
-  reg [`GBUFF_INDX_SIZE-1:0] last_addr_a, last_addr_b, last_addr_c;  //8 bit
+  reg [`GBUFF_INDX_SIZE-1:0] last_addr_b, last_addr_c;  //8 bit
 
   wire cnt_end = (cnt == {1'd0, k} + 5'd7);
 
@@ -298,23 +297,22 @@ module tpu (
       done <= 0;
       in_a <= 32'd0;
       in_b <= 32'd0;
-      in_c <= 0;
-      last_addr_a <= 8'd0;
+      in_c <= 32'd0;
       last_addr_b <= 8'd0;
       last_addr_c <= 8'd0;
-      cnt <= 0;
+      cnt <= 5'd0;
       addr_a <= 8'd0;
       addr_b <= 8'd0;
       addr_c <= 8'd0;
-      cnt_m <= 0;
-      cnt_n <= 0;
+      cnt_m <= 2'd0;
+      cnt_n <= 2'd0;
       wr_en_a <= 0;
       wr_en_b <= 0;
       wr_en_c <= 0;
     end else begin
       in_a <= 32'd0;
       in_b <= 32'd0;
-      in_c <= 0;
+      in_c <= 32'd0;
       wr_en_a <= 0;
       wr_en_b <= 0;
       wr_en_c <= 0;
@@ -359,15 +357,78 @@ module tpu (
           end
 
           addr_c <= last_addr_c + cnt;
+          if (multi_out_net[cnt[1:0]][17]) begin
+            if (~(&multi_out_net[cnt[1:0]][16:11])) begin
+              in_c[31:24] <= 8'b10000000;
+            end
+            else begin
+              in_c[31:24] <= multi_out_net[cnt[1:0]][11:4];
+            end
+          end
+          else begin
+            if (|multi_out_net[cnt[1:0]][16:11]) begin
+              in_c[31:24] <= 8'b01111111;
+            end
+            else begin
+              in_c[31:24] <= multi_out_net[cnt[1:0]][11:4];
+            end
+          end
 
-          in_c[63:48] <= multi_out_net[cnt[1:0]][15 : 0];
-          in_c[47:32] <= multi_out_net[cnt[1:0]][31:16];
-          in_c[31:16] <= multi_out_net[cnt[1:0]][47:32];
-          in_c[15:0] <= multi_out_net[cnt[1:0]][63:48];
-          /*in_c[31:24] <= multi_out_net[cnt[1:0]][7 : 0];
-          in_c[23:16] <= multi_out_net[cnt[1:0]][15:8];
-          in_c[15:8] <= multi_out_net[cnt[1:0]][23:16];
-          in_c[7 : 0] <= multi_out_net[cnt[1:0]][31:24];*/
+          if (multi_out_net[cnt[1:0]][35]) begin
+            if (~(&multi_out_net[cnt[1:0]][34:29])) begin
+              in_c[23:16] <= 8'b10000000;
+            end
+            else begin
+              in_c[23:16] <= multi_out_net[cnt[1:0]][29:22];
+            end
+          end
+          else begin
+            if (|multi_out_net[cnt[1:0]][34:29]) begin
+              in_c[23:16] <= 8'b01111111;
+            end
+            else begin
+              in_c[23:16] <= multi_out_net[cnt[1:0]][29:22];
+            end
+          end
+
+          if (multi_out_net[cnt[1:0]][53]) begin
+            if (~(&multi_out_net[cnt[1:0]][52:47])) begin
+              in_c[15:8] <= 8'b10000000;
+            end
+            else begin
+              in_c[15:8] <= multi_out_net[cnt[1:0]][47:40];
+            end
+          end
+          else begin
+            if (|multi_out_net[cnt[1:0]][52:47]) begin
+              in_c[15:8] <= 8'b01111111;
+            end
+            else begin
+              in_c[15:8] <= multi_out_net[cnt[1:0]][47:40];
+            end
+          end
+
+          if (multi_out_net[cnt[1:0]][71]) begin
+            if (~(&multi_out_net[cnt[1:0]][70:65])) begin
+              in_c[7:0] <= 8'b10000000;
+            end
+            else begin
+              in_c[7:0] <= multi_out_net[cnt[1:0]][65:58];
+            end
+          end
+          else begin
+            if (|multi_out_net[cnt[1:0]][70:65]) begin
+              in_c[7:0] <= 8'b01111111;
+            end
+            else begin
+              in_c[7:0] <= multi_out_net[cnt[1:0]][65:58];
+            end
+          end
+          // in_c[31:24] <= multi_out_net[cnt[1:0]][11:4];
+          // in_c[23:16] <= multi_out_net[cnt[1:0]][29:22];
+          // in_c[15:8] <= multi_out_net[cnt[1:0]][47:40];
+          // in_c[7 : 0] <= multi_out_net[cnt[1:0]][65:58];
+          
         end
         FINISH: begin
           wr_en_c <= 0;

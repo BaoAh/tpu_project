@@ -123,8 +123,8 @@ else:
 #  matrix_a = np.genfromtxt(filename_a, delimiter = ",", dtype="int")
 #  matrix_b = np.genfromtxt(filename_b, delimiter = ",", dtype="int")
 
-matrix_address_a = './sw/hex/'+inputs_set1
-matrix_address_b = './sw/hex/'+inputs_set2
+matrix_address_a = '../sw/hex/'+inputs_set1
+matrix_address_b = '../sw/hex/'+inputs_set2
 #res_address = '../sw/hex/'+inputs_set3
 
 matrix_a_t = np.load(matrix_address_a)
@@ -210,14 +210,14 @@ print("<log> matrix definations written in ./matrix_define.v")
 # ------------------------------------------------------------------------------#
 # Write Matrix A                                                               #
 # ------------------------------------------------------------------------------#
-write_binary_file("./sim/matrix_a.bin", np.transpose(matrix_a))
+write_binary_file("matrix_a.bin", np.transpose(matrix_a))
 
 # ------------------------------------------------------------------------------#
 # Write Matrix B                                                               #
 # ------------------------------------------------------------------------------#
-write_binary_file("./sim/matrix_b.bin", matrix_b)
+write_binary_file("matrix_b.bin", matrix_b)
 
 # ------------------------------------------------------------------------------#
 # Write golden output                                                          #
 # ------------------------------------------------------------------------------#
-write_binary_file("./sim/golden.bin", res,16)
+write_binary_file("golden.bin", res,16)

@@ -16,8 +16,6 @@ module sync_fifo #(
   reg [7:0] buffer[0:WIDTH-1];
   reg [2:0] wr_ptr;
   reg [2:0] rd_ptr;
-  reg [1:0] count = 0;
-
   //assign data_out = buffer[rd_ptr];
 
   integer k;
@@ -25,7 +23,6 @@ module sync_fifo #(
     if (rst) begin
       wr_ptr <= 0;
       rd_ptr <= 0;
-      count <= 0;
       data_out <= 8'd0;
       for (k = 0; k < WIDTH; k = k + 1) buffer[k] <= 8'd0;
     end else begin
@@ -36,11 +33,6 @@ module sync_fifo #(
       if (r_en && !empty) begin
         data_out <= buffer[rd_ptr];
         rd_ptr   <= (rd_ptr == WIDTH - 1) ? 0 : rd_ptr + 1;
-      end
-      if (r_en && !empty && !w_en) begin
-        count <= count - 1;
-      end else if (w_en && !full && !r_en) begin
-        count <= count + 1;
       end
     end
   end
