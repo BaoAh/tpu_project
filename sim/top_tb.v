@@ -11,16 +11,22 @@
 //`include "top.v"
 
 module top_tb;
-
   reg clk;
   reg rst;
   reg start;
   wire done;
   reg [3:0] row_a, col_b, k;
+  reg [`GBUFF_COMPRESS_SIZE-1:0] compress_w;
+  reg [`COMPRESS_INDEX-1 : 0] start_w;
+  reg [`DEEP_SIZE-1 : 0] tree_deep;
   integer err, i, row_offset;
 
   reg [`GBUFF_ADDR_SIZE-1:0] GOLDEN [`WORD_SIZE-1:0];
+  reg [30:0] cycle_total=0;
   always #(`CYCLE/2) clk = ~clk;
+  // always @(posedge clk ) cycle_total = cycle_total+1;
+  always #(`CYCLE) cycle_total = cycle_total+1;
+
 
   top TOP(.clk(clk),
           .rst(rst),
@@ -28,6 +34,9 @@ module top_tb;
           .m(row_a),
           .k(k),
           .n(col_b),
+          .compress_w(compress_w),
+          .start_w(start_w),
+          .tree_deep(tree_deep),
           .done(done));
 
   initial begin
@@ -44,8 +53,13 @@ module top_tb;
     clk = 0;  rst = 1; start = 0;
     #(`CYCLE) rst = 0; start = 1;
     row_a = `MATRIX_A_ROW; col_b = `MATRIX_B_COL; k = `MATRIX_A_COL;
+    compress_w = `COMPRESS_W;
+    start_w  = `START_W;
+    tree_deep = `DEEP;
+    //$readmemb("pattern_a.bin", TOP.DIC_D_A.dic);
+    $readmemb("pattern_w.bin", TOP.DIC_D_W.dic);
     $readmemb("matrix_a.bin", TOP.GBUFF_A.gbuff);
-    $readmemb("matrix_b.bin", TOP.GBUFF_B.gbuff);
+    //$readmemb("matrix_b.bin", TOP.GBUFF_B.gbuff);
     $readmemb("golden.bin", GOLDEN); 
 
     //for (i = 0; i < `MATRIX_A_ROW*`MATRIX_B_COL/4; i=i+1) begin
@@ -193,6 +207,8 @@ module top_tb;
       $display(" **  Simulation Passed!  (( / ))     .----~-.\\        \\-'                .~         \  `. \^-.      ");
       $display(" **                      **           ///.----..>        \\             _ -~             `.  ^-`  ^-_ ");
       $display(" **************************             ///-._ _ _ _ _ _ _}^ - - - -- ~                     ~-- ,.-~  ");
+      $display("\n");
+      $display ("**   RUN CYCLE = %10d  **",cycle_total);
       $display("\n");
     end
     else

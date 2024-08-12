@@ -3,6 +3,7 @@
 
 `include "define.v"
 `include "global_buffer.v"
+`include "dictionary.v"
 
 module top (
     clk,
@@ -11,6 +12,9 @@ module top (
     m,
     n,
     k,
+    compress_w,
+    start_w,
+    tree_deep,
     done
 );
 
@@ -18,12 +22,19 @@ module top (
   input rst;
   input start;
   input [3:0] m, k, n;
+  input [`GBUFF_COMPRESS_SIZE-1:0] compress_w;
+  input [`COMPRESS_INDEX-1 : 0] start_w;
+  input [`DEEP_SIZE -1 : 0] tree_deep;
   output done;
 
   wire wr_en_a, wr_en_b, wr_en_out;
   wire [`GBUFF_INDX_SIZE-1:0] index_a, index_b, index_out;
   wire [`WORD_SIZE-1:0] data_in_a, data_in_b, data_in_o;
   wire [`WORD_SIZE-1:0] data_out_a, data_out_b, data_out_o;
+
+  //dic
+  wire[`DICTIONARY_INDX_SIZE-1:0] index_d_w ;
+  wire[`DATA_SIZE-1:0] data_out_d_w;
 
   //----------------------------------------------------------------------------//
   // TPU module declaration                                                     //
@@ -35,6 +46,9 @@ module top (
       .m(m),
       .n(n),
       .k(k),
+      .compress_w(compress_w),
+      .start_w(start_w),
+      .tree_deep(tree_deep),
       .done(done),
       .wr_en_a(wr_en_a),
       .wr_en_b(wr_en_b),
@@ -42,12 +56,20 @@ module top (
       .addr_a(index_a),
       .addr_b(index_b),
       .addr_c(index_out),
+      .addr_d_w(index_d_w),
       .in_a(data_in_a),
       .in_b(data_in_b),
       .in_c(data_in_o),
       .out_a(data_out_a),
       .out_b(data_out_b),
-      .out_c(data_out_o)
+      .out_d_w(data_out_d_w)
+
+  );
+
+  //dictionary
+  dictionary DIC_D_W (
+      .index   (index_d_w),
+      .data_out(data_out_d_w)
   );
 
   //----------------------------------------------------------------------------//

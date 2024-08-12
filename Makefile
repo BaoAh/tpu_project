@@ -211,4 +211,3 @@ clean:
 	rm -rf $(BUILD_DIR) $(SYN_DIR) $(APR_DIR) $(REPORT_DIR) *.log
 
 
-

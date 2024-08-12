@@ -28,8 +28,7 @@ num_bits, num_int = 8, 4
 q_sch = QuantizationScheme(num_bits, num_int)
 
 # Define an example array of floating point numbers
-#float_array = np.array([2.107, -1.792, 2.769, -5.907, 0.771, 2.623])
-float_array = np.array([0.94451904,-2.95241547,-0.01460266,2.35789490,-2.34010315,3.61403656,-5.80096436,-2.05514526,-3.39022827,3.43481445])
+float_array = np.array([2.107, -1.792, 2.769, -5.907, 0.771, 2.623])
 
 # Convert the floating point array to fixed point using the function
 fixed_arr = q_sch.convert(float_array)

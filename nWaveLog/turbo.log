@@ -1,2 +1,3 @@
 Command Line: /home/nfs_cad/synopsys/verdi/cur/platform/LINUXAMD64/bin/Novas -nWave
 uname(Linux caidcpuserver1 5.15.0-97-generic #107~20.04.1-Ubuntu SMP Fri Feb 9 14:20:11 UTC 2024 x86_64)
+au time 3882.572075 25.750664 28.533554 delta 336207872 336207872 total 730763264 730763264
